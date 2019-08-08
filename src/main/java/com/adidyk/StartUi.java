@@ -1,8 +1,12 @@
 package com.adidyk;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * Class StartUi.
  */
+@SpringBootApplication
 public class StartUi {
 
     /**
@@ -11,18 +15,7 @@ public class StartUi {
      */
     public  static void main(String[] arg) {
         System.out.println("viber-bot");
-
-        /*
-        Вайбер бот.  ( частные чаты  1 на 1, бот - юзер ) реализация до 10 диалогов, в каждом до 5 кнопок,
-        1 диалог с продукцией, (фото - описание - цена), БД - гугл ексель или мускл.
-        После подтверждения заказа - идет добавление заказа в ексель табличку и минусуется общий вес товара
-        из основной таблицы. Тематика бота СЫР.
-        Язык :  Java
-        Нагрузка до 1000 запросов в день.
-        Логи : Стандартные логи Джавы.
-        Рамещение ПО : где то
-        Сроков как таковых нету.  По сложности вроде не.
-         */
+        SpringApplication.run(StartUi.class, arg);
     }
 
 }

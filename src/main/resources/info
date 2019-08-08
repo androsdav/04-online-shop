@@ -1,2 +1,19 @@
 Spring Boot - Building RESTful Web Services
 url: https://www.tutorialspoint.com/spring_boot/spring_boot_building_restful_web_services
+
+Consuming a RESTful Web Service with AngularJS
+url: https://spring.io/guides/gs/consuming-rest-angularjs/
+
+Fetch
+https://learn.javascript.ru/fetch
+
+
+        Вайбер бот.  ( частные чаты  1 на 1, бот - юзер ) реализация до 10 диалогов, в каждом до 5 кнопок,
+        1 диалог с продукцией, (фото - описание - цена), БД - гугл ексель или мускл.
+        После подтверждения заказа - идет добавление заказа в ексель табличку и минусуется общий вес товара
+        из основной таблицы. Тематика бота СЫР.
+        Язык :  Java
+        Нагрузка до 1000 запросов в день.
+        Логи : Стандартные логи Джавы.
+        Рамещение ПО : где то
+        Сроков как таковых нету.  По сложности вроде не.

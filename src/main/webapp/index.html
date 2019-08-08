@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <title>02-http-protocol</title>
+        <script type="text/javascript">
+            function enableSelect(currentRadio){
+                if(currentRadio.value === "add") {
+                    document.getElementById("add_user").disabled = false;
+                    document.getElementById("update_user").disabled = true;
+                    document.getElementById("delete_user").disabled = true;
+                } else if (currentRadio.value === "update") {
+                    document.getElementById("add_user").disabled = true;
+                    document.getElementById("update_user").disabled = false;
+                    document.getElementById("delete_user").disabled = true;
+                } else {
+                    document.getElementById("add_user").disabled = true;
+                    document.getElementById("update_user").disabled = true;
+                    document.getElementById("delete_user").disabled = false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+    <div id="div_main">
+        <div id="div_list">
+            <table class="table_user">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>login</th>
+                    <th>email</th>
+                    <th>createDate</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Bill</td>
+                    <td>billy</td>
+                    <td>billy@gmail.com</td>
+                    <td>10.10.2018</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Ben</td>
+                    <td>test string for input login now</td>
+                    <td>brnito@gmail.com</td>
+                    <td>10.11.2018</td>
+                </tr>
+            </table>
+        </div>
+        <div id="div_action">
+            <form action="action_user_servlet" method="POST">
+                <fieldset>
+                    <legend style="text-align: left"><b>CHOOSE ACTION</b></legend>
+                    <!-- add user -->
+                    <b>ADD USER</b><br/><hr>
+                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="add" checked></label> add user<br/>
+                    <fieldset class="fieldset_style" id="add_user">
+                        name: <label><input type="text" name="name" class="input_style" required></label><br/>
+                        login: <label><input type="text" name="login" class="input_style" required/></label><br/>
+                        email: <label><input type="text" name="email" class="input_style" required/></label><br/>
+                    </fieldset>
+                    <!-- update user -->
+                    <b>UPDATE USER</b><br/><hr>
+                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="update"></label> update user<br/>
+                    <fieldset class="fieldset_style" id="update_user" disabled>
+                        id: <label><input type="text" name="id" class="input_style" required/></label><br/>
+                        name: <label><input type="text" name="name" class="input_style" required></label><br/>
+                        login: <label><input type="text" name="login" class="input_style" required/></label><br/>
+                        email: <label><input type="text" name="email" class="input_style" required/></label><br/>
+                    </fieldset>
+                    <!-- delete user -->
+                    <b>DELETE USER</b><br/><hr>
+                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="delete"></label> delete user<br/>
+                    <fieldset class="fieldset_style" id="delete_user" disabled>
+                        id: <label><input type="text" name="id" class="input_style" required/></label><br/>
+                    </fieldset>
+                    <!-- submit -->
+                    <hr>
+                    <fieldset style="border:0 none">
+                        <input type="submit" value="Submit"/><br/>
+                    </fieldset>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div><a href="/get_users">get all users</div>
+        <div><a href="/get_users_response">get all users response</div>
+    </div>
+
+    </body>
+</html>
