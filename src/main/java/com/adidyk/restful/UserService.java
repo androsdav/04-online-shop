@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -33,7 +34,7 @@ public class UserService {
      * getAllUser - returns all users.
      * @return - returns all users.
      */
-    @RequestMapping(value = "/get_users")
+    @RequestMapping(value = "/get_users", method = RequestMethod.GET)
     public List<User> getAllUser() {
         return list;
     }
@@ -42,9 +43,18 @@ public class UserService {
      * getAllUser - returns all users.
      * @return - returns all users.
      */
-    @RequestMapping(value = "/get_users_response")
+    @RequestMapping(value = "/get_users_response", method = RequestMethod.GET)
     public ResponseEntity<Object> getAllUserResponse() {
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    /**
+     * getUser - gets first user.
+     * @return - gets first user.
+     */
+    @RequestMapping(value = "/get_user", method = RequestMethod.GET)
+    public User getUser() {
+        return new User(4, "test", "test");
     }
 
 

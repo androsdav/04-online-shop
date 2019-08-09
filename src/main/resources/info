@@ -7,6 +7,9 @@ url: https://spring.io/guides/gs/consuming-rest-angularjs/
 Fetch
 https://learn.javascript.ru/fetch
 
+http://spring-projects.ru/guides/consuming-rest-jquery/
+http://spring-projects.ru/guides/
+
 
         Вайбер бот.  ( частные чаты  1 на 1, бот - юзер ) реализация до 10 диалогов, в каждом до 5 кнопок,
         1 диалог с продукцией, (фото - описание - цена), БД - гугл ексель или мускл.
