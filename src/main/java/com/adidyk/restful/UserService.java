@@ -25,8 +25,8 @@ public class UserService {
         User bob = new User(1, "bob", "white");
         User amanda = new User(2, "amanda", "red");
         User barbara = new User(3, "barbara", "black");
-        list.add(bob);
-        list.add(amanda);
+        //list.add(bob);
+        //list.add(amanda);
         list.add(barbara);
     }
 
@@ -54,7 +54,17 @@ public class UserService {
      */
     @RequestMapping(value = "/get_user", method = RequestMethod.GET)
     public User getUser() {
-        return new User(4, "test", "test");
+        return new User(4, "TEEEEEEEEEtest", "teFDFASDFSDFt");
+    }
+
+/**
+ * getUser - gets first user.
+ * @return - gets first user.
+ */
+    @RequestMapping(value = "/get_user_2", method = RequestMethod.GET)
+    public ResponseEntity<Object> getUserResponse() {
+        User user = new User(4, "test", "test");
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 

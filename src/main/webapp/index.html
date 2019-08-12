@@ -1,4 +1,40 @@
+<!doctype html>
+<html ng-app="questApp">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+<div ng-controller="QuestionController">
+    <button ng-click="load()">Загрузить</button>
+    <div ng-show="loaded">
+        <h3>test</h3>
+        <h3>user id: {{user.id}}</h3>
+        <h3>user firstName: {{user.firstName}}</h3>
+        <h3>user LastName: {{user.lastName}}</h3>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script>
 
+
+    var questApp = angular.module('questApp', []);
+
+    questApp.controller('QuestionController', function QuestionController($scope, $http) {
+            $http({method: 'GET', url: 'get_user'}).
+            then(function success(response) {
+                $scope.user = response.data;
+            });
+        }
+    );
+
+
+</script>
+</body>
+</html>
+<!--var questApp = angular.module('questApp', []); -->
+
+<!--
 <!doctype html>
 <html ng-app="purchaseApp" lang="en">
 <head>
@@ -69,7 +105,7 @@
 </script>
 </body>
 </html>
-
+-->
 
 <!--
 !doctype html>

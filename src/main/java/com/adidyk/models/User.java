@@ -1,22 +1,16 @@
 package com.adidyk.models;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
 /**
  * Class User.
  */
-@XmlRootElement(name = "user")
 public class User {
 
-    @XmlElement(name = "id")
     private int id;
 
-    @XmlElement(name = "firstName")
     private String firstName;
 
-    @XmlElement(name = "lastName")
     private String lastName;
 
     public User() {
@@ -31,6 +25,7 @@ public class User {
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
