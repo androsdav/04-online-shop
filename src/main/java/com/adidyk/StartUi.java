@@ -15,6 +15,7 @@ public class StartUi {
      */
     public  static void main(String[] arg) {
         System.out.println("viber-bot");
+        System.getProperties().put("server.port", 8081);
         SpringApplication.run(StartUi.class, arg);
     }
 

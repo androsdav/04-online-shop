@@ -16,8 +16,8 @@ public class User {
     public User() {
     }
 
-    public User(int id, String firstName, String lastName) {
-        this.user_id = id;
+    public User(int user_id, String firstName, String lastName) {
+        this.user_id = user_id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -27,8 +27,8 @@ public class User {
     }
 
 
-    public void setId(int id) {
-        this.user_id = id;
+    public void setId(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getFirstName() {

@@ -6,10 +6,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Class UserService.
@@ -63,10 +60,18 @@ public class UserService {
      * @param user - user.
      */
     @RequestMapping(value = "/add_user", method = RequestMethod.POST)
-    public void addUser(User user) {
+    public ResponseEntity<User> addUser(@RequestBody User user) {
         System.out.println(user);
-        //list.add((User) user);
+        list.add(user);
         System.out.println(list);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "add_all_user", method = RequestMethod.POST)
+    public ResponseEntity<List<User>> addListUser(@RequestBody List<User> userList) {
+        System.out.println(userList);
+        list.addAll(userList);
+        return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
 /**
@@ -78,6 +83,5 @@ public class UserService {
         User user = new User(4, "test", "test");
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
 
 }

@@ -10,7 +10,7 @@ app.controller('postCtrl', function ($scope, $http) {
 
     $scope.addUser = function (user_id, firstName, lastName) {
         var user = {
-            user_id : user_id,
+            id : user_id,
             firstName : firstName,
             lastName : lastName
         };
