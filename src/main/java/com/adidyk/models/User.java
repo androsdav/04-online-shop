@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class User {
 
-    private int id;
+    private int user_id;
 
     private String firstName;
 
@@ -17,18 +17,18 @@ public class User {
     }
 
     public User(int id, String firstName, String lastName) {
-        this.id = id;
+        this.user_id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     public int getId() {
-        return id;
+        return user_id;
     }
 
 
     public void setId(int id) {
-        this.id = id;
+        this.user_id = id;
     }
 
     public String getFirstName() {
@@ -52,20 +52,20 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return id == user.id &&
+        return user_id == user.user_id &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(user_id, firstName, lastName);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + user_id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';

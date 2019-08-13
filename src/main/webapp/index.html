@@ -1,4 +1,35 @@
 <!doctype html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div ng-controller="postCtrl">
+    <input class="form-control" ng-model="user_id" placeholder="id"/>
+    <input class="form-control" ng-model="firstName" placeholder="first name"/>
+    <input class="form-control" ng-model="lastName" placeholder="last name"/>
+    <button class="btn btn-default" ng-click="addUser(user_id, firstName, lastName)">add user</button>
+</div>
+<div ng-controller="postCtrl">
+    <button ng-click="getUsers()"> get all users</button>
+    <div ng-repeat="user in users">{{user.lastName}}</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+<script type="text/javascript" src="test.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
+<!doctype html>
 <html ng-app="questApp">
 <head>
     <meta charset="utf-8">
@@ -31,7 +62,8 @@
 
 </script>
 </body>
-</html>
+</html> -->
+
 <!--var questApp = angular.module('questApp', []); -->
 
 <!--

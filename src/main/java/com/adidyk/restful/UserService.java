@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -25,8 +26,8 @@ public class UserService {
         User bob = new User(1, "bob", "white");
         User amanda = new User(2, "amanda", "red");
         User barbara = new User(3, "barbara", "black");
-        //list.add(bob);
-        //list.add(amanda);
+        list.add(bob);
+        list.add(amanda);
         list.add(barbara);
     }
 
@@ -55,6 +56,17 @@ public class UserService {
     @RequestMapping(value = "/get_user", method = RequestMethod.GET)
     public User getUser() {
         return new User(4, "TEEEEEEEEEtest", "teFDFASDFSDFt");
+    }
+
+    /**
+     * addUser - adds user.
+     * @param user - user.
+     */
+    @RequestMapping(value = "/add_user", method = RequestMethod.POST)
+    public void addUser(User user) {
+        System.out.println(user);
+        //list.add((User) user);
+        System.out.println(list);
     }
 
 /**
