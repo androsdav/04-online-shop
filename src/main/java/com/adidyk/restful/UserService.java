@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 /**
  * Class UserService.
  */
@@ -50,9 +52,17 @@ public class UserService {
      * getUser - gets first user.
      * @return - gets first user.
      */
-    @RequestMapping(value = "/get_user", method = RequestMethod.GET)
-    public User getUser() {
-        return new User(4, "TEEEEEEEEEtest", "teFDFASDFSDFt");
+    @RequestMapping(value = "/get_user/{id}", method = RequestMethod.GET)
+    public User getUser( @PathVariable("id") String userId) {
+        int id = Integer.parseInt(userId);
+        User getUser = null;
+        for (User user : list) {
+            if (user.getId() == id) {
+                getUser = user;
+                break;
+            }
+        }
+        return getUser;
     }
 
     /**
@@ -60,11 +70,11 @@ public class UserService {
      * @param user - user.
      */
     @RequestMapping(value = "/add_user", method = RequestMethod.POST)
-    public ResponseEntity<User> addUser(@RequestBody User user) {
+    public void addUser(@RequestBody User user) {
         System.out.println(user);
         list.add(user);
         System.out.println(list);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        //return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "add_all_user", method = RequestMethod.POST)
