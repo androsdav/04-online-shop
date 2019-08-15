@@ -74,7 +74,7 @@ public class UserService {
         System.out.println(user);
         list.add(user);
         System.out.println(list);
-        //return new ResponseEntity<>(user, HttpStatus.OK);
+        //return new ResponseEntity<>(user, HttpStatus.OK); ndghfghf
     }
 
     @RequestMapping(value = "add_all_user", method = RequestMethod.POST)
