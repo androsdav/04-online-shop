@@ -16,6 +16,9 @@ Process finished with exit code 130 (interrupted by signal 2: SIGINT)
 https://www.javaguides.net/2019/01/springboot-postgresql-jpa-hibernate-crud-restful-api-tutorial.html
 
 
+
+https://java-master.com/spring-boot-%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80-%D1%81-postgres-%D0%B8-jpa/
+
         Вайбер бот.  ( частные чаты  1 на 1, бот - юзер ) реализация до 10 диалогов, в каждом до 5 кнопок,
         1 диалог с продукцией, (фото - описание - цена), БД - гугл ексель или мускл.
         После подтверждения заказа - идет добавление заказа в ексель табличку и минусуется общий вес товара
