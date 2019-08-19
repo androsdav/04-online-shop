@@ -1,4 +1,4 @@
-package com.adidyk.models;
+package com.adidyk.model;
 
 import java.util.Objects;
 

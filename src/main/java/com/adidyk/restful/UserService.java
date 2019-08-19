@@ -1,14 +1,12 @@
 package com.adidyk.restful;
 
-import com.adidyk.models.User;
+import com.adidyk.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 
 /**
  * Class UserService.
