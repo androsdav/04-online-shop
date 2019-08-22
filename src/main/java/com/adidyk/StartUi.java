@@ -38,8 +38,9 @@ public class StartUi {
 
     @EventListener(ApplicationReadyEvent.class)
     public void testJpaMethods(){
-        SmartPhone iphone = new SmartPhone("123", "234", "567");
-        this.service.create(iphone);
+        SmartPhone iphone = new SmartPhone("123", "234", "567", 124);
+        //this.service.create(iphone);
+        this.service.
     }
 
 }

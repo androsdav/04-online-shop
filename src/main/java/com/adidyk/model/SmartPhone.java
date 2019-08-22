@@ -36,6 +36,9 @@ public class SmartPhone {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "quantity")
+    private int quantity;
+
     /**
      * SmartPhone - constructor.
      */
@@ -48,10 +51,11 @@ public class SmartPhone {
      * @param model - model.
      * @param description - description.
      */
-    public SmartPhone(String company, String model, String description) {
+    public SmartPhone(String company, String model, String description, int quantity) {
         this.company = company;
         this.model = model;
         this.description = description;
+        this.quantity = quantity;
     }
 
     /**
@@ -61,11 +65,12 @@ public class SmartPhone {
      * @param model - model.
      * @param description - description.
      */
-    public SmartPhone(int id, String company, String model, String description) {
+    public SmartPhone(int id, String company, String model, String description, int quantity) {
         this.id = id;
         this.company = company;
         this.model = model;
         this.description = description;
+        this.quantity = quantity;
     }
 
     public int getId() {
@@ -100,12 +105,21 @@ public class SmartPhone {
         this.description = description;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof SmartPhone)) return false;
         SmartPhone that = (SmartPhone) o;
         return id == that.id &&
+                quantity == that.quantity &&
                 Objects.equals(company, that.company) &&
                 Objects.equals(model, that.model) &&
                 Objects.equals(description, that.description);
@@ -113,7 +127,7 @@ public class SmartPhone {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, company, model, description);
+        return Objects.hash(id, company, model, description, quantity);
     }
 
     @Override
@@ -123,6 +137,7 @@ public class SmartPhone {
                 ", company='" + company + '\'' +
                 ", model='" + model + '\'' +
                 ", description='" + description + '\'' +
+                ", quantity=" + quantity +
                 '}';
     }
 
