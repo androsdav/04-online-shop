@@ -30,13 +30,25 @@ public class SmartPhoneService {
      * create - create.
      * @param smartPhone - smart phone.
      */
-    public void create(SmartPhone smartPhone) {
+    public void add(SmartPhone smartPhone) {
         this.repository.save(smartPhone);
     }
 
+    /**
+     *
+     * @param id - id.
+     * @return - SmartPhone.
+     */
+
+    public SmartPhone get(Integer id) {
+        return  this.repository.findById(id).get();
+    }
+
+    /*
     public void update(SmartPhone smartPhone) {
         this.repository
 
     }
+    */
 
 }
