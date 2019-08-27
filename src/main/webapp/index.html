@@ -10,13 +10,13 @@
     </script>
 
 </head>
-<body ng-controller="postCtrl">
+<body ng-controller="smartPhone">
 
 <div class="col-md-offset-2 col-md-8">
     <h3>Add user</h3>
 </div>
 
-<div ng-controller="postCtrl" class="col-md-offset-2 col-md-8">
+<div ng-controller="smartPhone" class="col-md-offset-2 col-md-8">
     <div class="form-inline">
         <div class="form-group">
             <div class="col-md-8">
@@ -40,12 +40,12 @@
         </div>
     </div>
     <div class="page-header">
-        <h3>Get all user</h3>
+        <h3>smart phone</h3>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <div class="col-md-offset-20">
-                <button ng-click="getUsers()">get</button>
+                <button ng-click="getAllSmartPhone()">get</button>
             </div>
         </div>
         <div class="form-group">
@@ -63,13 +63,16 @@
                 <th>first name</th>
                 <th>last name</th>
                 <th>order</th>
+                <th>order</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="user in users" ng-show="showBlock">
-                <td>{{user.id}}</td>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
+            <tr ng-repeat="phone in smartPhone" ng-show="showBlock">
+                <td>{{phone.id}}</td>
+                <td>{{phone.company}}</td>
+                <td>{{phone.model}}</td>
+                <td>{{phone.description}}</td>
+                <td>{{phone.quantity}}</td>
                 <td><button class="btn btn-default" ng-click="addUser(user.id, user.firstName, user.lastName)">+</button></td>
             </tr>
             </tbody>
@@ -82,243 +85,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-<!--
-<!doctype html>
-<html ng-app="questApp">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>
-<body>
-<div ng-controller="QuestionController">
-    <button ng-click="load()">Загрузить</button>
-    <div ng-show="loaded">
-        <h3>test</h3>
-        <h3>user id: {{user.id}}</h3>
-        <h3>user firstName: {{user.firstName}}</h3>
-        <h3>user LastName: {{user.lastName}}</h3>
-    </div>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-<script>
-
-
-    var questApp = angular.module('questApp', []);
-
-    questApp.controller('QuestionController', function QuestionController($scope, $http) {
-            $http({method: 'GET', url: 'get_user'}).
-            then(function success(response) {
-                $scope.user = response.data;
-            });
-        }
-    );
-
-
-</script>
-</body>
-</html> -->
-
-<!--var questApp = angular.module('questApp', []); -->
-
-<!--
-<!doctype html>
-<html ng-app="purchaseApp" lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-</head>
-<body ng-controller="purchaseController">
-<div class="page-header">
-    <h1> Список покупок </h1>
-</div>
-<div class="panel">
-    <div class="form-inline">
-        <div class="form-group">
-            <div class="col-md-8">
-                <input class="form-control" ng-model="text" placeholder = "Название" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-6">
-                <input type="number" class="form-control" ng-model="price" placeholder="Цена" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-8">
-                <button class="btn btn-default" ng-click="addItem(text, price)">Добавить</button>
-            </div>
-        </div>
-    </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Предмет</th>
-            <th>Цена</th>
-            <th>Куплено</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in list.items">
-            <td>{{item.purchase}}</td>
-            <td>{{item.price}}</td>
-            <td><label><input type="checkbox" ng-model="item.done" /></label></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-<script>
-    var model = {
-        items: [
-            { purchase: "Хлеб", done: false, price: 15.9 },
-            { purchase: "Масло", done: false, price: 60 },
-            { purchase: "Картофель", done: true, price: 22.6 },
-            { purchase: "Сыр", done: false, price:310 }
-        ]
-    };
-    var purchaseApp = angular.module("purchaseApp", []);
-    purchaseApp.controller("purchaseController", function ($scope) {
-        $scope.list = model;
-        $scope.addItem = function (text, price) {
-            price = parseFloat(price); // преобразуем введенное значение к числу
-            if(text != "" && !isNaN(price)) // если текст установлен и введено число, то добавляем
-            {
-                $scope.list.items.push({ purchase: text, price: price, done: false });
-            }
-        }
-    });
-</script>
-</body>
-</html>
--->
-
-<!--
-!doctype html>
-<html ng-app>
-<head>
-    <title>Hello AngularJS</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-    <script src="hello.js"></script>
-</head>
-
-<body>
-<div ng-controller="Test    ">
-    <p>The ID is {{user.id}}</p>
-    <p>The content is {{user.content}}</p>
-</div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en" ng-app>
-    <head>
-        <link rel="stylesheet" href="style.css">
-        <meta charset="UTF-8">
-        <title>02-http-protocol</title>
-        <script type="text/javascript">
-            function enableSelect(currentRadio){
-                if(currentRadio.value === "add") {
-                    document.getElementById("add_user").disabled = false;
-                    document.getElementById("update_user").disabled = true;
-                    document.getElementById("delete_user").disabled = true;
-                } else if (currentRadio.value === "update") {
-                    document.getElementById("add_user").disabled = true;
-                    document.getElementById("update_user").disabled = false;
-                    document.getElementById("delete_user").disabled = true;
-                } else {
-                    document.getElementById("add_user").disabled = true;
-                    document.getElementById("update_user").disabled = true;
-                    document.getElementById("delete_user").disabled = false;
-                }
-            }
-        </script>-->
-<!--
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-        <script src="test.js"></script>
-    </head>
-    <body>
-    <div id="div_main">
-        <div id="div_list">
-            <table class="table_user">
-                <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>login</th>
-                    <th>email</th>
-                    <th>createDate</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Bill</td>
-                    <td>billy</td>
-                    <td>billy@gmail.com</td>
-                    <td>10.10.2018</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Ben</td>
-                    <td>test string for input login now</td>
-                    <td>brnito@gmail.com</td>
-                    <td>10.11.2018</td>
-                </tr>
-            </table>
-        </div>
-        <div id="div_action">
-            <form action="action_user_servlet" method="POST">
-                <fieldset>
-                    <legend style="text-align: left"><b>CHOOSE ACTION</b></legend>
-                    -->
-                    <!-- add user --> <!--
-                    <b>ADD USER</b><br/><hr>
-                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="add" checked></label> add user<br/>
-                    <fieldset class="fieldset_style" id="add_user">
-                        name: <label><input type="text" name="name" class="input_style" required></label><br/>
-                        login: <label><input type="text" name="login" class="input_style" required/></label><br/>
-                        email: <label><input type="text" name="email" class="input_style" required/></label><br/>
-                    </fieldset> -->
-                    <!-- update user --> <!--
-                    <b>UPDATE USER</b><br/><hr>
-                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="update"></label> update user<br/>
-                    <fieldset class="fieldset_style" id="update_user" disabled>
-                        id: <label><input type="text" name="id" class="input_style" required/></label><br/>
-                        name: <label><input type="text" name="name" class="input_style" required></label><br/>
-                        login: <label><input type="text" name="login" class="input_style" required/></label><br/>
-                        email: <label><input type="text" name="email" class="input_style" required/></label><br/>
-                    </fieldset> -->
-                    <!-- delete user --> <!--
-                    <b>DELETE USER</b><br/><hr>
-                    action: <label><input onclick="enableSelect(this)" type="radio" name="action" value="delete"></label> delete user<br/>
-                    <fieldset class="fieldset_style" id="delete_user" disabled>
-                        id: <label><input type="text" name="id" class="input_style" required/></label><br/>
-                    </fieldset> -->
-                    <!-- submit --> <!--
-                    <hr>
-                    <fieldset style="border:0 none">
-                        <input type="submit" value="Submit"/><br/>
-                    </fieldset>
-                </fieldset>
-            </form>
-        </div>
-    </div>
-    <div>
-        <div><a href="/get_users">get all users</div>
-        <div><a href="/get_users_response">get all users response</div>
-    </div>
-    -->
-<!--
-    <div ng-controller="Test">
-        <p>user id: {{user.id}}</p>
-        <p>user firstName: {{user.firstName}}</p>
-        <p>user lastName: {{user.lastName}}</p>
-    </div>
-    </body>
-</html>
--->

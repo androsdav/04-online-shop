@@ -5,6 +5,8 @@ import com.adidyk.repository.SmartPhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  *
  */
@@ -27,28 +29,41 @@ public class SmartPhoneService {
     }
 
     /**
-     * create - create.
+     * save - save new smart phone.
      * @param smartPhone - smart phone.
      */
-    public void add(SmartPhone smartPhone) {
+    public void save(SmartPhone smartPhone) {
         this.repository.save(smartPhone);
     }
 
     /**
-     *
-     * @param id - id.
-     * @return - SmartPhone.
+     * findById - find smart phone by id and returns.
+     * @param id - id smart phone.
+     * @return - returns smart phone by id.
      */
-
-    public SmartPhone get(Integer id) {
-        return  this.repository.findById(id).get();
+    public SmartPhone findById(Integer id) {
+        return  this.repository.findById(id).orElse(null);
     }
 
-    /*
-    public void update(SmartPhone smartPhone) {
-        this.repository
-
+    /**
+     * update - update all information for smart phone.
+     * @param newSmartPhone - new smart phone.
+     */
+    public  void update(SmartPhone newSmartPhone) {
+        SmartPhone oldSmartPhone = this.findById(newSmartPhone.getId());
+        oldSmartPhone.setCompany(newSmartPhone.getCompany());
+        oldSmartPhone.setModel(newSmartPhone.getModel());
+        oldSmartPhone.setDescription(newSmartPhone.getDescription());
+        oldSmartPhone.setQuantity(newSmartPhone.getQuantity());
+        this.repository.save(oldSmartPhone);
     }
-    */
+
+    /**
+     * findAll - find and returns all smart phone.
+     * @return - returns all smart phone.
+     */
+    public List<SmartPhone> findAll() {
+        return this.repository.findAll();
+    }
 
 }

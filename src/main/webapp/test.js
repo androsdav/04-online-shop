@@ -1,8 +1,25 @@
 var app = angular.module('app', []);
 
+app.controller('smartPhone', function ($scope, $http) {
+
+    $scope.smartPhone = null;
+
+    $scope.getAllSmartPhone = function () {
+        $http.get("/get_all_smart_phone")
+            .then(function success(response) {
+                $scope.smartPhone = response.data;
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
+
+});
+
+
 /**
  * postCtrl - post controller.
  */
+/*
 app.controller('postCtrl', function ($scope, $http) {
     $scope.id = null;
     $scope.firstName = null;
@@ -33,3 +50,4 @@ app.controller('postCtrl', function ($scope, $http) {
     };
 
 });
+*/
