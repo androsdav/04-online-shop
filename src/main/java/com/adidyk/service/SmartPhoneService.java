@@ -59,6 +59,15 @@ public class SmartPhoneService {
     }
 
     /**
+     * deleteById - delete by id.
+     * @param smartPhone - smart phone.
+     */
+    public void deleteById(SmartPhone smartPhone) {
+        this.repository.deleteById(smartPhone.getId());
+
+    }
+
+    /**
      * findAll - find and returns all smart phone.
      * @return - returns all smart phone.
      */

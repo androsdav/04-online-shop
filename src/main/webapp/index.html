@@ -10,47 +10,56 @@
     </script>
 
 </head>
-<body ng-controller="smartPhone">
+<body ng-controller="smartPhoneCtrl">
 
-<div class="col-md-offset-2 col-md-8">
-    <h3>Add user</h3>
+<!-- Header -->
+<div class="col-md-offset-2 col-md-8 page-header">
+    <h2>SHOP</h2>
 </div>
 
-<div ng-controller="smartPhone" class="col-md-offset-2 col-md-8">
+<div ng-controller="smartPhoneCtrl" class="col-md-offset-2 col-md-8">
+    <div class="page-header">
+        <h4> - Add smart phone:</h4>
+    </div>
     <div class="form-inline">
         <div class="form-group">
             <div class="col-md-8">
-                <input class="form-control" ng-model="id" placeholder = "id"/>
+                <input class="form-control" ng-model="company" placeholder = "company"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-8">
-                <input class="form-control" ng-model="firstName" placeholder="first name"/>
+                <input class="form-control" ng-model="model" placeholder="model"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-8">
-                <input class="form-control" ng-model="lastName" placeholder="last name"/>
+                <input class="form-control" ng-model="description" placeholder="description"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-8">
+                <input class="form-control" ng-model="quantity" placeholder="quantity"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-8">
-                <button class="btn btn-default" ng-click="addUser(id, firstName, lastName)">add</button>
+                <button class="btn btn-default" ng-click="addSmartPhone(company, model, description, quantity)">add</button>
             </div>
         </div>
     </div>
     <div class="page-header">
-        <h3>smart phone</h3>
+        <h4> - Get all smart phone:</h4>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <div class="col-md-offset-20">
-                <button ng-click="getAllSmartPhone()">get</button>
+                <button class="btn btn-default" ng-click="getAllSmartPhone()">get</button>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2">
-                <button ng-click="showBlock  = !  showBlock">hide</button>
+                <button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>
             </div>
         </div>
 
@@ -59,11 +68,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>user id</th>
-                <th>first name</th>
-                <th>last name</th>
-                <th>order</th>
-                <th>order</th>
+                <th>id</th>
+                <th>company</th>
+                <th>model</th>
+                <th>description</th>
+                <th>quantity</th>
+                <th>to order</th>
+                <th>delete</th>
             </tr>
             </thead>
             <tbody>
@@ -73,11 +84,17 @@
                 <td>{{phone.model}}</td>
                 <td>{{phone.description}}</td>
                 <td>{{phone.quantity}}</td>
-                <td><button class="btn btn-default" ng-click="addUser(user.id, user.firstName, user.lastName)">+</button></td>
+                <td><button class="btn btn-default" ng-click="addSmartPhone(phone.company, phone.model, phone.description, phone.quantity)">+</button></td>
+                <td><button class="btn btn-default" ng-click="deleteSmartPhone(phone.id)">-</button></td>
             </tr>
             </tbody>
         </table>
     </div>
+
+    <div class="col-md-offset-2 col-md-8 page-header">
+        <h2>{{deleteSmartPhone.smar}}</h2>
+    </div>
+
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
