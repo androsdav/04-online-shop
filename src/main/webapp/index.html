@@ -18,6 +18,51 @@
 </div>
 
 <div ng-controller="smartPhoneCtrl" class="col-md-offset-2 col-md-8">
+    <!------------------------------------------- order ------------------------------------------->
+    <div class="page-header">
+        <h4> - Your order:</h4>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <div class="col-md-offset-20">
+                <button class="btn btn-default" ng-click="getAllSmartPhone()">get</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                <button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>company</th>
+                <th>model</th>
+                <th>description</th>
+                <th>quantity</th>
+                <th>delete from order</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="phone in order" ng-show="showBlock">
+                <td>{{phone.id}}</td>
+                <td>{{phone.company}}</td>
+                <td>{{phone.model}}</td>
+                <td>{{phone.description}}</td>
+                <td>{{phone.quantity}}</td>
+                <td><button class="btn btn-default" ng-click="deleteFromOrder(phone.id)">-</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!------------------------------------------- order ------------------------------------------->
+
+
+
+
     <div class="page-header">
         <h4> - Add smart phone:</h4>
     </div>
@@ -62,7 +107,6 @@
                 <button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>
             </div>
         </div>
-
     </div>
     <div>
         <table class="table table-striped">
@@ -73,9 +117,8 @@
                 <th>model</th>
                 <th>description</th>
                 <th>quantity</th>
-                <th>to order</th>
-                <th>delete</th>
-            </tr>
+                <th>add to order</th>
+                </tr>
             </thead>
             <tbody>
             <tr ng-repeat="phone in smartPhone" ng-show="showBlock">
@@ -84,16 +127,12 @@
                 <td>{{phone.model}}</td>
                 <td>{{phone.description}}</td>
                 <td>{{phone.quantity}}</td>
-                <td><button class="btn btn-default" ng-click="addSmartPhone(phone.company, phone.model, phone.description, phone.quantity)">+</button></td>
-                <td><button class="btn btn-default" ng-click="deleteSmartPhone(phone.id)">-</button></td>
+                <td><button class="btn btn-default" ng-click="addToOrder(phone.id, phone.company, phone.model, phone.description, phone.quantity)">+</button></td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="col-md-offset-2 col-md-8 page-header">
-        <h2>{{deleteSmartPhone.smar}}</h2>
-    </div>
 
 
 </div>
@@ -102,3 +141,8 @@
 
 </body>
 </html>
+
+
+
+<!--<td><button class="btn btn-default" ng-click="addSmartPhone(phone.company, phone.model, phone.description, phone.quantity)">+</button></td> -->
+<!--<td><button class="btn btn-default" ng-click="deleteSmartPhone(phone.id)">-</button></td>-->

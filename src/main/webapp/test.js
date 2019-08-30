@@ -1,4 +1,4 @@
-var app = angular.module('app', []);
+const app = angular.module('app', []);
 
 /**
  * Controller smartPhone.
@@ -9,7 +9,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param smartPhone - smart phone.
      * @type {null}
      */
-    $scope.smartPhone = null;
+    $scope.smartPhone = [];
 
     /**
      * @param company - company.
@@ -41,6 +41,8 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.quantity = null;
 
+    $scope.order = [];
+
     /**
      * addSmartPhone - add smart phone.
      * @param company - company.
@@ -49,11 +51,11 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param quantity - quantity.
      */
     $scope.addSmartPhone = function (company, model, description, quantity) {
-        var smartPhone = {
-            company : company,
-            model : model,
-            description : description,
-            quantity : quantity
+        const smartPhone = {
+            company: company,
+            model: model,
+            description: description,
+            quantity: quantity
         };
         $http.post("/add_smart_phone", JSON.stringify(smartPhone))
             .then(function (response) {
@@ -64,25 +66,24 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             });
     };
 
-
     /**
      * deleteSmartPhone - delete smart phone by id.
      * @param id - id smart phone.
      */
     $scope.deleteSmartPhone = function (id) {
-        var smartPhone = {
-            id : id,
-            company : null,
-            model : null,
-            description : null,
-            quantity : null
+        const smartPhone = {
+            id: id,
+            company: null,
+            model: null,
+            description: null,
+            quantity: null
         };
-        $http.delete("/delete_smart_phone", JSON.stringify(smartPhone))
+        $http.post("/delete_smart_phone", JSON.stringify(smartPhone))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
             }, function (response) {
-                console.log("service not exists 13123123123 : " + response.status);
+                console.log("service not exists: " + response.status);
             });
     };
 
@@ -97,6 +98,37 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
                 console.log("error" + response.headers);
             });
     };
+
+    $scope.addToOrder = function (id, company, model, description, quantity) {
+        var smartPhone = {
+            id: id,
+            company: company,
+            model: model,
+            description: description,
+            quantity: quantity
+        };
+        $scope.order.push(smartPhone);
+    };
+
+    $scope.deleteFromOrder = function (id) {
+        //$scope.order[id].quantity = $scope.order[id].quantity - 1;
+
+        //$scope.order[$scope.order.indexOf(id)].quantity = $scope.order[$scope.order.indexOf(id)].quantity - 1;
+
+        for ( index = 0, len = $scope.order.length; index < len; index += 1) {
+            if ($scope.order[index].id === id) {
+                $scope.order[index].quantity = $scope.order[index].quantity - 1;
+            }
+        }
+
+        //$scope.order.splice($scope.order.indexOf(id), 1); not bad !!!!!!
+
+
+    };
+
+    //Scope.delete
+
+
 
 });
 

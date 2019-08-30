@@ -39,7 +39,7 @@ public class SmartPhoneAPI {
         this.service.save(smartPhone);
     }
 
-    @RequestMapping(value = "/delete_smart_phone", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete_smart_phone", method = RequestMethod.POST)
     public void deleteSmartPhone(@RequestBody SmartPhone smartPhone) {
         System.out.println(smartPhone);
         this.service.deleteById(smartPhone);
