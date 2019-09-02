@@ -9,7 +9,9 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param smartPhone - smart phone.
      * @type {null}
      */
-    $scope.smartPhone = [];
+    $scope.smartPhones = [];
+
+    $scope.smartPhone = {};
 
     /**
      * @param company - company.
@@ -41,7 +43,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.quantity = null;
 
-    $scope.order = [];
+    $scope.orders = [];
 
     /**
      * addSmartPhone - add smart phone.
@@ -61,7 +63,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
-            }, function error(response) {
+                }, function error(response) {
                 console.log("service not exists: " + response.status);
             });
     };
@@ -93,40 +95,113 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     $scope.getAllSmartPhone = function () {
         $http.get("/get_all_smart_phone")
             .then(function success(response) {
-                $scope.smartPhone = response.data;
+                $scope.smartPhones = response.data;
+                $scope.deleteAllFromOrders();
             }, function error(response) {
                 console.log("error" + response.headers);
             });
     };
 
+    /**
+     * addToOrder - adds smart phone to order.
+     * @param id - id.
+     * @param company - company.
+     * @param model - model.
+     * @param description - description.
+     * @param quantity - quantity.
+     */
     $scope.addToOrder = function (id, company, model, description, quantity) {
-        var smartPhone = {
+        let smartPhone = {
             id: id,
             company: company,
             model: model,
             description: description,
             quantity: quantity
         };
-        $scope.order.push(smartPhone);
-    };
-
-    $scope.deleteFromOrder = function (id) {
-        //$scope.order[id].quantity = $scope.order[id].quantity - 1;
-
-        //$scope.order[$scope.order.indexOf(id)].quantity = $scope.order[$scope.order.indexOf(id)].quantity - 1;
-
-        for ( index = 0, len = $scope.order.length; index < len; index += 1) {
-            if ($scope.order[index].id === id) {
-                $scope.order[index].quantity = $scope.order[index].quantity - 1;
+        let indexInOrders = $scope.findIndexById($scope.orders, id);
+        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, id);
+        if (indexInOrders < 0) {
+            smartPhone.quantity = 1;
+            $scope.orders.push(smartPhone);
+            if ($scope.smartPhones[indexInSmartPhones].quantity > 1) {
+                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity - 1;
+            } else {
+                $scope.smartPhones.splice(indexInSmartPhones, 1);
+            }
+        } else {
+            $scope.orders[indexInOrders].quantity = $scope.orders[indexInOrders].quantity + 1;
+            if ($scope.smartPhones[indexInSmartPhones].quantity > 1) {
+                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity - 1;
+            } else {
+                $scope.smartPhones.splice(indexInSmartPhones, 1);
             }
         }
-
-        //$scope.order.splice($scope.order.indexOf(id), 1); not bad !!!!!!
-
-
     };
 
-    //Scope.delete
+    /**
+     * deleteFromOrder - delete from order.
+     * @param id - id.
+     * @param company - company.
+     * @param model - model.
+     * @param description - description.
+     * @param quantity - quantity.
+     */
+    $scope.deleteFromOrder = function (id, company, model, description, quantity) {
+        let smartPhone = {
+            id: id,
+            company: company,
+            model: model,
+            description: description,
+            quantity: quantity
+        };
+        let indexInOrders = $scope.findIndexById($scope.orders, id);
+        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, id);
+        if ($scope.orders[indexInOrders].quantity > 1) {
+            $scope.orders[indexInOrders].quantity = $scope.orders[indexInOrders].quantity - 1;
+            if (indexInSmartPhones < 0) {
+                smartPhone.quantity = 1;
+                $scope.smartPhones.push(smartPhone);
+            } else {
+                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity + 1;
+            }
+
+        } else {
+            $scope.orders.splice(indexInOrders, 1);
+            if (indexInSmartPhones < 0) {
+                smartPhone.quantity = 1;
+                $scope.smartPhones.push(smartPhone);
+            } else {
+                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity + 1;
+            }
+        }
+    };
+
+    $scope.deleteAllFromOrders = function () {
+        for (let i = 0; i < $scope.orders.length; i++) {
+            $scope.orders.splice(i, 1);
+        }
+    };
+
+    /**
+     * findIndexById - find index by id.
+     * @param data - array.
+     * @param id  - id.
+     * @returns {number} - index.
+     */
+    $scope.findIndexById = function (data, id) {
+        let index = -1;
+        let container = data;
+        for (let i = 0; i < container.length; i++) {
+            if (container[i].id === id) {
+                index = i;
+            }
+        }
+        return index;
+    };
+
+
+
+
 
 
 
