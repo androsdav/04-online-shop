@@ -199,12 +199,6 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         return index;
     };
 
-
-
-
-
-
-
 });
 
 
