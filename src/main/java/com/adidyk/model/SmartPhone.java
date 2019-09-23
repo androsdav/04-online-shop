@@ -1,6 +1,8 @@
 package com.adidyk.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -38,6 +40,9 @@ public class SmartPhone {
 
     @Column(name = "quantity")
     private int quantity;
+
+    @ManyToMany(mappedBy = "smartPhones")
+    private List<Order> orders = new ArrayList<>();
 
     /**
      * SmartPhone - constructor.

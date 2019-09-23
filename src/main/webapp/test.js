@@ -176,12 +176,6 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         }
     };
 
-    $scope.deleteAllFromOrders = function () {
-        for (let i = 0; i < $scope.orders.length; i++) {
-            $scope.orders.splice(i, 1);
-        }
-    };
-
     /**
      * findIndexById - find index by id.
      * @param data - array.
@@ -197,6 +191,16 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             }
         }
         return index;
+    };
+
+    /**
+     * deleteAllFromOrders - delete all from orders.
+     */
+    $scope.deleteAllFromOrders = function () {
+        for (let i = 0; i < $scope.orders.length; i++) {
+            $scope.orders.splice(i, 1);
+            i--;
+        }
     };
 
 });
