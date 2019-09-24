@@ -1,5 +1,7 @@
 package com.adidyk.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,7 @@ public class SmartPhone {
     private int quantity;
 
     @ManyToMany(mappedBy = "smartPhones")
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     /**

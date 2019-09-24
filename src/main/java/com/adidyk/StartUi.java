@@ -1,6 +1,8 @@
 package com.adidyk;
 
+import com.adidyk.model.Order;
 import com.adidyk.model.SmartPhone;
+import com.adidyk.service.OrderService;
 import com.adidyk.service.SmartPhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -17,12 +19,16 @@ public class StartUi {
     /**
      *
      */
-    private final SmartPhoneService service;
+    private final SmartPhoneService smartPhoneService;
+
+    private final OrderService orderService;
 
     @Autowired
-    public StartUi(SmartPhoneService service) {
-        this.service = service;
+    public StartUi(SmartPhoneService smartPhoneService, OrderService orderService) {
+        this.smartPhoneService = smartPhoneService;
+        this.orderService = orderService;
     }
+
 
 
     /**
@@ -37,7 +43,12 @@ public class StartUi {
 
 
     @EventListener(ApplicationReadyEvent.class)
-    public void testJpaMethods(){
+    public void testJpaMethods() {
+
+        Order order = new Order("order 1");
+        this.orderService.save(order);
+
+
         /*
         SmartPhone iphone = new SmartPhone("apple", "70", "smart phone", 10);
         SmartPhone nokia = new SmartPhone("nokia", "71", "smart phone", 5);
@@ -64,6 +75,7 @@ public class StartUi {
         item.setCompany("nokia");
         System.out.println(this.service.findAllByCompany(item));
         */
+
 
     }
 

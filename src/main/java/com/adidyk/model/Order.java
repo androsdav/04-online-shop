@@ -1,5 +1,6 @@
 package com.adidyk.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -17,15 +18,24 @@ public class Order {
     @Column(name = "id")
     private int id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @Column(name = "name")
+    private String name;
+
+    @ManyToMany()
     @JoinTable(name = "order_smart_phones",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = { @JoinColumn(name = "smart_phone_id")}
     )
+    @JsonIgnore
     private List<SmartPhone> smartPhones = new ArrayList<>();
 
     public Order() {
     }
+
+    public Order(String name) {
+        this.name = name;
+    }
+
 
     public int getId() {
         return id;
@@ -43,19 +53,34 @@ public class Order {
         this.smartPhones = smartPhones;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Order)) return false;
         Order order = (Order) o;
         return id == order.id &&
+                Objects.equals(name, order.name) &&
                 Objects.equals(smartPhones, order.smartPhones);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, smartPhones);
+        return Objects.hash(id, name, smartPhones);
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
