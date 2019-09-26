@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import java.util.ArrayList;
+
 /**
  * Class StartUi.
  */
@@ -45,7 +47,18 @@ public class StartUi {
     @EventListener(ApplicationReadyEvent.class)
     public void testJpaMethods() {
 
-        Order order = new Order("order 1");
+        //Order order = new Order("order 1");
+        //this.orderService.save(order);
+        /*
+        Order order = this.orderService.findById(1);
+        ArrayList<SmartPhone> list = new ArrayList<>();
+        list.add(new SmartPhone(3));
+        list.add(new SmartPhone(2));
+        order.setSmartPhones(list);
+        this.orderService.save(order);
+        System.out.println(this.orderService.findById(1).getSmartPhones());
+        */
+        Order order = new Order("order 2");
         this.orderService.save(order);
 
 

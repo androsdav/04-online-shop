@@ -1,7 +1,6 @@
 package com.adidyk.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.Objects;
  * Class SmartPhone.
  */
 @Entity
-@Table(name = "smart_phone")
+@Table(name = "smart_phones")
 public class SmartPhone {
 
     /**
@@ -52,6 +51,14 @@ public class SmartPhone {
      */
     public SmartPhone() {
     }
+
+    /**
+     * SmartPhone - constructor.
+     */
+    public SmartPhone(int id) {
+        this.id = id;
+    }
+
 
     /**
      * SmartPhone - constructor.

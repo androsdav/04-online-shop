@@ -23,4 +23,13 @@ public class OrderService {
         this.repository.save(order);
     }
 
+    /**
+     *
+     * @param id - id.
+     * @return
+     */
+    public Order findById(Integer id) {
+        return this.repository.findById(id).orElse(null);
+    }
+
 }

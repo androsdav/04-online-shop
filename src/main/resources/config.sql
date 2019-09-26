@@ -1,9 +1,11 @@
+/*
 -- create table users
 CREATE TABLE users (
   id serial PRIMARY KEY,
   login VARCHAR(50) NOT NULL,
   name VARCHAR(50) NOT NULL
 );
+
 
 -- insert user to table users
 INSERT INTO users(login, name) VALUES('goad', 'dilan');
@@ -26,3 +28,4 @@ UPDATE users SET login = ?, name = ? WHERE id = ?
 DELETE FROM users WHERE id=?
 -- select all users
 SELECT * FROM users ORDER BY id
+*/

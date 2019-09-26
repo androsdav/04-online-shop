@@ -203,6 +203,20 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         }
     };
 
+    /**
+     * addSmartPhone - add smart phone.
+     */
+    $scope.addOrder = function () {
+        $http.post("/add_order", JSON.stringify($scope.orders))
+            .then(function (response) {
+                if (response.data)
+                    console.log("post data submitted successfully");
+                $scope.deleteAllFromOrders();
+            }, function error(response) {
+                console.log("service not exists: " + response.status);
+            });
+    };
+
 });
 
 
