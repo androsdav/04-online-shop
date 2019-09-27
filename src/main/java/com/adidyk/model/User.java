@@ -1,34 +1,90 @@
 package com.adidyk.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * Class User.
  */
+@Entity
+@Table(name = "users")
 public class User {
 
-    private int user_id;
+    /**
+     * @param id - order id.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
+    /**
+     * @param firstName - user first name.
+     */
+    @Column(name = "first_name")
     private String firstName;
 
-    private String lastName;
+    /**
+     * @param secondName - user second name.
+     */
+    @Column(name = "second_name")
+    private String secondName;
 
+    /**
+     * @param phoneNumber - user phone number.
+     */
+    @Column(name = "phone_number")
+    private int phoneNumber;
+
+    /**
+     * @param orders - list orders.
+     */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @Fetch(FetchMode.JOIN)
+    private List<Order> orders = new ArrayList<>();
+
+    /**
+     * User - constructor.
+     */
     public User() {
     }
 
-    public User(int user_id, String firstName, String lastName) {
-        this.user_id = user_id;
+    /**
+     * User - constructor.
+     * @param firstName - user first name.
+     * @param secondName - user second name.
+     * @param phoneNumber - user phone number.
+     */
+    public User(String firstName, String secondName, int phoneNumber) {
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.secondName = secondName;
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * User - constructor.
+     * @param firstName - user first name.
+     * @param secondName - user second name.
+     * @param phoneNumber - user phone number.
+     * @param orders - list orders.
+     */
+    public User(String firstName, String secondName, int phoneNumber, ArrayList<Order> orders) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.phoneNumber = phoneNumber;
+        this.orders = orders;
     }
 
     public int getId() {
-        return user_id;
+        return id;
     }
 
-
-    public void setId(int user_id) {
-        this.user_id = user_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -39,12 +95,28 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
@@ -52,22 +124,26 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return user_id == user.user_id &&
+        return id == user.id &&
+                phoneNumber == user.phoneNumber &&
                 Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName);
+                Objects.equals(secondName, user.secondName) &&
+                Objects.equals(orders, user.orders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, firstName, lastName);
+        return Objects.hash(id, firstName, secondName, phoneNumber, orders);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + user_id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", orders=" + orders +
                 '}';
     }
 

@@ -4,7 +4,6 @@ import com.adidyk.model.SmartPhone;
 import com.adidyk.repository.SmartPhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -44,6 +43,7 @@ public class SmartPhoneService {
     public SmartPhone findById(Integer id) {
         return  this.repository.findById(id).orElse(null);
     }
+
 
     /**
      * update - update all information for smart phone.

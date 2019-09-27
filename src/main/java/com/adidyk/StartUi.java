@@ -58,8 +58,8 @@ public class StartUi {
         this.orderService.save(order);
         System.out.println(this.orderService.findById(1).getSmartPhones());
         */
-        Order order = new Order("order 2");
-        this.orderService.save(order);
+        //Order order = new Order("order 2");
+        //this.orderService.save(order);
 
 
         /*

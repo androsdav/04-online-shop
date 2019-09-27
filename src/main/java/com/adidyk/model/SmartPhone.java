@@ -42,6 +42,9 @@ public class SmartPhone {
     @Column(name = "quantity")
     private int quantity;
 
+    @Column(name = "price")
+    private double price;
+
     @ManyToMany(mappedBy = "smartPhones")
     @JsonIgnore
     private List<Order> orders = new ArrayList<>();
@@ -54,38 +57,18 @@ public class SmartPhone {
 
     /**
      * SmartPhone - constructor.
-     */
-    public SmartPhone(int id) {
-        this.id = id;
-    }
-
-
-    /**
-     * SmartPhone - constructor.
      * @param company - company.
      * @param model - model.
      * @param description - description.
+     * @param quantity - quantity.
+     * @param price - price by one.
      */
-    public SmartPhone(String company, String model, String description, int quantity) {
+    public SmartPhone(String company, String model, String description, int quantity, double price) {
         this.company = company;
         this.model = model;
         this.description = description;
         this.quantity = quantity;
-    }
-
-    /**
-     * SmartPhone - constructor.
-     * @param id - id.
-     * @param company - company.
-     * @param model - model.
-     * @param description - description.
-     */
-    public SmartPhone(int id, String company, String model, String description, int quantity) {
-        this.id = id;
-        this.company = company;
-        this.model = model;
-        this.description = description;
-        this.quantity = quantity;
+        this.price = price;
     }
 
     public int getId() {
@@ -128,6 +111,22 @@ public class SmartPhone {
         this.quantity = quantity;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -135,14 +134,16 @@ public class SmartPhone {
         SmartPhone that = (SmartPhone) o;
         return id == that.id &&
                 quantity == that.quantity &&
+                Double.compare(that.price, price) == 0 &&
                 Objects.equals(company, that.company) &&
                 Objects.equals(model, that.model) &&
-                Objects.equals(description, that.description);
+                Objects.equals(description, that.description) &&
+                Objects.equals(orders, that.orders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, company, model, description, quantity);
+        return Objects.hash(id, company, model, description, quantity, price, orders);
     }
 
     @Override
@@ -153,6 +154,7 @@ public class SmartPhone {
                 ", model='" + model + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
+                ", price=" + price +
                 '}';
     }
 
