@@ -60,6 +60,15 @@ public class Order {
     /**
      * Order - constructor.
      * @param dateCreate - date create order.
+     */
+    public Order(Date dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+
+    /**
+     * Order - constructor.
+     * @param dateCreate - date create order.
      * @param user - user.
      * @param smartPhones - list smart phones.
      */

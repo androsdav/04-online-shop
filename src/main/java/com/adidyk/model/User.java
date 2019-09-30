@@ -79,6 +79,14 @@ public class User {
         this.orders = orders;
     }
 
+    /**
+     * User - constructor.
+     * @param id - id.
+     */
+    public User(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

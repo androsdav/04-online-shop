@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="app">
+<html>
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -10,15 +10,78 @@
     </script>
 
 </head>
-<body ng-controller="smartPhoneCtrl">
 
-<!-- Header -->
+<body>
+
+
+
+
+<div ng-cloak="" class="tabsdemoDynamicHeight" ng-app="MyApp">
+    <md-content>
+        <md-tabs md-dynamic-height="" md-border-bottom="">
+            <md-tab label="one">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab One</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+                        felis nec, feugiat ultricies mi.</p>
+                </md-content>
+            </md-tab>
+            <md-tab label="two">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab Two</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+                        felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices
+                        ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis,
+                        iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.
+                    </p>
+                    <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis
+                        diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit
+                        amet, tempus sapien.</p>
+                    <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu
+                        orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.
+                    </p>
+                </md-content>
+            </md-tab>
+            <md-tab label="three">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Tab Three</h1>
+                    <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu
+                        orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.
+                    </p>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+
+<!--
+Copyright 2018 Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be found
+in the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+
+
+
+
+
+
+</body>
+</html>
+<!--
+Copyright 2018 Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be found
+in the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+
+<!--
+
+!-- Header --
 <div class="col-md-offset-2 col-md-8 page-header">
     <h2 style="text-align:center">SHOP</h2>
 </div>
 
 <div ng-controller="smartPhoneCtrl" class="col-md-offset-2 col-md-8">
-    <!------------------------------------------- orders ------------------------------------------->
+    ------------------------------------------- orders -------------------------------------------
     <div class="page-header">
         <h4 style="text-align: center"> ORDER</h4>
     </div>
@@ -84,7 +147,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="order in orders"> <!-- ng-show="showBlock" -->
+            <tr ng-repeat="order in orders"> -- ng-show="showBlock" --
                 <td>{{order.id}}</td>
                 <td>{{order.company}}</td>
                 <td>{{order.model}}</td>
@@ -95,9 +158,9 @@
             </tbody>
         </table>
     </div>
-    <!------------------------------------------- order ------------------------------------------->
+    ------------------------------------------- order -------------------------------------------
 
-    <!------------------------------------------- smart phone ------------------------------------------->
+    ------------------------------------------- smart phone -------------------------------------------
     <div class="page-header">
         <h4> - Add smart phone:</h4>
     </div>
@@ -143,7 +206,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2">
-                <!--<button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>-->
+                --<button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>--
             </div>
         </div>
     </div>
@@ -161,7 +224,7 @@
                 </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="phone in smartPhones"> <!--  ng-show="showBlock" -->
+            <tr ng-repeat="phone in smartPhones"> --  ng-show="showBlock" --
                 <td>{{phone.id}}</td>
                 <td>{{phone.company}}</td>
                 <td>{{phone.model}}</td>
@@ -173,14 +236,14 @@
             </tbody>
         </table>
     </div>
-    <!------------------------------------------- smart phone ------------------------------------------->
+    ------------------------------------------- smart phone -------------------------------------------
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 <script type="text/javascript" src="test.js"></script>
+-->
 
-</body>
-</html>
+
 
 
 

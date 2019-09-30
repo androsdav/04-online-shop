@@ -41,7 +41,7 @@ public class SmartPhoneAPI {
 
     @RequestMapping(value = "/delete_smart_phone", method = RequestMethod.POST)
     public void deleteSmartPhone(@RequestBody SmartPhone smartPhone) {
-        System.out.println(smartPhone);
+        //System.out.println(smartPhone);
         this.service.deleteById(smartPhone);
     }
 

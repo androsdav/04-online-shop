@@ -1,20 +1,9 @@
-#open1 {
-    display: inline-block;
-    padding: 30px 7px;
-    border: 1px ;
-    cursor: pointer;
-}
+.tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
 
-#hidd1 {
-    display: none;
-    margin: 5px 0;
-    padding: 5px;
-    border: 1px solid #ccc;
-}
 
-.buttonActive{
-    background-color:green;
-}
-.buttonUnactive{
-    background-color:red;
-}
+/*
+Copyright 2018 Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be found
+in the LICENSE file at http://material.angularjs.org/HEAD/license.
+*/

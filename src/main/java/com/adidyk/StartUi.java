@@ -2,8 +2,10 @@ package com.adidyk;
 
 import com.adidyk.model.Order;
 import com.adidyk.model.SmartPhone;
+import com.adidyk.model.User;
 import com.adidyk.service.OrderService;
 import com.adidyk.service.SmartPhoneService;
+import com.adidyk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +13,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Class StartUi.
@@ -25,10 +29,13 @@ public class StartUi {
 
     private final OrderService orderService;
 
+    private final UserService userService;
+
     @Autowired
-    public StartUi(SmartPhoneService smartPhoneService, OrderService orderService) {
+    public StartUi(SmartPhoneService smartPhoneService, OrderService orderService, UserService userService) {
         this.smartPhoneService = smartPhoneService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
 
@@ -46,6 +53,38 @@ public class StartUi {
 
     @EventListener(ApplicationReadyEvent.class)
     public void testJpaMethods() {
+
+        // add smart phone
+        //SmartPhone iphone = new SmartPhone("samsung", "galaxy", "smart phone", 10, 500);
+        //this.smartPhoneService.save(iphone);
+
+        // add order
+        //Order order = new Order();
+
+        // add user
+        //User user = this.userService.findById(5);
+        //System.out.println();
+        //System.out.println();
+        //System.out.println(user);
+        //this.userService.save(user);
+        //Order order = new Order(new Date());
+        //ArrayList<SmartPhone> list = new ArrayList<>();
+        //list.add(new SmartPhone(1));
+        //list.add(new SmartPhone(3));
+        //order.setSmartPhones(list);
+        //order.setUser(new User(5));
+        //ArrayList<Order> listOrder = new ArrayList<>();
+        //listOrder.add(order);
+        //user.setOrders(listOrder);
+        //System.out.println();
+        //System.out.println();
+        //System.out.println(user);
+        //this.userService.save(user);
+        //order.setUser(new User(3));
+        //this.orderService.save(order);
+
+
+
 
         //Order order = new Order("order 1");
         //this.orderService.save(order);

@@ -15,12 +15,21 @@ public class UserService {
         this.repository = repository;
     }
 
+    /**
+     *
+     * @param user - user.
+     */
     public void save(User user) {
         this.repository.save(user);
     }
 
-    public User findById(Integer id) {
-        return this.repository.findById(id).orElse(null);
+    /**
+     *
+     * @param user - user.
+     * @return - return.
+     */
+    public User findById(User user) {
+        return this.repository.findById(user.getId()).orElse(null);
     }
 
 }

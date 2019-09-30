@@ -35,4 +35,14 @@ public class OrderAPI {
         this.orderService.save(order);
     }
 
+    /**
+     *
+     * @param order - order.
+     * @return - return.
+     */
+    @RequestMapping(value = "find_order_by_id", method = RequestMethod.GET)
+    public Order findOrderById(@RequestBody Order order) {
+        return this.orderService.findById(order);
+    }
+
 }

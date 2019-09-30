@@ -25,11 +25,11 @@ public class OrderService {
 
     /**
      *
-     * @param id - id.
+     * @param order - order.
      * @return - returns order.
      */
-    public Order findById(Integer id) {
-        return this.repository.findById(id).orElse(null);
+    public Order findById(Order order) {
+        return this.repository.findById(order.getId()).orElse(null);
     }
 
 }

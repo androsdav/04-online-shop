@@ -29,4 +29,14 @@ public class UserAPI {
         this.userService.save(user);
     }
 
+    /**
+     *
+     * @param user - user.
+     * @return - return.
+     */
+    @RequestMapping(value = "/find_user_by_id", method = RequestMethod.GET)
+    public User findUserById(@RequestBody User user) {
+        return this.userService.findById(user);
+    }
+
 }

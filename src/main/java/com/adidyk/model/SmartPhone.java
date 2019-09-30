@@ -57,6 +57,15 @@ public class SmartPhone {
 
     /**
      * SmartPhone - constructor.
+     * @param id - id.
+     */
+    public SmartPhone(int id) {
+        this.id = id;
+
+    }
+
+    /**
+     * SmartPhone - constructor.
      * @param company - company.
      * @param model - model.
      * @param description - description.
