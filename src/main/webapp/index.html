@@ -1,3 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Height</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel='stylesheet' href='https://gitcdn.xyz/cdn/angular/bower-material/v1.1.20/angular-material.css'>
+    <link rel='stylesheet' href='https://material.angularjs.org/1.1.20/docs.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="position">
+    <div ng-cloak="" class="tabsDynamicHeight" ng-app="app">
+        <md-content>
+            <md-tabs md-dynamic-height="" md-border-bottom="">
+                <md-tab label="SHOP">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">SHOP</h1>
+
+
+                        <div ng-controller="smartPhoneCtrl">
+                            <!------------------------------------------- orders ------------------------------------------->
+                            <div class="page-header">
+                                <h4 style="text-align: center"> ORDER</h4>
+                            </div>
+
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <div class="col-md-offset-20">
+                                        <button class="btn btn-default" ng-click="getAllSmartPhone()">clean order</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2">
+                                        <button class="btn btn-default" ng-click="addOrder()">send order</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="page-header">
+                                <h4> - Add smart phone:</h4>
+                            </div>
+                            <form>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="model" placeholder="model" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="description" placeholder="description" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="quantity" placeholder="quantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button class="btn btn-default" ng-click="addSmartPhone(company, model, description, quantity)">add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>company</th>
+                                        <th>model</th>
+                                        <th>description</th>
+                                        <th>quantity</th>
+                                        <th>delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="order in orders">
+                                        <td>{{order.id}}</td>
+                                        <td>{{order.company}}</td>
+                                        <td>{{order.model}}</td>
+                                        <td>{{order.description}}</td>
+                                        <td>{{order.quantity}}</td>
+                                        <td><button class="btn btn-default" ng-click="deleteFromOrder(order.id, order.company, order.model, order.description, order.quantity)">-</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!------------------------------------------- order ------------------------------------------->
+
+                           <!------------------------------------------- smart phone ------------------------------------------->
+                            <div class="page-header">
+                                <h4 style="text-align: center">SMART PHONE</h4>
+                            </div>
+                            <form>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="model" placeholder="model" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="description" placeholder="description" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="quantity" placeholder="quantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="price" placeholder="price" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button class="btn btn-default" ng-click="saveSmartPhone(company, model, description, quantity)">save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <div class="page-header">
+                                <h4> - Get all smart phone:</h4>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <div class="col-md-offset-20">
+                                        <button class="btn btn-default" ng-click="getAllSmartPhone()">get</button>
+                                    </div>
+                                </div>
+                                <!--
+                                <div class="form-group">
+                                    <div class="col-md-offset-2">
+                                        --<button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>--
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>company</th>
+                                        <th>model</th>
+                                        <th>description</th>
+                                        <th>quantity</th>
+                                        <th>price</th>
+                                        <th>add to basket</th>
+                                        <th>delete*</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="phone in smartPhones"> <!--  ng-show="showBlock" -->
+                                        <td>{{phone.id}}</td>
+                                        <td>{{phone.company}}</td>
+                                        <td>{{phone.model}}</td>
+                                        <td>{{phone.description}}</td>
+                                        <td>{{phone.quantity}}</td>
+                                        <td>{{phone.price}}</td>
+                                        <td><button class="btn btn-default" ng-click="addToOrder(phone.id, phone.company, phone.model, phone.description, phone.quantity, phone.price)">+</button></td>
+                                        <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(phone.id)">-</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </md-content>
+                </md-tab>
+                <md-tab label="two">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">Tab Two</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
+                            Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In
+                            sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
+                            feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
+                            orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante
+                            varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam
+                            malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae
+                            posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis,
+                            vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec
+                            ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor
+                            purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris
+                            semper.</p>
+                        <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa
+                            orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum
+                            facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam
+                            pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet
+                            nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam
+                            vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
+                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur
+                            posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae
+                            hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo
+                            volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo
+                            lectus.</p>
+                    </md-content>
+                </md-tab>
+                <md-tab label="three">
+                    <md-content class="md-padding">
+                        <h1 class="md-display-2">Tab Three</h1>
+                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur
+                            posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae
+                            hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo
+                            volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo
+                            lectus.</p>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>
+<!--
+Copyright 2018 Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be found
+in the LICENSE file at http://material.angularjs.org/HEAD/license.
+-->
+<!-- partial -->
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-messages.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+<script src='https://gitcdn.xyz/cdn/angular/bower-material/v1.1.20/angular-material.js'></script>
+<!--<script  src="tabs.js"></script>-->
+<script  src="test.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<!--
 <!doctype html>
 <html>
 <head>
@@ -54,7 +333,6 @@
     </md-content>
 </div>
 
-<!--
 Copyright 2018 Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that can be found
 in the LICENSE file at http://material.angularjs.org/HEAD/license.
@@ -65,9 +343,8 @@ in the LICENSE file at http://material.angularjs.org/HEAD/license.
 
 
 
-</body>
+<!--</body>
 </html>
-<!--
 Copyright 2018 Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that can be found
 in the LICENSE file at http://material.angularjs.org/HEAD/license.

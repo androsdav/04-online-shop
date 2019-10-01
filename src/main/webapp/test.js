@@ -1,4 +1,6 @@
-const app = angular.module('app', []);
+//const app = angular.module('app', []);
+
+const app = angular.module('app', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
 
 /**
  * Controller smartPhone.
@@ -10,7 +12,6 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @type {null}
      */
     $scope.smartPhones = [];
-
     $scope.smartPhone = {};
 
     /**
@@ -43,6 +44,8 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.quantity = null;
 
+    $scope.price = null;
+
     $scope.orders = [];
 
     /**
@@ -52,14 +55,14 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param description - description.
      * @param quantity - quantity.
      */
-    $scope.addSmartPhone = function (company, model, description, quantity) {
+    $scope.saveSmartPhone = function (company, model, description, quantity) {
         const smartPhone = {
             company: company,
             model: model,
             description: description,
             quantity: quantity
         };
-        $http.post("/add_smart_phone", JSON.stringify(smartPhone))
+        $http.post("/save_smart_phone", JSON.stringify(smartPhone))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
@@ -72,7 +75,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * deleteSmartPhone - delete smart phone by id.
      * @param id - id smart phone.
      */
-    $scope.deleteSmartPhone = function (id) {
+    $scope.deleteSmartPhoneById = function (id) {
         const smartPhone = {
             id: id,
             company: null,
@@ -109,14 +112,16 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param model - model.
      * @param description - description.
      * @param quantity - quantity.
+     * @param price - price.
      */
-    $scope.addToOrder = function (id, company, model, description, quantity) {
+    $scope.addToOrder = function (id, company, model, description, quantity, price) {
         let smartPhone = {
             id: id,
             company: company,
             model: model,
             description: description,
-            quantity: quantity
+            quantity: quantity,
+            price: price
         };
         let indexInOrders = $scope.findIndexById($scope.orders, id);
         let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, id);

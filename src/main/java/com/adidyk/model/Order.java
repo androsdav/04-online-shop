@@ -37,7 +37,7 @@ public class Order {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "user_id")
-    @JsonIgnore
+    //@JsonIgnore
     private User user;
 
     /**
@@ -132,6 +132,7 @@ public class Order {
                 "id=" + id +
                 ", dateCreate=" + dateCreate +
                 ", smartPhones=" + smartPhones +
+                ", smartPhones=" + user +
                 '}';
     }
 

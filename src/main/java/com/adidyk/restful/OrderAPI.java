@@ -31,7 +31,12 @@ public class OrderAPI {
         //Order order = new Order();
         //order.setSmartPhones(list);
         //this.orderService.save(order);
-        System.out.println(order);
+        System.out.println();
+        System.out.println();
+        System.out.println(order.getUser());
+        System.out.println();
+        System.out.println();
+        System.out.println(order.getSmartPhones());
         this.orderService.save(order);
     }
 

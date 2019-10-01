@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 /**
@@ -31,17 +30,20 @@ public class SmartPhoneAPI {
     }
 
     /**
-     * addSmartPhone - adds smart phone.
+     * saveSmartPhone - adds smart phone.
      * @param smartPhone - smart phone.
      */
-    @RequestMapping(value = "/add_smart_phone", method = RequestMethod.POST)
-    public void addSmartPhone(@RequestBody SmartPhone smartPhone) {
+    @RequestMapping(value = "/save_smart_phone", method = RequestMethod.POST)
+    public void saveSmartPhone(@RequestBody SmartPhone smartPhone) {
         this.service.save(smartPhone);
     }
 
-    @RequestMapping(value = "/delete_smart_phone", method = RequestMethod.POST)
-    public void deleteSmartPhone(@RequestBody SmartPhone smartPhone) {
-        //System.out.println(smartPhone);
+    /**
+     * deleteSmartPhoneById - delete smart phone by id.
+     * @param smartPhone - smart phone.
+     */
+    @RequestMapping(value = "/delete_smart_phone_by_id", method = RequestMethod.POST)
+    public void deleteSmartPhoneById(@RequestBody SmartPhone smartPhone) {
         this.service.deleteById(smartPhone);
     }
 
@@ -50,7 +52,7 @@ public class SmartPhoneAPI {
      * @return - returns all smart phone.
      */
     @RequestMapping(value = "/get_all_smart_phone", method = RequestMethod.GET)
-    public List<SmartPhone> getAllSmartPhone() {
+    public List<SmartPhone> findAllSmartPhone() {
         return this.service.findAll();
     }
 

@@ -1,5 +1,12 @@
-.tabsdemoDynamicHeight md-content h1:first-child {
-    margin-top: 0; }
+.tabsDynamicHeight md-content h1:first-child {
+    margin-top: 0px;
+}
+
+.position {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
 
 
 /*

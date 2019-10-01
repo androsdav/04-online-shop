@@ -151,7 +151,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", orders=" + orders +
+                //", orders=" + orders +
                 '}';
     }
 
