@@ -39,6 +39,25 @@ public class SmartPhoneAPI {
     }
 
     /**
+     * saveSmartPhone - adds smart phone.
+     * @param smartPhone - smart phone.
+     */
+    @RequestMapping(value = "/find_smart_phone_by_id", method = RequestMethod.POST)
+    public SmartPhone findSmartPhoneById(@RequestBody SmartPhone smartPhone) {
+        System.out.println(smartPhone);
+        return this.service.findById(smartPhone);
+    }
+
+    /**
+     * saveSmartPhone - adds smart phone.
+     * @param smartPhone - smart phone.
+     */
+    @RequestMapping(value = "/update_smart_phone", method = RequestMethod.POST)
+    public void updateSmartPhone(@RequestBody SmartPhone smartPhone) {
+        this.service.update(smartPhone);
+    }
+
+    /**
      * deleteSmartPhoneById - delete smart phone by id.
      * @param smartPhone - smart phone.
      */

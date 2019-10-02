@@ -37,24 +37,24 @@ public class SmartPhoneService {
 
     /**
      * findById - find smart phone by id and returns.
-     * @param id - id smart phone.
+     * @param smartPhone - smart phone.
      * @return - returns smart phone by id.
      */
-    public SmartPhone findById(Integer id) {
-        return  this.repository.findById(id).orElse(null);
+    public SmartPhone findById(SmartPhone smartPhone) {
+        return  this.repository.findById(smartPhone.getId()).orElse(null);
     }
-
 
     /**
      * update - update all information for smart phone.
      * @param newSmartPhone - new smart phone.
      */
     public  void update(SmartPhone newSmartPhone) {
-        SmartPhone oldSmartPhone = this.findById(newSmartPhone.getId());
-        oldSmartPhone.setCompany(newSmartPhone.getCompany());
-        oldSmartPhone.setModel(newSmartPhone.getModel());
-        oldSmartPhone.setDescription(newSmartPhone.getDescription());
-        oldSmartPhone.setQuantity(newSmartPhone.getQuantity());
+        SmartPhone oldSmartPhone = this.findById(newSmartPhone);
+        if (newSmartPhone.getCompany() != null) oldSmartPhone.setCompany(newSmartPhone.getCompany());
+        if (newSmartPhone.getModel() != null) oldSmartPhone.setModel(newSmartPhone.getModel());
+        if (newSmartPhone.getDescription() != null) oldSmartPhone.setDescription(newSmartPhone.getDescription());
+        if (newSmartPhone.getQuantity() != 0) oldSmartPhone.setQuantity(newSmartPhone.getQuantity());
+        if (newSmartPhone.getPrice() != 0) oldSmartPhone.setPrice(newSmartPhone.getPrice());
         this.repository.save(oldSmartPhone);
     }
 

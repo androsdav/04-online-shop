@@ -54,13 +54,15 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param model - model.
      * @param description - description.
      * @param quantity - quantity.
+     * @param price - price.
      */
-    $scope.saveSmartPhone = function (company, model, description, quantity) {
+    $scope.saveSmartPhone = function (company, model, description, quantity, price) {
         const smartPhone = {
             company: company,
             model: model,
             description: description,
-            quantity: quantity
+            quantity: quantity,
+            price: price
         };
         $http.post("/save_smart_phone", JSON.stringify(smartPhone))
             .then(function (response) {
@@ -72,16 +74,29 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
+     * addSmartPhone - add smart phone.
+     * @param id - company.
+     */
+    $scope.findSmartPhoneById = function (id) {
+        const smartPhone = {
+            id: id,
+        };
+        $http.post("/find_smart_phone_by_id", JSON.stringify(smartPhone))
+            .then(function success(response) {
+                $scope.smartPhone = response.data;
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
+
+
+    /**
      * deleteSmartPhone - delete smart phone by id.
      * @param id - id smart phone.
      */
     $scope.deleteSmartPhoneById = function (id) {
         const smartPhone = {
-            id: id,
-            company: null,
-            model: null,
-            description: null,
-            quantity: null
+            id: id
         };
         $http.post("/delete_smart_phone", JSON.stringify(smartPhone))
             .then(function (response) {

@@ -15,15 +15,15 @@
     <div ng-cloak="" class="tabsDynamicHeight" ng-app="app">
         <md-content>
             <md-tabs md-dynamic-height="" md-border-bottom="">
-                <md-tab label="SHOP">
+                <md-tab label="admin">
                     <md-content class="md-padding">
-                        <h1 class="md-display-2">SHOP</h1>
+                        <h1 class="md-display-2">ADMIN</h1>
 
 
                         <div ng-controller="smartPhoneCtrl">
                             <!------------------------------------------- orders ------------------------------------------->
                             <div class="page-header">
-                                <h4 style="text-align: center"> ORDER</h4>
+                                <h4 style="text-align: center">ORDER</h4>
                             </div>
 
                             <div class="form-inline">
@@ -235,14 +235,257 @@
                             lectus.</p>
                     </md-content>
                 </md-tab>
-                <md-tab label="three">
+                <md-tab label="ADMIN">
                     <md-content class="md-padding">
-                        <h1 class="md-display-2">Tab Three</h1>
-                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur
-                            posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae
-                            hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo
-                            volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo
-                            lectus.</p>
+                        <!--<h1 class="md-display-2">Tab Three</h1>-->
+
+                        <div ng-controller="smartPhoneCtrl">
+                            <!------------------------------------------- orders ------------------------------------------->
+                            <!--
+                            <div class="page-header">
+                                <h4 style="text-align: center">ORDER</h4>
+                            </div>
+
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <div class="col-md-offset-20">
+                                        <button class="btn btn-default" ng-click="getAllSmartPhone()">clean order</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2">
+                                        <button class="btn btn-default" ng-click="addOrder()">send order</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="page-header">
+                                <h4> - Add smart phone:</h4>
+                            </div>
+                            <form>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="model" placeholder="model" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="description" placeholder="description" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="quantity" placeholder="quantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button class="btn btn-default" ng-click="addSmartPhone(company, model, description, quantity)">add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form> -->
+                            <!--
+
+                            <div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>company</th>
+                                        <th>model</th>
+                                        <th>description</th>
+                                        <th>quantity</th>
+                                        <th>delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="order in orders">
+                                        <td>{{order.id}}</td>
+                                        <td>{{order.company}}</td>
+                                        <td>{{order.model}}</td>
+                                        <td>{{order.description}}</td>
+                                        <td>{{order.quantity}}</td>
+                                        <td><button class="btn btn-default" ng-click="deleteFromOrder(order.id, order.company, order.model, order.description, order.quantity)">-</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            -->
+
+                            <!------------------------------------------- smart phone ------------------------------------------->
+                            <div class="page-header">
+                                <h4 style="font-weight: bold; text-align: center">SMART PHONE</h4>
+                            </div>
+                            <!------------------------------------------- create ------------------------------------------->
+                            <form>
+                                <h5 style="font-weight: bold">create</h5>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="model" placeholder="model" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="description" placeholder="description" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="quantity" placeholder="quantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="price" placeholder="price" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button class="btn btn-default" ng-click="saveSmartPhone(company, model, description, quantity, price)">save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!------------------------------------------- read ------------------------------------------->
+                            <form>
+                                <h5 style="font-weight: bold">read</h5>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="id" placeholder="id" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button class="btn btn-default" ng-click="findSmartPhoneById(id)">read</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>company</th>
+                                        <th>model</th>
+                                        <th>description</th>
+                                        <th>quantity</th>
+                                        <th>price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{smartPhone.id}}</td>
+                                        <td>{{smartPhone.company}}</td>
+                                        <td>{{smartPhone.model}}</td>
+                                        <td>{{smartPhone.description}}</td>
+                                        <td>{{smartPhone.quantity}}</td>
+                                        <td>{{smartPhone.price}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!------------------------------------------- update ------------------------------------------->
+                            <form>
+                                <h5 style="font-weight: bold">update</h5>
+                                <div class="form-inline">
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="model" placeholder="model" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="description" placeholder="description" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="quantity" placeholder="quantity" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-8">
+                                            <input type="number" class="form-control" ng-model="price" placeholder="price" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-8">
+                                            <button class="btn btn-default" ng-click="updateSmartPhone(company, model, description, quantity, price)">update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+                            <div class="page-header">
+                                <h4> - Get all smart phone:</h4>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <div class="col-md-offset-20">
+                                        <button class="btn btn-default" ng-click="getAllSmartPhone()">get</button>
+                                    </div>
+                                </div>
+                                <!--
+                                <div class="form-group">
+                                    <div class="col-md-offset-2">
+                                        --<button class="btn btn-default" ng-click="showBlock  = !  showBlock">hide</button>--
+                                    </div>
+                                </div>-->
+                            </div>
+                            <div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>company</th>
+                                        <th>model</th>
+                                        <th>description</th>
+                                        <th>quantity</th>
+                                        <th>price</th>
+                                        <th>add to basket</th>
+                                        <th>delete*</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="phone in smartPhones"> <!--  ng-show="showBlock" -->
+                                        <td>{{phone.id}}</td>
+                                        <td>{{phone.company}}</td>
+                                        <td>{{phone.model}}</td>
+                                        <td>{{phone.description}}</td>
+                                        <td>{{phone.quantity}}</td>
+                                        <td>{{phone.price}}</td>
+                                        <td><button class="btn btn-default" ng-click="addToOrder(phone.id, phone.company, phone.model, phone.description, phone.quantity, phone.price)">+</button></td>
+                                        <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(phone.id)">-</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
                     </md-content>
                 </md-tab>
             </md-tabs>
