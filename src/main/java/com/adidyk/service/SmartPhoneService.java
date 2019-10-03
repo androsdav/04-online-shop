@@ -19,7 +19,7 @@ public class SmartPhoneService {
 
 
     /**
-     *
+     * SmartPhoneService - constructor.
      * @param repository - repository.
      */
     @Autowired
