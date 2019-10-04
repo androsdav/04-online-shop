@@ -237,7 +237,73 @@
                 </md-tab>
                 <md-tab label="ADMIN">
                     <md-content class="md-padding">
-                        <!--<h1 class="md-display-2">Tab Three</h1>-->
+                        <!--ADMIN SMART PHONE-->
+                        <div class="admin" ng-controller="smartPhoneCtrl">
+                            <fieldset>
+                                <legend><h4 style="font-weight: bold; text-align: center">SMART PHONE</h4></legend>
+                                <div class="admin_save"> <!--save-->
+                                    <form>
+                                        <fieldset>
+                                            <legend><h5 style="font-weight: bold; text-align: left">save</h5></legend>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" ng-model="model" placeholder="model" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <input type="text" class="form-control" ng-model="description" placeholder="description" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <input type="number" class="form-control" ng-model="quantity" placeholder="quantity" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <input type="number" class="form-control" ng-model="price" placeholder="price" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2 col-md-8">
+                                                        <button class="btn btn-default" ng-click="saveSmartPhone(company, model, description, quantity, price)">save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+
+
+                                <div style="background: darkorange; margin: 100px">
+                                    <form>
+                                        <fieldset>
+                                            <legend>Titre</legend>
+                                            <input type="radio" name="radio" id="radio">
+                                            <label for="radio">Cliquez moi</label>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            <div style="background: coral; margin: 10px">
+                                <form>
+                                    <fieldset>
+                                        <legend>Titre</legend>
+                                        <input type="radio" name="radio" id="radio">
+                                        <label for="radio">Cliquez moi</label>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            </fieldset>
+                        </div>
+
+
 
                         <div ng-controller="smartPhoneCtrl">
                             <!------------------------------------------- orders ------------------------------------------->
@@ -400,9 +466,13 @@
                                 </table>
                             </div>
                             <!------------------------------------------- update ------------------------------------------->
-                            <form>
+
+                            <form action="index.html">
+                                <fieldset style="border: 20px">
+                                    <legend style="text-align: left"><b>CHOOSE ACTION</b></legend>
+                                    <!--
                                 <h5 style="font-weight: bold">update</h5>
-                                <div class="form-inline">
+                                <div class="form-inline" style="border: 3px  solid #000">
                                     <div class="form-group">
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" ng-model="company" placeholder = "company" required/>
@@ -433,8 +503,11 @@
                                             <button class="btn btn-default" ng-click="updateSmartPhone(company, model, description, quantity, price)">update</button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+
+                                </fieldset>
                             </form>
+
 
 
 
