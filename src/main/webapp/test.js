@@ -12,59 +12,72 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @type {null}
      */
     $scope.smartPhones = [];
-    $scope.smartPhone = {};
+
+    /**
+     *
+     * @type {{quantity: null, price: null, description: null, company: null, model: null}}
+     */
+    $scope.addItem = {
+        id: null,
+        company: null,
+        model: null,
+        description: null,
+        quantity: null,
+        price: null
+    };
 
     /**
      * @param company - company.
      * @type {null}
      */
+    /*
     $scope.id = null;
+    */
 
     /**
      * @param company - company.
      * @type {null}
      */
+    /*
     $scope.company = null;
+    */
 
     /**
      * @param model - model.
      * @type {null}
      */
+    /*
     $scope.model = null;
+    */
 
     /**
      * @param description - description.
      * @type {null}
      */
+    /*
     $scope.description = null;
+    */
 
     /**
      * @param quantity - quantity.
      * @type {null}
      */
+    /*
     $scope.quantity = null;
+    */
 
+    /*
     $scope.price = null;
+    */
 
     $scope.orders = [];
 
     /**
      * addSmartPhone - add smart phone.
-     * @param company - company.
-     * @param model - model.
-     * @param description - description.
-     * @param quantity - quantity.
-     * @param price - price.
+     * @param addItem
      */
-    $scope.saveSmartPhone = function (company, model, description, quantity, price) {
-        const smartPhone = {
-            company: company,
-            model: model,
-            description: description,
-            quantity: quantity,
-            price: price
-        };
-        $http.post("/save_smart_phone", JSON.stringify(smartPhone))
+    $scope.saveSmartPhone = function (addItem) {
+        $http.post("/save_smart_phone", JSON.stringify(addItem))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
@@ -75,17 +88,41 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
      * addSmartPhone - add smart phone.
-     * @param id - company.
+     * @param smartPhone
      */
-    $scope.findSmartPhoneById = function (id) {
-        const smartPhone = {
-            id: id,
-        };
+    $scope.findSmartPhoneById = function (smartPhone) {
         $http.post("/find_smart_phone_by_id", JSON.stringify(smartPhone))
             .then(function success(response) {
                 $scope.smartPhone = response.data;
             }, function error(response) {
                 console.log("error" + response.headers);
+            });
+    };
+
+    /**
+     * addSmartPhone - add smart phone.
+     * @param id - id.
+     * @param company - company.
+     * @param model - model.
+     * @param description - description.
+     * @param quantity - quantity.
+     * @param price - price.
+     */
+    $scope.updateSmartPhoneById = function (id, company, model, description, quantity, price) {
+        const smartPhone = {
+            id: id,
+            company: company,
+            model: model,
+            description: description,
+            quantity: quantity,
+            price: price
+        };
+        $http.post("/update_smart_phone_by_id", JSON.stringify(smartPhone))
+            .then(function (response) {
+                if (response.data)
+                    console.log("post data submitted successfully");
+            }, function error(response) {
+                console.log("service not exists: " + response.status);
             });
     };
 
@@ -98,7 +135,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         const smartPhone = {
             id: id
         };
-        $http.post("/delete_smart_phone", JSON.stringify(smartPhone))
+        $http.post("/delete_smart_phone_by_id", JSON.stringify(smartPhone))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
@@ -110,8 +147,8 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     /**
      * getAllSmartPhone - get all smart phone.
      */
-    $scope.getAllSmartPhone = function () {
-        $http.get("/get_all_smart_phone")
+    $scope.findAllSmartPhone = function () {
+        $http.get("/find_all_smart_phone")
             .then(function success(response) {
                 $scope.smartPhones = response.data;
                 $scope.deleteAllFromOrders();

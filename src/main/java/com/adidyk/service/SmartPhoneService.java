@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- *
+ * Class SmartPhoneService.
  */
 @Service
 public class SmartPhoneService {
 
     /**
-     *
+     * @param repository - repository.
      */
     private final SmartPhoneRepository repository;
 
@@ -31,8 +31,8 @@ public class SmartPhoneService {
      * save - save new smart phone.
      * @param smartPhone - smart phone.
      */
-    public void save(SmartPhone smartPhone) {
-        this.repository.save(smartPhone);
+    public SmartPhone save(SmartPhone smartPhone) {
+        return this.repository.save(smartPhone);
     }
 
     /**
@@ -48,14 +48,18 @@ public class SmartPhoneService {
      * update - update all information for smart phone.
      * @param newSmartPhone - new smart phone.
      */
-    public  void update(SmartPhone newSmartPhone) {
-        SmartPhone oldSmartPhone = this.findById(newSmartPhone);
-        if (newSmartPhone.getCompany() != null) oldSmartPhone.setCompany(newSmartPhone.getCompany());
-        if (newSmartPhone.getModel() != null) oldSmartPhone.setModel(newSmartPhone.getModel());
-        if (newSmartPhone.getDescription() != null) oldSmartPhone.setDescription(newSmartPhone.getDescription());
-        if (newSmartPhone.getQuantity() != 0) oldSmartPhone.setQuantity(newSmartPhone.getQuantity());
-        if (newSmartPhone.getPrice() != 0) oldSmartPhone.setPrice(newSmartPhone.getPrice());
-        this.repository.save(oldSmartPhone);
+    public  void updateById(SmartPhone newSmartPhone) {
+        if (this.findById(newSmartPhone) != null) {
+            SmartPhone oldSmartPhone = this.findById(newSmartPhone);
+            if (newSmartPhone.getCompany() != null) oldSmartPhone.setCompany(newSmartPhone.getCompany());
+            if (newSmartPhone.getModel() != null) oldSmartPhone.setModel(newSmartPhone.getModel());
+            if (newSmartPhone.getDescription() != null) oldSmartPhone.setDescription(newSmartPhone.getDescription());
+            if (newSmartPhone.getQuantity() != 0) oldSmartPhone.setQuantity(newSmartPhone.getQuantity());
+            if (newSmartPhone.getPrice() != 0) oldSmartPhone.setPrice(newSmartPhone.getPrice());
+            this.repository.save(oldSmartPhone);
+        } else {
+            System.out.println("smart phone by id not found");
+        }
     }
 
     /**

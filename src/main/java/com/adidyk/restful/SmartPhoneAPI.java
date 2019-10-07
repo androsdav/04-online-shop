@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- *
+ * Class SmartPhone.
  */
 @RestController
 public class SmartPhoneAPI {
@@ -34,12 +34,12 @@ public class SmartPhoneAPI {
      * @param smartPhone - smart phone.
      */
     @RequestMapping(value = "/save_smart_phone", method = RequestMethod.POST)
-    public void saveSmartPhone(@RequestBody SmartPhone smartPhone) {
-        this.service.save(smartPhone);
+    public SmartPhone saveSmartPhone(@RequestBody SmartPhone smartPhone) {
+        return this.service.save(smartPhone);
     }
 
     /**
-     * saveSmartPhone - adds smart phone.
+     * saveSmartPhone - find smart phone by id.
      * @param smartPhone - smart phone.
      */
     @RequestMapping(value = "/find_smart_phone_by_id", method = RequestMethod.POST)
@@ -49,12 +49,14 @@ public class SmartPhoneAPI {
     }
 
     /**
-     * saveSmartPhone - adds smart phone.
+     * saveSmartPhone - update smart phone by id.
      * @param smartPhone - smart phone.
      */
-    @RequestMapping(value = "/update_smart_phone", method = RequestMethod.POST)
-    public void updateSmartPhone(@RequestBody SmartPhone smartPhone) {
-        this.service.update(smartPhone);
+    @RequestMapping(value = "/update_smart_phone_by_id", method = RequestMethod.POST)
+    public void updateSmartPhoneById(@RequestBody SmartPhone smartPhone) {
+        System.out.println();
+        System.out.println(smartPhone);
+        this.service.updateById(smartPhone);
     }
 
     /**
@@ -70,7 +72,7 @@ public class SmartPhoneAPI {
      * getAllSmartPhone - gets all smart phone.
      * @return - returns all smart phone.
      */
-    @RequestMapping(value = "/get_all_smart_phone", method = RequestMethod.GET)
+    @RequestMapping(value = "/find_all_smart_phone", method = RequestMethod.GET)
     public List<SmartPhone> findAllSmartPhone() {
         return this.service.findAll();
     }

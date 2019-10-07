@@ -17,17 +17,37 @@ hr {
 
 .admin {
     /*width: 200px;*/
-    /*background: #ccc;
+    //background: #ccc;
     /*padding: 5px;*/
-    padding-right: 20px;
-    padding-left: 20px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 
     /*border: 10px blue;*/
     /*float: left;*/
 }
 .admin_save {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 20px 0px 20px;
 
 }
+
+.admin_find_by_id {
+    margin: 0px 0px 0px 0px;
+    padding: 20px 20px 0px 20px;
+}
+
+.admin_delete_and_find_all_smart_phone {
+    margin: 0px 0px 0px 0px;
+    padding: 20px 20px 0px 20px;
+}
+
+.admin_action_legend {
+    font-weight: bold;
+    text-align: left;
+    color: crimson
+}
+
+
 
 
 
