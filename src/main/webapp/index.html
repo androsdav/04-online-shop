@@ -217,7 +217,7 @@
                 <!---------------------------------------------------------------------------------------------------->
                 <md-tab label="ADMIN">
                     <md-content class="md-padding">
-                        <!--------------------------ADMIN SMART PHONE-------------------------->
+                        <!------------------------------------ ADMIN SMART PHONE -------------------------->
                         <div class="admin" ng-controller="smartPhoneCtrl">
                             <fieldset>
                                 <legend><h4 style="font-weight: bold; text-align: center">SMART PHONE</h4></legend>
@@ -229,32 +229,32 @@
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="addItem.company" placeholder = "company" required/>
+                                                        <input type="text" class="form-control" ng-model="addPhone.company" placeholder = "company" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="addItem.model" placeholder="model" required/>
+                                                        <input type="text" class="form-control" ng-model="addPhone.model" placeholder="model" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="addItem.description" placeholder="description" required/>
+                                                        <input type="text" class="form-control" ng-model="addPhone.description" placeholder="description" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="number" class="form-control" ng-model="addItem.quantity" placeholder="quantity" required/>
+                                                        <input type="number" class="form-control" ng-model="addPhone.quantity" placeholder="quantity" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="number" class="form-control" ng-model="addItem.price" placeholder="price" required/>
+                                                        <input type="number" class="form-control" ng-model="addPhone.price" placeholder="price" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-offset-2 col-md-8">
-                                                        <button class="btn btn-default" ng-click="saveSmartPhone(addItem)">save</button>
+                                                        <button class="btn btn-default" ng-click="saveSmartPhone(addPhone)">save</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -269,12 +269,12 @@
                                         <div class="form-inline">
                                             <div class="form-group">
                                                 <div class="col-md-8">
-                                                    <input type="number" class="form-control" ng-model="id" placeholder="id" required/>
+                                                    <input type="number" class="form-control" ng-model="findPhone.id" placeholder="id" required/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-md-offset-2 col-md-8">
-                                                    <button class="btn btn-default" ng-click="findSmartPhoneById(id)">read</button>
+                                                    <button class="btn btn-default" ng-click="findSmartPhoneById(findPhone)">read</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -294,56 +294,56 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>{{smartPhone.id}}</td>
-                                                <td>{{smartPhone.company}}</td>
-                                                <td>{{smartPhone.model}}</td>
-                                                <td>{{smartPhone.description}}</td>
-                                                <td>{{smartPhone.quantity}}</td>
-                                                <td>{{smartPhone.price}}</td>
+                                                <td>{{getPhone.id}}</td>
+                                                <td>{{getPhone.company}}</td>
+                                                <td>{{getPhone.model}}</td>
+                                                <td>{{getPhone.description}}</td>
+                                                <td>{{getPhone.quantity}}</td>
+                                                <td>{{getPhone.price}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <!-------------------------- update -------------------------->
-                                <div class="admin_save">
+                                <div class="admin_update">
                                     <form>
                                         <fieldset>
                                             <legend><h5 class="admin_action_legend">update by id</h5></legend>
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="id" placeholder = "id" required/>
+                                                        <input type="text" class="form-control" ng-model="updatePhone.id" placeholder = "id" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="company" placeholder = "company"/>
+                                                        <input type="text" class="form-control" ng-model="updatePhone.company" placeholder = "company"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="model" placeholder="model"/>
+                                                        <input type="text" class="form-control" ng-model="updatePhone.model" placeholder="model"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="description" placeholder="description"/>
+                                                        <input type="text" class="form-control" ng-model="updatePhone.description" placeholder="description"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="number" class="form-control" ng-model="quantity" placeholder="quantity"/>
+                                                        <input type="number" class="form-control" ng-model="updatePhone.quantity" placeholder="quantity"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="number" class="form-control" ng-model="price" placeholder="price"/>
+                                                        <input type="number" class="form-control" ng-model="update.price" placeholder="price"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-offset-2 col-md-8">
-                                                        <button class="btn btn-default" ng-click="updateSmartPhoneById(id, company, model, description, quantity, price)">update</button>
+                                                        <button class="btn btn-default" ng-click="updateSmartPhoneById(updatePhone)">update</button>
                                                     </div>
                                                 </div>
                                             </div>

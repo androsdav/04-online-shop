@@ -44,7 +44,6 @@ public class SmartPhoneAPI {
      */
     @RequestMapping(value = "/find_smart_phone_by_id", method = RequestMethod.POST)
     public SmartPhone findSmartPhoneById(@RequestBody SmartPhone smartPhone) {
-        System.out.println(smartPhone);
         return this.service.findById(smartPhone);
     }
 
@@ -54,8 +53,6 @@ public class SmartPhoneAPI {
      */
     @RequestMapping(value = "/update_smart_phone_by_id", method = RequestMethod.POST)
     public void updateSmartPhoneById(@RequestBody SmartPhone smartPhone) {
-        System.out.println();
-        System.out.println(smartPhone);
         this.service.updateById(smartPhone);
     }
 
