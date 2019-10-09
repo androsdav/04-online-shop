@@ -15,8 +15,118 @@
     <div ng-cloak="" class="tabsDynamicHeight" ng-app="app">
         <md-content>
             <md-tabs md-dynamic-height="" md-border-bottom="">
-                <md-tab label="admin">
+                <md-tab label="shop">
                     <md-content class="md-padding">
+
+                        <!------------------------------------ ADMIN SMART PHONE -------------------------->
+                        <div class="admin" ng-controller="smartPhoneCtrl">
+                            <fieldset>
+                                <legend><h4 style="font-weight: bold; text-align: center">SMART PHONE</h4></legend>
+                                <!-------------------------- delete and find all smart phone -------------------------->
+                                <div class="admin_delete_and_find_all_smart_phone">
+                                    <form>
+                                        <fieldset>
+                                            <legend><h5 class="admin_action_legend">basket</h5></legend>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">clean basket</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>company</th>
+                                                        <th>model</th>
+                                                        <th>description</th>
+                                                        <th>quantity</th>
+                                                        <th>price</th>
+                                                        <th>add to basket</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="product in basket">
+                                                        <td>{{product.id}}</td>
+                                                        <td>{{product.company}}</td>
+                                                        <td>{{product.model}}</td>
+                                                        <td>{{product.description}}</td>
+                                                        <td>{{product.quantity}}</td>
+                                                        <td>{{product.price}}</td>
+                                                        <td><button class="btn btn-default" ng-click="addToBasket(product)">+</button></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </fieldset>
+                        </div>
+
+
+
+
+                        <!------------------------------------ ADMIN SMART PHONE -------------------------->
+                        <div class="admin" ng-controller="smartPhoneCtrl">
+                            <fieldset>
+                                <legend><h4 style="font-weight: bold; text-align: center">SMART PHONE</h4></legend>
+                                <!-------------------------- delete and find all smart phone -------------------------->
+                                <div class="admin_delete_and_find_all_smart_phone">
+                                    <form>
+                                        <fieldset>
+                                            <legend><h5 class="admin_action_legend">products</h5></legend>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">smart phone</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>company</th>
+                                                        <th>model</th>
+                                                        <th>description</th>
+                                                        <th>quantity</th>
+                                                        <th>price</th>
+                                                        <th>add to basket</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="phone in smartPhones">
+                                                        <td>{{phone.id}}</td>
+                                                        <td>{{phone.company}}</td>
+                                                        <td>{{phone.model}}</td>
+                                                        <td>{{phone.description}}</td>
+                                                        <td>{{phone.quantity}}</td>
+                                                        <td>{{phone.price}}</td>
+                                                        <td><button class="btn btn-default" ng-click="addToBasket(phone.id, phone.company, phone.model, phone.description, phone.quantity, phone.price)">+</button></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </fieldset>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
                         <h1 class="md-display-2">ADMIN</h1>
 
 
@@ -385,7 +495,7 @@
                                                         <td>{{phone.quantity}}</td>
                                                         <td>{{phone.price}}</td>
                                                         <td><button class="btn btn-default" ng-click="addToOrder(phone.id, phone.company, phone.model, phone.description, phone.quantity, phone.price)">+</button></td>
-                                                        <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(phone.id)">-</button></td>
+                                                        <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(phone)">-</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
