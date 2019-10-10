@@ -17,9 +17,9 @@
             <md-tabs md-dynamic-height="" md-border-bottom="">
                 <md-tab label="shop">
                     <md-content class="md-padding">
-
                         <!------------------------------------ ADMIN SMART PHONE -------------------------->
                         <div class="admin" ng-controller="smartPhoneCtrl">
+
                             <fieldset>
                                 <legend><h4 style="font-weight: bold; text-align: center">SMART PHONE</h4></legend>
                                 <!-------------------------- delete and find all smart phone -------------------------->
@@ -55,7 +55,7 @@
                                                         <td>{{product.description}}</td>
                                                         <td>{{product.quantity}}</td>
                                                         <td>{{product.price}}</td>
-                                                        <td><button class="btn btn-default" ng-click="addToBasket(product)">+</button></td>
+                                                        <td><button class="btn btn-default" ng-click="addToBasket(product.id, product.company, product.model, product.description, product.quantity, product.price)">+</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -63,16 +63,6 @@
                                         </fieldset>
                                     </form>
                                 </div>
-                            </fieldset>
-                        </div>
-
-
-
-
-                        <!------------------------------------ ADMIN SMART PHONE -------------------------->
-                        <div class="admin" ng-controller="smartPhoneCtrl">
-                            <fieldset>
-                                <legend><h4 style="font-weight: bold; text-align: center">SMART PHONE</h4></legend>
                                 <!-------------------------- delete and find all smart phone -------------------------->
                                 <div class="admin_delete_and_find_all_smart_phone">
                                     <form>

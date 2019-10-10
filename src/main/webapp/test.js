@@ -74,6 +74,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @type {Array}
      */
     $scope.basket = [];
+    $scope.andros = {};
 
     /**
      * addSmartPhone - add smart phone.
