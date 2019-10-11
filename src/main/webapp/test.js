@@ -151,7 +151,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param model - model.
      * @param description - description.
      * @param quantity - quantity.
-     * @param price - price.
+     * @param price - price. hard
      */
     $scope.addToBasket = function (id, company, model, description, quantity, price) {
         let smartPhone = {
