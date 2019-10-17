@@ -4,23 +4,42 @@ import com.adidyk.model.User;
 import com.adidyk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+/**
+ * Class UserService.
+ */
 @Service
 public class UserService {
 
+    /**
+     * @param repository - repository.
+     */
     private final UserRepository repository;
 
+    /**
+     * UserService - constructor.
+     * @param repository - repository.
+     */
     @Autowired
     public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
     /**
-     *
+     * save - save new user.
      * @param user - user.
      */
-    public void save(User user) {
-        this.repository.save(user);
+    public User save(User user) {
+        return this.repository.save(user);
+    }
+
+    /**
+     * saveSmartPhone - find smart phone by id.
+     * @param user - smart phone.
+     */
+    public User findByLoginAndPassword(User user) {
+        return this.repository.findByLoginAndPassword(user.getLogin(), user.getPassword());
     }
 
     /**

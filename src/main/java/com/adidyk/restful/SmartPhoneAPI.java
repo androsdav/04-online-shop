@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Class SmartPhone.
+ * Class SmartPhoneAPI.
  */
 @RestController
 public class SmartPhoneAPI {
@@ -62,8 +62,6 @@ public class SmartPhoneAPI {
      */
     @RequestMapping(value = "/delete_smart_phone_by_id", method = RequestMethod.POST)
     public void deleteSmartPhoneById(@RequestBody SmartPhone smartPhone) {
-        System.out.println();
-        System.out.println(smartPhone);
         this.service.deleteById(smartPhone);
     }
 

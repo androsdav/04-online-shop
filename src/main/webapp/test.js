@@ -65,6 +65,21 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
      *
+     * @type {{quantity: null, price: null, description: null, company: null, model: null, id: null}}
+     */
+    $scope.product = {
+        id: null,
+        company: null,
+        model: null,
+        description: null,
+        quantity: null,
+        price: null
+    };
+
+
+
+    /**
+     *
      * @type {Array}
      */
     $scope.orders = [];
@@ -74,7 +89,73 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @type {Array}
      */
     $scope.basket = [];
-    $scope.andros = {};
+
+    /**
+     *
+     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
+     */
+    $scope.addUser = {
+        id: null,
+        login: null,
+        password: null,
+        firstName: null,
+        secondName: null,
+        phoneNumber: null,
+    };
+
+    /**
+     *
+     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
+     */
+    $scope.findUser = {
+        id: null,
+        login: null,
+        password: null,
+        firstName: null,
+        secondName: null,
+        phoneNumber: null,
+    };
+
+    /**
+     *
+     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
+     */
+    $scope.getUser = {
+        id: null,
+        login: "anonymous",
+        password: null,
+        firstName: null,
+        secondName: null,
+        phoneNumber: null,
+    };
+
+    /**
+     * addSmartPhone - add smart phone.
+     * @param user - user.
+     */
+    $scope.saveUser = function (user) {
+        $http.post("/save_user", JSON.stringify(user))
+            .then(function (response) {
+                if (response.data)
+                    console.log("post data submitted successfully");
+            }, function error(response) {
+                console.log("service not exists: " + response.status);
+            });
+    };
+
+    /**
+     * addSmartPhone - add smart phone.
+     * @param user - user.
+     */
+    $scope.findUserByLoginAndPassword = function (user) {
+        $http.post("/find_user_by_login_and_password", JSON.stringify(user))
+            .then(function success(response) {
+                $scope.getUser = response.data;
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
+
 
     /**
      * addSmartPhone - add smart phone.
@@ -145,35 +226,32 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
-     * addToOrder - adds smart phone to order.
-     * @param id - id.
-     * @param company - company.
-     * @param model - model.
-     * @param description - description.
-     * @param quantity - quantity.
-     * @param price - price. hard
+     * addToBasket - adds smart phone to order.
+     * @param product1 - product.
      */
-    $scope.addToBasket = function (id, company, model, description, quantity, price) {
-        let smartPhone = {
-            id: id,
-            company: company,
-            model: model,
-            description: description,
-            quantity: quantity,
-            price: price
+    $scope.addToBasket = function (product1) {
+        let product = {
+            id: product1.id,
+            company: product1.company,
+            model: product1.model,
+            description: product1.description,
+            quantity: product1.quantity,
+            price: product1.price
         };
-        let indexInOrders = $scope.findIndexById($scope.basket, id);
-        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, id);
-        if (indexInOrders < 0) {
-            smartPhone.quantity = 1;
-            $scope.basket.push(smartPhone);
+        let indexInBasket = $scope.findIndexById($scope.basket, product.id);
+        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, product.id);
+        console.log("indexInOrders:" + indexInBasket);
+        console.log("indexInSmartPhones:" + indexInSmartPhones);
+        if (indexInBasket < 0) {
+            product.quantity = 1;
+            $scope.basket.push(product);
             if ($scope.smartPhones[indexInSmartPhones].quantity > 1) {
                 $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity - 1;
             } else {
                 $scope.smartPhones.splice(indexInSmartPhones, 1);
             }
         } else {
-            $scope.basket[indexInOrders].quantity = $scope.basket[indexInOrders].quantity + 1;
+            $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity + 1;
             if ($scope.smartPhones[indexInSmartPhones].quantity > 1) {
                 $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity - 1;
             } else {
@@ -183,37 +261,33 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
-     * deleteFromOrder - delete from order.
-     * @param id - id.
-     * @param company - company.
-     * @param model - model.
-     * @param description - description.
-     * @param quantity - quantity.
+     * deleteFromBasket - delete from order.
+     * @param product1 - product.
      */
-    $scope.deleteFromBasket = function (id, company, model, description, quantity) {
-        let smartPhone = {
-            id: id,
-            company: company,
-            model: model,
-            description: description,
-            quantity: quantity
+    $scope.deleteFromBasket = function (product1) {
+        let product = {
+            id: product1.id,
+            company: product1.company,
+            model: product1.model,
+            description: product1.description,
+            quantity: product1.quantity,
+            price: product1.price
         };
-        let indexInOrders = $scope.findIndexById($scope.orders, id);
-        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, id);
-        if ($scope.orders[indexInOrders].quantity > 1) {
-            $scope.orders[indexInOrders].quantity = $scope.orders[indexInOrders].quantity - 1;
+        let indexInBasket = $scope.findIndexById($scope.basket, product.id);
+        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, product.id);
+        if ($scope.basket[indexInBasket].quantity > 1) {
+            $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity - 1;
             if (indexInSmartPhones < 0) {
-                smartPhone.quantity = 1;
-                $scope.smartPhones.push(smartPhone);
+                product.quantity = 1;
+                $scope.smartPhones.push(product);
             } else {
                 $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity + 1;
             }
-
         } else {
-            $scope.orders.splice(indexInOrders, 1);
+            $scope.basket.splice(indexInBasket, 1);
             if (indexInSmartPhones < 0) {
-                smartPhone.quantity = 1;
-                $scope.smartPhones.push(smartPhone);
+                product.quantity = 1;
+                $scope.smartPhones.push(product);
             } else {
                 $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity + 1;
             }
@@ -241,11 +315,12 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * deleteAllFromOrders - delete all from orders.
      */
     $scope.deleteAllFromBasket = function () {
-        for (let i = 0; i < $scope.orders.length; i++) {
-            $scope.orders.splice(i, 1);
+        for (let i = 0; i < $scope.basket.length; i++) {
+            $scope.basket.splice(i, 1);
             i--;
         }
     };
+
 
     /**
      * addSmartPhone - add smart phone.
