@@ -130,6 +130,12 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
+     *
+     * @type {string}
+     */
+    $scope.log = "";
+
+    /**
      * addSmartPhone - add smart phone.
      * @param user - user.
      */

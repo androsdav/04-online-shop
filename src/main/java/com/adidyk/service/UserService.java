@@ -27,11 +27,28 @@ public class UserService {
     }
 
     /**
+     * findByLogin - find by login.
+     * @param user - user.
+     * @return - returns user.
+     */
+    private User findByLogin(User user) {
+        return this.repository.findByLogin(user.getLogin());
+    }
+
+    /**
      * save - save new user.
      * @param user - user.
      */
-    public User save(User user) {
-        return this.repository.save(user);
+    public void save(User user) {
+        User searchUser = this.findByLogin(user);
+        System.out.println();
+        System.out.println(searchUser);
+        if (searchUser != null) {
+            System.out.println("user with that username already exists");
+        } else {
+            System.out.println("new user added");
+            this.repository.save(user);
+        }
     }
 
     /**

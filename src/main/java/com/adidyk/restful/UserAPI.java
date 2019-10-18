@@ -32,12 +32,12 @@ public class UserAPI {
 
     @RequestMapping(value = "/save_user", method = RequestMethod.POST)
     //public void addOrder(@RequestBody List<SmartPhone> list) {
-    public User saveUser(@RequestBody User user) {
+    public void saveUser(@RequestBody User user) {
         //Order order = new Order();
         //order.setSmartPhones(list);
         //this.orderService.save(order);
         System.out.println(user);
-        return this.service.save(user);
+        this.service.save(user);
     }
 
     /**
