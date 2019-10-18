@@ -133,17 +133,30 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      *
      * @type {string}
      */
-    $scope.log = "";
+    $scope.logInfo = {
+        signIn: "",
+        signOut: null,
+    };
+
+    $scope.andros = {};
+
+    $scope.isEmptyObject = function (object) {
+        return angular.equals(object, "");
+    };
+
 
     /**
      * addSmartPhone - add smart phone.
      * @param user - user.
      */
-    $scope.saveUser = function (user) {
+     $scope.saveUser = function (user) {
         $http.post("/save_user", JSON.stringify(user))
             .then(function (response) {
-                if (response.data)
-                    console.log("post data submitted successfully");
+                if (angular.equals(response.data, "")) {
+                    $scope.logInfo.signIn = "user with that already exists";
+                } else {
+                    $scope.logInfo.signIn = "registration completed successfully";
+                }
             }, function error(response) {
                 console.log("service not exists: " + response.status);
             });
@@ -246,8 +259,6 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         };
         let indexInBasket = $scope.findIndexById($scope.basket, product.id);
         let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, product.id);
-        console.log("indexInOrders:" + indexInBasket);
-        console.log("indexInSmartPhones:" + indexInSmartPhones);
         if (indexInBasket < 0) {
             product.quantity = 1;
             $scope.basket.push(product);

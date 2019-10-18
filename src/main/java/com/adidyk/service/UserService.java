@@ -39,16 +39,12 @@ public class UserService {
      * save - save new user.
      * @param user - user.
      */
-    public void save(User user) {
-        User searchUser = this.findByLogin(user);
-        System.out.println();
-        System.out.println(searchUser);
-        if (searchUser != null) {
-            System.out.println("user with that username already exists");
-        } else {
-            System.out.println("new user added");
-            this.repository.save(user);
+    public User save(User user) {
+        User getUser = null;
+        if (this.findByLogin(user) == null) {
+            getUser = this.repository.save(user);
         }
+        return getUser;
     }
 
     /**
