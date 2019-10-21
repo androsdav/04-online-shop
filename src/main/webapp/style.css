@@ -52,6 +52,14 @@ hr {
     color: crimson
 }
 
+.message {
+    font-weight: bold;
+    text-align: left;
+    color: #b7aab7;
+    margin: 0px 0px 0px 0px;
+    padding: 200px 20px 0px 20px;
+}
+
 
 
 

@@ -133,10 +133,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      *
      * @type {string}
      */
-    $scope.logInfo = {
-        signIn: "",
-        signOut: null,
-    };
+    $scope.logInfo = "";
 
     $scope.andros = {};
 
@@ -153,9 +150,9 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         $http.post("/save_user", JSON.stringify(user))
             .then(function (response) {
                 if (angular.equals(response.data, "")) {
-                    $scope.logInfo.signIn = "user with that already exists";
+                    $scope.logInfo = "user with login that already exists";
                 } else {
-                    $scope.logInfo.signIn = "registration completed successfully";
+                    $scope.logInfo = "registration completed successfully";
                 }
             }, function error(response) {
                 console.log("service not exists: " + response.status);
@@ -169,7 +166,12 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     $scope.findUserByLoginAndPassword = function (user) {
         $http.post("/find_user_by_login_and_password", JSON.stringify(user))
             .then(function success(response) {
-                $scope.getUser = response.data;
+                if (angular.equals(response.data, "")) {
+                    $scope.logInfo = "authorization was failed";
+                } else {
+                    $scope.logInfo = "authorization was successful";
+                    $scope.getUser = response.data;
+                }
             }, function error(response) {
                 console.log("error" + response.headers);
             });
