@@ -160,7 +160,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
-     * addSmartPhone - add smart phone.
+     * addSmartPhone - add smart phone. 6-9
      * @param user - user.
      */
     $scope.findUserByLoginAndPassword = function (user) {
