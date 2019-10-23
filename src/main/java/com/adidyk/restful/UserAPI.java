@@ -1,7 +1,5 @@
 package com.adidyk.restful;
 
-import com.adidyk.model.Order;
-import com.adidyk.model.SmartPhone;
 import com.adidyk.model.User;
 import com.adidyk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +30,7 @@ public class UserAPI {
 
     @RequestMapping(value = "/save_user", method = RequestMethod.POST)
     public User saveUser(@RequestBody User user) {
-        //System.out.println(user);
-        //return this.service.save(user);
-        User findUser = this.service.save(user);
-        System.out.println(findUser);
-        return findUser;
+        return this.service.save(user);
     }
 
     /**
@@ -45,15 +39,11 @@ public class UserAPI {
      */
     @RequestMapping(value = "/find_user_by_login_and_password", method = RequestMethod.POST)
     public User findUserByLoginAndPassword(@RequestBody User user) {
-        System.out.println(user);
-        User findUser = this.service.findByLoginAndPassword(user);
-        System.out.println(findUser);
-        return findUser;
-        //return this.service.findByLoginAndPassword(user);
+        return this.service.findByLoginAndPassword(user);
     }
 
     /**
-     *
+     * findUserById - find user by id.
      * @param user - user.
      * @return - return.
      */

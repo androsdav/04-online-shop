@@ -4,7 +4,6 @@ import com.adidyk.model.User;
 import com.adidyk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * Class UserService.
@@ -56,7 +55,7 @@ public class UserService {
     }
 
     /**
-     *
+     * findById - find by id.
      * @param user - user.
      * @return - return.
      */

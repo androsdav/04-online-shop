@@ -76,13 +76,17 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         price: null
     };
 
-
-
     /**
      *
      * @type {Array}
      */
     $scope.orders = [];
+
+    /**
+     *
+     * @type {{}}
+     */
+    $scope.order = {};
 
     /**
      *
@@ -133,14 +137,18 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      *
      * @type {string}
      */
-    $scope.logInfo = "";
+    $scope.information = "";
 
     $scope.andros = {};
 
+    /**
+     * isEmptyObject - is empty object.
+     * @param object - object.
+     * @returns {boolean}
+     */
     $scope.isEmptyObject = function (object) {
         return angular.equals(object, "");
     };
-
 
     /**
      * addSmartPhone - add smart phone.
@@ -149,10 +157,10 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      $scope.saveUser = function (user) {
         $http.post("/save_user", JSON.stringify(user))
             .then(function (response) {
-                if (angular.equals(response.data, "")) {
-                    $scope.logInfo = "user with login that already exists";
+                if ($scope.isEmptyObject(response.data)) {
+                    $scope.information = "user with login that already exists";
                 } else {
-                    $scope.logInfo = "registration completed successfully";
+                    $scope.information = "registration completed successfully";
                 }
             }, function error(response) {
                 console.log("service not exists: " + response.status);
@@ -160,21 +168,35 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
-     * addSmartPhone - add smart phone. 6-9
+     * findUserByLoginAndPassword - find user by login and password (sign in).
      * @param user - user.
      */
     $scope.findUserByLoginAndPassword = function (user) {
         $http.post("/find_user_by_login_and_password", JSON.stringify(user))
             .then(function success(response) {
-                if (angular.equals(response.data, "")) {
-                    $scope.logInfo = "authorization was failed";
+                if ($scope.isEmptyObject(response.data)) {
+                    $scope.information = "authorization was failed";
                 } else {
-                    $scope.logInfo = "authorization was successful";
+                    $scope.information = "authorization was successful";
                     $scope.getUser = response.data;
                 }
             }, function error(response) {
                 console.log("error" + response.headers);
             });
+    };
+
+    /**
+     * signOut - sign out.
+     */
+    $scope.signOut = function () {
+        $scope.getUser = {
+            id: null,
+            login: "anonymous",
+            password: null,
+            firstName: null,
+            secondName: null,
+            phoneNumber: null,
+        };
     };
 
 
@@ -340,16 +362,17 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         }
     };
 
-
     /**
      * addSmartPhone - add smart phone.
      */
-    $scope.addOrder = function () {
-        $http.post("/add_order", JSON.stringify($scope.orders))
+    $scope.saveOrder = function () {
+        $scope.order.user = $scope.getUser;
+        $scope.order.smartPhones = $scope.basket;
+        $http.post("/save_order", JSON.stringify($scope.order))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
-                $scope.deleteAllFromOrders();
+                $scope.deleteAllFromBasket();
             }, function error(response) {
                 console.log("service not exists: " + response.status);
             });

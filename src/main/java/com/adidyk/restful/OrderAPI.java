@@ -9,35 +9,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+/**
+ * OrderAPI.
+ */
 @RestController
 public class OrderAPI {
 
-    private final OrderService orderService;
+    /**
+     * @param orderService
+     */
+    private final OrderService service;
 
+    /**
+     * OrderAPI - constructor.
+     * @param service - service.
+     */
     @Autowired
-    public OrderAPI(OrderService orderService) {
-        this.orderService = orderService;
+    public OrderAPI(OrderService service) {
+        this.service = service;
     }
 
     /**
      * addSmartPhone - adds smart phone.
      * @param order - smart phone.
      */
-    @RequestMapping(value = "/add_order", method = RequestMethod.POST)
+    @RequestMapping(value = "/save_order", method = RequestMethod.POST)
     //public void addOrder(@RequestBody List<SmartPhone> list) {
-    public void addOrder(@RequestBody Order order) {
+    public Order saveOrder(@RequestBody Order order) {
         //Order order = new Order();
         //order.setSmartPhones(list);
         //this.orderService.save(order);
         System.out.println();
         System.out.println();
-        System.out.println(order.getUser());
+        System.out.println(order);
         System.out.println();
         System.out.println();
-        System.out.println(order.getSmartPhones());
-        this.orderService.save(order);
+        //System.out.println(order.getSmartPhones());
+        return this.service.save(order);
     }
 
     /**
@@ -47,7 +55,7 @@ public class OrderAPI {
      */
     @RequestMapping(value = "find_order_by_id", method = RequestMethod.GET)
     public Order findOrderById(@RequestBody Order order) {
-        return this.orderService.findById(order);
+        return this.service.findById(order);
     }
 
 }

@@ -29,7 +29,7 @@ public class Order {
      */
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "date_create")
-    private Date dateCreate;
+    private Date dateCreate = new Date();
 
     /**
      * @param user - user.
@@ -47,7 +47,7 @@ public class Order {
     @Fetch(FetchMode.JOIN)
     @JoinTable(name = "orders_smart_phones",
             joinColumns = {@JoinColumn(name = "order_id")},
-            inverseJoinColumns = { @JoinColumn(name = "smart_phone_id")}
+            inverseJoinColumns = {@JoinColumn(name = "smart_phone_id")}
     )
     private List<SmartPhone> smartPhones = new ArrayList<>();
 

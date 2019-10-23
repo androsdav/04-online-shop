@@ -57,8 +57,6 @@ public class SmartPhoneService {
             if (newSmartPhone.getQuantity() != 0) oldSmartPhone.setQuantity(newSmartPhone.getQuantity());
             if (newSmartPhone.getPrice() != 0) oldSmartPhone.setPrice(newSmartPhone.getPrice());
             this.repository.save(oldSmartPhone);
-        } else {
-            System.out.println("smart phone by id not found");
         }
     }
 
