@@ -40,9 +40,11 @@ public class Order {
     //@JsonIgnore
     private User user;
 
+    /*
     /**
      * @param smartPhones - list smart phones.
      */
+    /*
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinTable(name = "orders_smart_phones",
@@ -50,6 +52,11 @@ public class Order {
             inverseJoinColumns = {@JoinColumn(name = "smart_phone_id")}
     )
     private List<SmartPhone> smartPhones = new ArrayList<>();
+    */
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order")
+    @Fetch(FetchMode.JOIN)
+    private List<Product> products = new ArrayList<>();
 
     /**
      * Order - constructor.
@@ -70,12 +77,14 @@ public class Order {
      * Order - constructor.
      * @param dateCreate - date create order.
      * @param user - user.
-     * @param smartPhones - list smart phones.
+     * @param products - list product.
      */
-    public Order(Date dateCreate, User user, List<SmartPhone> smartPhones) {
+    public Order(Date dateCreate, User user, List<Product> products) {
         this.dateCreate = dateCreate;
         this.user = user;
-        this.smartPhones = smartPhones;
+        this.products = products;
+
+        /*this.smartPhones = smartPhones;*/
     }
 
     public int getId() {
@@ -102,12 +111,12 @@ public class Order {
         this.user = user;
     }
 
-    public List<SmartPhone> getSmartPhones() {
-        return smartPhones;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setSmartPhones(List<SmartPhone> smartPhones) {
-        this.smartPhones = smartPhones;
+    public void setSmartPhones(List<Product> products) {
+        this.products = products;
     }
 
     @Override
@@ -118,12 +127,12 @@ public class Order {
         return id == order.id &&
                 Objects.equals(dateCreate, order.dateCreate) &&
                 Objects.equals(user, order.user) &&
-                Objects.equals(smartPhones, order.smartPhones);
+                Objects.equals(products, order.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dateCreate, user, smartPhones);
+        return Objects.hash(id, dateCreate, user, products);
     }
 
     @Override
@@ -131,7 +140,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", dateCreate=" + dateCreate +
-                ", smartPhones=" + smartPhones +
+                ", products=" + products +
                 ", smartPhones=" + user +
                 '}';
     }

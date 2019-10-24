@@ -35,6 +35,9 @@ public class SmartPhoneAPI {
      */
     @RequestMapping(value = "/save_smart_phone", method = RequestMethod.POST)
     public SmartPhone saveSmartPhone(@RequestBody SmartPhone smartPhone) {
+        System.out.println();
+        System.out.println(smartPhone);
+        System.out.println();
         return this.service.save(smartPhone);
     }
 

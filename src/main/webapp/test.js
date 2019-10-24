@@ -18,6 +18,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.addPhone = {
         id: null,
+        type: null,
         company: null,
         model: null,
         description: null,
@@ -30,6 +31,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.findPhone = {
         id: null,
+        type: null,
         company: null,
         model: null,
         description: null,
@@ -43,6 +45,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.getPhone = {
         id: null,
+        type: null,
         company: null,
         model: null,
         description: null,
@@ -56,6 +59,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.updatePhone = {
         id: null,
+        type: null,
         company: null,
         model: null,
         description: null,
@@ -69,6 +73,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.product = {
         id: null,
+        type: null,
         company: null,
         model: null,
         description: null,

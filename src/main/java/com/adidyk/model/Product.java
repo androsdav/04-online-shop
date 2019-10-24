@@ -1,17 +1,16 @@
 package com.adidyk.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * Class SmartPhone.
+ * Class Product.
  */
 @Entity
-@Table(name = "smart_phones")
-public class SmartPhone {
+@Table(name = "products")
+public class Product {
 
     /**
      * @param id - id.
@@ -22,10 +21,10 @@ public class SmartPhone {
     private int id;
 
     /**
-     * @param type - type.
+     * @param type - type product.
      */
     @Column(name = "type")
-    private String type = this.getClass().getSimpleName();
+    private String type;
 
     /**
      * @param company - company.
@@ -57,45 +56,32 @@ public class SmartPhone {
     @Column(name = "price")
     private double price;
 
-    /*
     /**
-     * @param orders - orders.
+     * @param order - order.
      */
-    /*
-    @ManyToMany(mappedBy = "smartPhones")
-    @JsonIgnore
-    private List<Order> orders = new ArrayList<>();
-    */
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     /**
-     * SmartPhone - constructor.
-     */
-    public SmartPhone() {
-    }
-
-    /**
-     * SmartPhone - constructor.
-     * @param id - id.
-     */
-    public SmartPhone(int id) {
-        this.id = id;
-    }
-
-    /**
-     * SmartPhone - constructor.
+     *
+     * @param type - type.
      * @param company - company.
      * @param model - model.
      * @param description - description.
      * @param quantity - quantity.
-     * @param price - price by one.
+     * @param price - price.
+     * @param order - order.
      */
-    public SmartPhone(String company, String model, String description, int quantity, double price) {
-        this.type = this.getClass().getSimpleName();
+    public Product(String type, String company, String model, String description, int quantity, double price, Order order) {
+        this.type = type;
         this.company = company;
         this.model = model;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+        this.order = order;
     }
 
     public int getId() {
@@ -104,6 +90,14 @@ public class SmartPhone {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getCompany() {
@@ -146,58 +140,45 @@ public class SmartPhone {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public Order getOrder() {
+        return order;
     }
 
-    /*
-    public void setType(String type) {
-        this.type = type;
+    public void setOrder(Order order) {
+        this.order = order;
     }
-    */
-
-    /*
-    public List<Order> getOrders() {
-        return orders;
-    }
-    */
-
-    /*
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-    */
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SmartPhone)) return false;
-        SmartPhone that = (SmartPhone) o;
-        return id == that.id &&
-                quantity == that.quantity &&
-                Double.compare(that.price, price) == 0 &&
-                Objects.equals(type, that.type) &&
-                Objects.equals(company, that.company) &&
-                Objects.equals(model, that.model) &&
-                Objects.equals(description, that.description);
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                quantity == product.quantity &&
+                Double.compare(product.price, price) == 0 &&
+                Objects.equals(type, product.type) &&
+                Objects.equals(company, product.company) &&
+                Objects.equals(model, product.model) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(order, product.order);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, company, model, description, quantity, price);
+        return Objects.hash(id, type, company, model, description, quantity, price, order);
     }
 
     @Override
     public String toString() {
-        return "SmartPhone{" +
+        return "Product{" +
                 "id=" + id +
-                ", type=" + type +
+                ", type='" + type + '\'' +
                 ", company='" + company + '\'' +
                 ", model='" + model + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
+                ", order=" + order +
                 '}';
     }
-
 }
