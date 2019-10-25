@@ -1,6 +1,9 @@
 package com.adidyk.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +23,6 @@ public class SmartPhone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-    /**
-     * @param type - type.
-     */
-    @Column(name = "type")
-    private String type = this.getClass().getSimpleName();
 
     /**
      * @param company - company.
@@ -57,15 +54,12 @@ public class SmartPhone {
     @Column(name = "price")
     private double price;
 
-    /*
     /**
-     * @param orders - orders.
+     * @param orderSmartPhones - order smart phones.
      */
-    /*
-    @ManyToMany(mappedBy = "smartPhones")
-    @JsonIgnore
-    private List<Order> orders = new ArrayList<>();
-    */
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "smartPhone")
+    @Fetch(FetchMode.JOIN)
+    private List<OrderSmartPhone> orderSmartPhones = new ArrayList<>();
 
     /**
      * SmartPhone - constructor.
@@ -90,7 +84,6 @@ public class SmartPhone {
      * @param price - price by one.
      */
     public SmartPhone(String company, String model, String description, int quantity, double price) {
-        this.type = this.getClass().getSimpleName();
         this.company = company;
         this.model = model;
         this.description = description;
@@ -146,10 +139,6 @@ public class SmartPhone {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
-    }
-
     /*
     public void setType(String type) {
         this.type = type;
@@ -176,7 +165,6 @@ public class SmartPhone {
         return id == that.id &&
                 quantity == that.quantity &&
                 Double.compare(that.price, price) == 0 &&
-                Objects.equals(type, that.type) &&
                 Objects.equals(company, that.company) &&
                 Objects.equals(model, that.model) &&
                 Objects.equals(description, that.description);
@@ -184,14 +172,13 @@ public class SmartPhone {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, company, model, description, quantity, price);
+        return Objects.hash(id, company, model, description, quantity, price);
     }
 
     @Override
     public String toString() {
         return "SmartPhone{" +
                 "id=" + id +
-                ", type=" + type +
                 ", company='" + company + '\'' +
                 ", model='" + model + '\'' +
                 ", description='" + description + '\'' +
