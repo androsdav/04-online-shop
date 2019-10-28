@@ -1,12 +1,9 @@
-package com.adidyk.model;
+package com.adidyk.model.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -39,12 +36,15 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    /*
     /**
      * @param orderSmartPhones - order smart phones.
      */
+    /*
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
     @Fetch(FetchMode.JOIN)
     private List<OrderSmartPhone> orderSmartPhones = new ArrayList<>();
+    */
 
     /**
      * Order - constructor.
@@ -117,7 +117,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", dateCreate=" + dateCreate +
-                ", smartPhones=" + user +
+                ", user=" + user +
                 '}';
     }
 

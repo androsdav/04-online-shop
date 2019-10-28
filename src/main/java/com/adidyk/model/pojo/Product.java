@@ -1,5 +1,6 @@
-package com.adidyk.model;
+package com.adidyk.model.pojo;
 
+import com.adidyk.model.OrderSmartPhone;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -13,8 +14,8 @@ import java.util.Objects;
  * Class SmartPhone.
  */
 @Entity
-@Table(name = "smart_phones")
-public class SmartPhone {
+@Table(name = "products")
+public class Product {
 
     /**
      * @param id - id.
@@ -54,24 +55,33 @@ public class SmartPhone {
     @Column(name = "price")
     private double price;
 
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    @JoinColumn(name = "type_id")
+    //@JsonIgnore
+    private Type type;
+
+    /*
     /**
      * @param orderSmartPhones - order smart phones.
      */
+    /*
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "smartPhone")
     @Fetch(FetchMode.JOIN)
     private List<OrderSmartPhone> orderSmartPhones = new ArrayList<>();
+    */
 
     /**
      * SmartPhone - constructor.
      */
-    public SmartPhone() {
+    public Product() {
     }
 
     /**
      * SmartPhone - constructor.
      * @param id - id.
      */
-    public SmartPhone(int id) {
+    public Product(int id) {
         this.id = id;
     }
 
@@ -83,7 +93,7 @@ public class SmartPhone {
      * @param quantity - quantity.
      * @param price - price by one.
      */
-    public SmartPhone(String company, String model, String description, int quantity, double price) {
+    public Product(String company, String model, String description, int quantity, double price) {
         this.company = company;
         this.model = model;
         this.description = description;
@@ -139,6 +149,45 @@ public class SmartPhone {
         this.price = price;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return quantity == product.quantity &&
+                Double.compare(product.price, price) == 0 &&
+                Objects.equals(company, product.company) &&
+                Objects.equals(model, product.model) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(type, product.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(company, model, description, quantity, price, type);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", model='" + model + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", type=" + type +
+                '}';
+    }
+
     /*
     public void setType(String type) {
         this.type = type;
@@ -157,34 +206,6 @@ public class SmartPhone {
     }
     */
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SmartPhone)) return false;
-        SmartPhone that = (SmartPhone) o;
-        return id == that.id &&
-                quantity == that.quantity &&
-                Double.compare(that.price, price) == 0 &&
-                Objects.equals(company, that.company) &&
-                Objects.equals(model, that.model) &&
-                Objects.equals(description, that.description);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, company, model, description, quantity, price);
-    }
-
-    @Override
-    public String toString() {
-        return "SmartPhone{" +
-                "id=" + id +
-                ", company='" + company + '\'' +
-                ", model='" + model + '\'' +
-                ", description='" + description + '\'' +
-                ", quantity=" + quantity +
-                ", price=" + price +
-                '}';
-    }
 
 }

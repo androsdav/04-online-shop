@@ -1,6 +1,6 @@
 package com.adidyk.service;
 
-import com.adidyk.model.Order;
+import com.adidyk.model.pojo.Order;
 import com.adidyk.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

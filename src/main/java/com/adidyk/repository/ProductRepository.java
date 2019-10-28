@@ -1,11 +1,11 @@
 package com.adidyk.repository;
 
-import com.adidyk.model.SmartPhone;
+import com.adidyk.model.pojo.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Interface SmartPhoneRepository.
  */
-public interface SmartPhoneRepository extends JpaRepository<SmartPhone, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 }

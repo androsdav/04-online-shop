@@ -1,6 +1,6 @@
 package com.adidyk.repository;
 
-import com.adidyk.model.Order;
+import com.adidyk.model.pojo.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

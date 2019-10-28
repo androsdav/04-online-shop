@@ -1,6 +1,6 @@
 package com.adidyk.service;
 
-import com.adidyk.model.User;
+import com.adidyk.model.pojo.User;
 import com.adidyk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

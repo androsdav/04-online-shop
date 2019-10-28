@@ -1,6 +1,6 @@
 package com.adidyk.restful;
 
-import com.adidyk.model.User;
+import com.adidyk.model.pojo.User;
 import com.adidyk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

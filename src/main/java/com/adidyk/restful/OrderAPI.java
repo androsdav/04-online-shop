@@ -1,7 +1,6 @@
 package com.adidyk.restful;
 
-import com.adidyk.model.Order;
-import com.adidyk.model.SmartPhone;
+import com.adidyk.model.pojo.Order;
 import com.adidyk.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

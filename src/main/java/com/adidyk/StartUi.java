@@ -1,20 +1,9 @@
 package com.adidyk;
 
-import com.adidyk.model.Order;
-import com.adidyk.model.SmartPhone;
-import com.adidyk.model.User;
-import com.adidyk.service.OrderService;
-import com.adidyk.service.SmartPhoneService;
-import com.adidyk.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Class StartUi.
@@ -22,21 +11,20 @@ import java.util.List;
 @SpringBootApplication
 public class StartUi {
 
-    /**
-     *
-     */
-    private final SmartPhoneService smartPhoneService;
+    //private final SmartPhoneService smartPhoneService;
 
-    private final OrderService orderService;
+    //private final OrderService orderService;
 
-    private final UserService userService;
+    //private final UserService userService;
 
-    @Autowired
+    //@Autowired
+    /*
     public StartUi(SmartPhoneService smartPhoneService, OrderService orderService, UserService userService) {
         this.smartPhoneService = smartPhoneService;
         this.orderService = orderService;
         this.userService = userService;
     }
+    */
 
 
 
