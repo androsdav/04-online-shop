@@ -30,13 +30,12 @@ public class Type {
     private String name;
 
     /**
-     * @param products- products.
+     * @param products - products.
      */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "type")
     @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private List<Product> products = new ArrayList<>();
-
 
     /**
      * Type - constructor.
