@@ -2,7 +2,6 @@ package com.adidyk.restful;
 
 import com.adidyk.model.pojo.Product;
 import com.adidyk.model.pojo.Type;
-import com.adidyk.service.ProductService;
 import com.adidyk.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,10 +35,6 @@ public class TypeAPI {
      */
     @RequestMapping(value = "/save_type", method = RequestMethod.POST)
     public Type saveType(@RequestBody Type type) {
-        System.out.println();
-        System.out.println(type);
-        System.out.println();
-        //return type;
         return this.service.save(type);
     }
 

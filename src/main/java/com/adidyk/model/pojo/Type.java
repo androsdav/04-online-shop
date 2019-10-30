@@ -34,7 +34,7 @@ public class Type {
      */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "type")
     @Fetch(FetchMode.JOIN)
-    @JsonIgnore
+    //@JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     /**
@@ -46,9 +46,19 @@ public class Type {
     /**
      * Type - constructor.
      * @param name - name.
+     */
+    public Type(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    /**
+     * Type - constructor.
+     * @param name - name.
      * @param products - products.
      */
-    public Type(String name, List<Product> products) {
+    public Type(int id, String name, List<Product> products) {
+        this.id = id;
         this.name = name;
         this.products = products;
     }
@@ -96,7 +106,7 @@ public class Type {
         return "Type{" +
                 "id=" + id +
                 ", name=" + name +
-                //", products=" + products +
+                ", products=" + products +
                 '}';
     }
 

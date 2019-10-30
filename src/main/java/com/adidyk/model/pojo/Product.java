@@ -58,7 +58,7 @@ public class Product {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "type_id")
-    //@JsonIgnore
+    @JsonIgnore
     private Type type;
 
     /*
@@ -184,7 +184,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                ", type=" + type +
+                //", type=" + type +
                 '}';
     }
 

@@ -1,10 +1,12 @@
 package com.adidyk.service;
 
+import com.adidyk.model.pojo.Product;
 import com.adidyk.model.pojo.Type;
 import com.adidyk.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,8 +55,8 @@ public class TypeService {
         if (this.findById(newType) != null) {
             Type oldType = this.findById(newType);
             if (newType.getName() != null) oldType.setName(newType.getName());
-            this.repository.save(oldType);
         }
+            this.repository.save(oldType);
     }
 
     /**
@@ -63,7 +65,6 @@ public class TypeService {
      */
     public void deleteById(Type type) {
         this.repository.deleteById(type.getId());
-
     }
 
     /**
