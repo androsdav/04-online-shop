@@ -34,7 +34,6 @@ public class Type {
      */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "type")
     @Fetch(FetchMode.JOIN)
-    //@JsonIgnore
     private List<Product> products = new ArrayList<>();
 
     /**

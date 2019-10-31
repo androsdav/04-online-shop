@@ -1,105 +1,89 @@
-package com.adidyk.model.pojo;
+package com.adidyk.model.dto;
 
-import com.adidyk.model.OrderSmartPhone;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.adidyk.model.pojo.Type;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-/**
- * Class SmartPhone.
- */
-@Entity
-@Table(name = "products")
-public class Product {
+public class ProductDTO {
 
     /**
      * @param id - id.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
     /**
      * @param company - company.
      */
-    @Column(name = "company")
     private String company;
 
     /**
      * @param model - model.
      */
-    @Column(name = "model")
     private String model;
 
     /**
      * @param description.
      */
-    @Column(name = "description")
     private String description;
 
     /**
      * @param quantity - quantity.
      */
-    @Column(name = "quantity")
     private int quantity;
 
     /**
      * @param price - price.
      */
-    @Column(name = "price")
     private double price;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "type_id")
-    //@JsonIgnore
-    private Type type;
-
-    /*
     /**
-     * @param orderSmartPhones - order smart phones.
+     * @param type - type.
      */
-    /*
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "smartPhone")
-    @Fetch(FetchMode.JOIN)
-    private List<OrderSmartPhone> orderSmartPhones = new ArrayList<>();
-    */
+    private TypeDTO type;
 
-    /**
-     * SmartPhone - constructor.
-     */
-    public Product() {
+    public ProductDTO() {
+
     }
 
     /**
-     * SmartPhone - constructor.
+     * ProductDTO - constructor.
      * @param id - id.
-     */
-    public Product(int id) {
-        this.id = id;
-    }
-
-    /**
-     * SmartPhone - constructor.
      * @param company - company.
      * @param model - model.
      * @param description - description.
      * @param quantity - quantity.
-     * @param price - price by one.
+     * @param price - price.
      */
-    public Product(int id, String company, String model, String description, int quantity, double price) {
+    public ProductDTO(int id, String company, String model, String description, int quantity, double price) {
         this.id = id;
         this.company = company;
         this.model = model;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    /**
+     * ProductDTO - constructor.
+     * @param id - id.
+     * @param company - company.
+     * @param model - model.
+     * @param description - description.
+     * @param quantity - quantity.
+     * @param price - price.
+     * @param type - type.
+     */
+    public ProductDTO(int id, String company, String model, String description, int quantity, double price, TypeDTO type) {
+        this.id = id;
+        this.company = company;
+        this.model = model;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.type = type;
     }
 
     public int getId() {
@@ -150,25 +134,25 @@ public class Product {
         this.price = price;
     }
 
-    public Type getType() {
+    public TypeDTO getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(TypeDTO type) {
         this.type = type;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-        Product product = (Product) o;
-        return quantity == product.quantity &&
-                Double.compare(product.price, price) == 0 &&
-                Objects.equals(company, product.company) &&
-                Objects.equals(model, product.model) &&
-                Objects.equals(description, product.description) &&
-                Objects.equals(type, product.type);
+        if (!(o instanceof ProductDTO)) return false;
+        ProductDTO that = (ProductDTO) o;
+        return quantity == that.quantity &&
+                Double.compare(that.price, price) == 0 &&
+                Objects.equals(company, that.company) &&
+                Objects.equals(model, that.model) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(type, that.type);
     }
 
     @Override
@@ -178,35 +162,14 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDTO{" +
                 "id=" + id +
                 ", company='" + company + '\'' +
                 ", model='" + model + '\'' +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                //", type=" + type +
+                ", type=" + type +
                 '}';
     }
-
-    /*
-    public void setType(String type) {
-        this.type = type;
-    }
-    */
-
-    /*
-    public List<Order> getOrders() {
-        return orders;
-    }
-    */
-
-    /*
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-    */
-
-
-
 }
