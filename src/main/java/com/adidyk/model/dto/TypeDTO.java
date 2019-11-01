@@ -1,6 +1,5 @@
 package com.adidyk.model.dto;
 
-import com.adidyk.model.pojo.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

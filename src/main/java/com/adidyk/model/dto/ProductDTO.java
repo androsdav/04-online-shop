@@ -169,7 +169,6 @@ public class ProductDTO {
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                ", type=" + type +
                 '}';
     }
 }

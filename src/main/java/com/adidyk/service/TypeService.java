@@ -1,14 +1,9 @@
 package com.adidyk.service;
 
-import com.adidyk.model.dto.ProductDTO;
-import com.adidyk.model.dto.TypeDTO;
-import com.adidyk.model.pojo.Product;
 import com.adidyk.model.pojo.Type;
 import com.adidyk.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,25 +27,6 @@ public class TypeService {
         this.repository = repository;
     }
 
-    /*
-    private Product transferDtoToPojo(ProductDTO productDTO) {
-        return new Product(productDTO.getId(), productDTO.getCompany(), productDTO.getModel(), productDTO.getDescription(), productDTO.getQuantity(), productDTO.getPrice());;
-    }
-
-    private List<Product> transferDtoToPojo(List<ProductDTO> productDTOS) {
-        List<Product> products = new ArrayList<>();
-        for (ProductDTO productDTO : productDTOS) {
-            products.add(this.transferDtoToPojo(productDTO));
-        }
-        return products;
-    }
-
-    private Type transferDtoToPojo(TypeDTO typeDTO) {
-        Type type = new Type(typeDTO.getId(), typeDTO.getName());
-        return null;
-    }
-    */
-
     /**
      * save - save new product.
      * @param type - product.
@@ -65,6 +41,7 @@ public class TypeService {
      * @return - returns product by id.
      */
     public Type findById(Type type) {
+        System.out.println("pojo: " + this.repository.findById(type.getId()));
         return  this.repository.findById(type.getId()).orElse(null);
     }
 
@@ -72,36 +49,34 @@ public class TypeService {
      * update - update all information for product.
      * @param newType - new product.
      */
-    /*
-    public  void updateById(Type newType) {
-        /*
+    public  Type updateById(Type newType) {
+        Type oldType = null;
         if (this.findById(newType) != null) {
-            Type oldType = this.findById(newType);
+            oldType = this.findById(newType);
             if (newType.getName() != null) oldType.setName(newType.getName());
-        }
             this.repository.save(oldType);
-            */
-    /*
-    }*/
+        }
+        return oldType;
+    }
 
-    /*
     /**
      * deleteById - delete by id.
      * @param type - product.
      */
-    /*
-    public void deleteById(Type type) {
-        this.repository.deleteById(type.getId());
+    public Type deleteById(Type type) {
+        Type getType;
+        if ((getType = this.findById(type)) != null) {
+            this.repository.deleteById(type.getId());
+        }
+        return getType;
     }
 
     /**
      * findAll - find and returns all product.
      * @return - returns all product.
      */
-    /*
     public List<Type> findAll() {
         return this.repository.findAll();
     }
-    */
 
 }

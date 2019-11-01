@@ -58,7 +58,6 @@ public class Product {
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "type_id")
-    //@JsonIgnore
     private Type type;
 
     /*
@@ -93,6 +92,24 @@ public class Product {
      * @param quantity - quantity.
      * @param price - price by one.
      */
+    public Product(int id, String company, String model, String description, int quantity, double price, Type type) {
+        this.id = id;
+        this.company = company;
+        this.model = model;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.type = type;
+    }
+
+    /**
+     * SmartPhone - constructor.
+     * @param company - company.
+     * @param model - model.
+     * @param description - description.
+     * @param quantity - quantity.
+     * @param price - price by one.
+     */
     public Product(int id, String company, String model, String description, int quantity, double price) {
         this.id = id;
         this.company = company;
@@ -101,6 +118,7 @@ public class Product {
         this.quantity = quantity;
         this.price = price;
     }
+
 
     public int getId() {
         return id;
@@ -185,28 +203,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
                 ", price=" + price +
-                //", type=" + type +
                 '}';
     }
-
-    /*
-    public void setType(String type) {
-        this.type = type;
-    }
-    */
-
-    /*
-    public List<Order> getOrders() {
-        return orders;
-    }
-    */
-
-    /*
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-    */
-
-
 
 }
