@@ -41,7 +41,6 @@ public class TypeService {
      * @return - returns product by id.
      */
     public Type findById(Type type) {
-        System.out.println("pojo: " + this.repository.findById(type.getId()));
         return  this.repository.findById(type.getId()).orElse(null);
     }
 

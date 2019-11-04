@@ -31,7 +31,7 @@ public class Type {
     /**
      * @param products - products.
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "type")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "type")
     @Fetch(FetchMode.JOIN)
     private List<Product> products = new ArrayList<>();
 

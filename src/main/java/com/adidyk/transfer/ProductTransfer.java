@@ -8,11 +8,21 @@ import com.adidyk.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ *
+ */
 @Service
 public class ProductTransfer {
 
+    /**
+     *
+     */
     private ProductService service;
 
+    /**
+     *
+     * @param service - is.
+     */
     @Autowired
     public ProductTransfer(ProductService service) {
         this.service = service;
@@ -33,8 +43,12 @@ public class ProductTransfer {
      * @return - is.
      */
     private Product transferDtoToPojo(ProductDTO productDTO) {
-        return new Product(productDTO.getId(), productDTO.getCompany(), productDTO.getModel(), productDTO.getDescription(),
-                productDTO.getQuantity(), productDTO.getPrice(), this.transferDtoToPojo(productDTO.getType()));
+        Product product = new Product(productDTO.getId(), productDTO.getCompany(), productDTO.getModel(),
+                productDTO.getDescription(), productDTO.getQuantity(), productDTO.getPrice());
+        if (productDTO.getType() != null) {
+            product.setType(this.transferDtoToPojo(productDTO.getType()));
+        }
+        return product;
     }
 
     /**
@@ -52,10 +66,14 @@ public class ProductTransfer {
      * @return - is.
      */
     private ProductDTO transferPojoToDto(Product product) {
-        return new ProductDTO(product.getId(), product.getCompany(), product.getModel(), product.getDescription(),
-                product.getQuantity(), product.getPrice(), this.transferPojoToDto(product.getType()));
-    }
+        ProductDTO productDTO = null;
+        if (product != null) {
+            productDTO = new ProductDTO(product.getId(), product.getCompany(), product.getModel(), product.getDescription(),
+                    product.getQuantity(), product.getPrice(), this.transferPojoToDto(product.getType()));
 
+        }
+        return productDTO;
+    }
 
     /**
      * save - save new product.
@@ -63,6 +81,34 @@ public class ProductTransfer {
      */
     public ProductDTO save(ProductDTO productDTO) {
         return this.transferPojoToDto(this.service.save(this.transferDtoToPojo(productDTO)));
+    }
+
+    /**
+     *
+     * @param productDTO - is.
+     * @return - is.
+     */
+    public ProductDTO findById(ProductDTO productDTO) {
+        return this.transferPojoToDto(this.service.findById(this.transferDtoToPojo(productDTO)));
+    }
+
+    /**
+     *
+     * @param productDTO - is.
+     * @return - is.
+     */
+    public ProductDTO updateById(ProductDTO productDTO) {
+        return this.transferPojoToDto(this.service.updateById(this.transferDtoToPojo(productDTO)));
+    }
+
+    /**
+     *
+     * @param productDTO -is.
+     * @return - is.
+     */
+    public ProductDTO deleteById(ProductDTO productDTO) {
+        return this.transferPojoToDto(this.service.deleteById(this.transferDtoToPojo(productDTO)));
+
     }
 
 }

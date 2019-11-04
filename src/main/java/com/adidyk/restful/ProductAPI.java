@@ -37,36 +37,31 @@ public class ProductAPI {
         return this.transfer.save(productDTO);
     }
 
-    /*
     /**
      * saveSmartPhone - find smart phone by id.
-     * @param product - smart phone.
+     * @param productDTO - smart phone.
      */
-    /*
     @RequestMapping(value = "/find_product_by_id", method = RequestMethod.POST)
-    public Product findProductById(@RequestBody Product product) {
-        return this.service.findById(product);
+    public ProductDTO findProductById(@RequestBody ProductDTO productDTO) {
+        return this.transfer.findById(productDTO);
     }
 
-    /*
     /**
      * saveSmartPhone - update smart phone by id.
-     * @param product - smart phone.
+     * @param productDTO - smart phone.
      */
-    /*
     @RequestMapping(value = "/update_product_by_id", method = RequestMethod.POST)
-    public void updateProductById(@RequestBody Product product) {
-        this.service.updateById(product);
+    public ProductDTO updateProductById(@RequestBody ProductDTO productDTO) {
+        return this.transfer.updateById(productDTO);
     }
 
     /**
      * deleteSmartPhoneById - delete smart phone by id.
-     * @param product - smart phone.
+     * @param productDTO - smart phone.
      */
-    /*
     @RequestMapping(value = "/delete_product_by_id", method = RequestMethod.POST)
-    public void deleteProductById(@RequestBody Product product) {
-        this.service.deleteById(product);
+    public ProductDTO deleteProductById(@RequestBody ProductDTO productDTO) {
+        return this.transfer.deleteById(productDTO);
     }
 
     /**

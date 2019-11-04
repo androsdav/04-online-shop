@@ -2,6 +2,7 @@ package com.adidyk.service;
 
 import com.adidyk.model.pojo.Product;
 import com.adidyk.repository.ProductRepository;
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -48,9 +49,10 @@ public class ProductService {
      * update - update all information for product.
      * @param newProduct - new product.
      */
-    public  void updateById(Product newProduct) {
+    public  Product updateById(Product newProduct) {
+        Product oldProduct = null;
         if (this.findById(newProduct) != null) {
-            Product oldProduct = this.findById(newProduct);
+            oldProduct = this.findById(newProduct);
             if (newProduct.getCompany() != null) oldProduct.setCompany(newProduct.getCompany());
             if (newProduct.getModel() != null) oldProduct.setModel(newProduct.getModel());
             if (newProduct.getDescription() != null) oldProduct.setDescription(newProduct.getDescription());
@@ -58,15 +60,22 @@ public class ProductService {
             if (newProduct.getPrice() != 0) oldProduct.setPrice(newProduct.getPrice());
             this.repository.save(oldProduct);
         }
+        return oldProduct;
     }
 
     /**
      * deleteById - delete by id.
      * @param product - product.
      */
-    public void deleteById(Product product) {
-        this.repository.deleteById(product.getId());
-
+    public Product deleteById(Product product) {
+        System.out.println("product: " + product);
+        Product getProduct;
+        if ((getProduct = this.findById(product)) != null) {
+            System.out.println("");
+            System.out.println("DELETE: "  + product.getId());
+            this.repository.deleteById(product.getId());
+        }
+        return getProduct;
     }
 
     /**
