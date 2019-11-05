@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 public class ProductTransfer {
 
     /**
-     *
+     * @param service - service.
      */
     private ProductService service;
 
     /**
-     *
+     * ProductTransfer - constructor.
      * @param service - is.
      */
     @Autowired
