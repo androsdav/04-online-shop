@@ -84,7 +84,7 @@ public class ProductTransfer {
     }
 
     /**
-     *
+     * findById - find by id.
      * @param productDTO - is.
      * @return - is.
      */
@@ -93,7 +93,7 @@ public class ProductTransfer {
     }
 
     /**
-     *
+     * updateById - update by id.
      * @param productDTO - is.
      * @return - is.
      */
@@ -102,13 +102,12 @@ public class ProductTransfer {
     }
 
     /**
-     *
-     * @param productDTO -is.
+     * deleteById - delete by id.
+     * @param productDTO - is.
      * @return - is.
      */
     public ProductDTO deleteById(ProductDTO productDTO) {
         return this.transferPojoToDto(this.service.deleteById(this.transferDtoToPojo(productDTO)));
-
     }
 
 }
