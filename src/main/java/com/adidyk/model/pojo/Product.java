@@ -57,7 +57,7 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "type_id")
     private Type type;
