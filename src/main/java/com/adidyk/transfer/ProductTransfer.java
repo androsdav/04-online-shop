@@ -8,6 +8,9 @@ import com.adidyk.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  */
@@ -76,6 +79,19 @@ public class ProductTransfer {
     }
 
     /**
+     *
+     * @param products - is.
+     * @return - is.
+     */
+    private List<ProductDTO> transferPojoListToDtoList(List<Product> products) {
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        for (Product product : products) {
+            productDTOS.add(this.transferPojoToDto(product));
+        }
+        return productDTOS;
+    }
+
+    /**
      * save - save new product.
      * @param productDTO - product.
      */
@@ -108,6 +124,14 @@ public class ProductTransfer {
      */
     public ProductDTO deleteById(ProductDTO productDTO) {
         return this.transferPojoToDto(this.service.deleteById(this.transferDtoToPojo(productDTO)));
+    }
+
+    /**
+     * findAll - find and returns all product.
+     * @return - returns all product.
+     */
+    public List<ProductDTO> findAll() {
+        return this.transferPojoListToDtoList(this.service.findAll());
     }
 
 }

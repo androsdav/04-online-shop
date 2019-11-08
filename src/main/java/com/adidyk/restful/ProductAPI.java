@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Class SmartPhoneAPI.
  */
@@ -68,11 +70,9 @@ public class ProductAPI {
      * getAllSmartPhone - gets all smart phone.
      * @return - returns all smart phone.
      */
-    /*
     @RequestMapping(value = "/find_all_product", method = RequestMethod.GET)
-    public List<Product> findAllProduct() {
-        return this.service.findAll();
+    public List<ProductDTO> findAllProduct() {
+        return this.transfer.findAll();
     }
-    */
 
 }
