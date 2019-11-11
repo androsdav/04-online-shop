@@ -1,6 +1,7 @@
 package com.adidyk.service;
 
 import com.adidyk.model.pojo.Product;
+import com.adidyk.model.pojo.Type;
 import com.adidyk.repository.ProductRepository;
 import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,8 +72,6 @@ public class ProductService {
         System.out.println("product: " + product);
         Product getProduct;
         if ((getProduct = this.findById(product)) != null) {
-            System.out.println("");
-            System.out.println("DELETE: "  + product.getId());
             this.repository.deleteById(product.getId());
         }
         return getProduct;
@@ -84,6 +83,19 @@ public class ProductService {
      */
     public List<Product> findAll() {
         return this.repository.findAll();
+    }
+
+    /**
+     *
+     * @param type - type.
+     * @return - list.
+     */
+    public List<Product> findAllByType(Type type) {
+        System.out.println("type: " + type);
+        List<Product> list = this.repository.findAllByTypeId(type.getId());
+        System.out.println("list: " + list);
+        //return this.repository.findAllByType(type);
+        return list;
     }
 
 }

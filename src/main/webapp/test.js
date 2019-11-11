@@ -11,7 +11,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param smartPhone - smart phone.
      * @type {null}
      */
-    $scope.smartPhones = [];
+    $scope.products = [];
 
     /**
      * @type {{quantity: null, price: null, description: null, company: null, model: null}}
@@ -146,6 +146,22 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     $scope.andros = {};
 
+    $scope.types = [];
+
+    /**
+     * getAllSmartPhone - get all smart phone.
+     */
+    $scope.findAllType = function () {
+        $http.get("/find_all_type")
+            .then(function success(response) {
+                $scope.types = response.data;
+                $scope.deleteAllFromBasket();
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
+
+
     /**
      * isEmptyObject - is empty object.
      * @param object - object.
@@ -264,9 +280,9 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * getAllSmartPhone - get all smart phone.
      */
     $scope.findAllSmartPhone = function () {
-        $http.get("/find_all_smart_phone")
+        $http.get("/find_all_product")
             .then(function success(response) {
-                $scope.smartPhones = response.data;
+                $scope.products = response.data;
                 $scope.deleteAllFromBasket();
             }, function error(response) {
                 console.log("error" + response.headers);

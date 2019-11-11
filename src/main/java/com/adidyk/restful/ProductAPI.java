@@ -1,6 +1,7 @@
 package com.adidyk.restful;
 
 import com.adidyk.model.dto.ProductDTO;
+import com.adidyk.model.dto.TypeDTO;
 import com.adidyk.transfer.ProductTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,6 +74,15 @@ public class ProductAPI {
     @RequestMapping(value = "/find_all_product", method = RequestMethod.GET)
     public List<ProductDTO> findAllProduct() {
         return this.transfer.findAll();
+    }
+
+    /**
+     * getAllSmartPhone - gets all smart phone.
+     * @return - returns all smart phone.
+     */
+    @RequestMapping(value = "/find_all_product_by_type", method = RequestMethod.GET)
+    public List<ProductDTO> findAllProductByType(@RequestBody TypeDTO typeDTO) {
+        return this.transfer.findAllByType(typeDTO);
     }
 
 }

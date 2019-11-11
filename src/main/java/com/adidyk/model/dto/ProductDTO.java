@@ -1,10 +1,5 @@
 package com.adidyk.model.dto;
 
-import com.adidyk.model.pojo.Type;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import javax.persistence.*;
 import java.util.Objects;
 
 public class ProductDTO {

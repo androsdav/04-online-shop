@@ -7,7 +7,6 @@ import com.adidyk.model.pojo.Type;
 import com.adidyk.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,6 +131,14 @@ public class ProductTransfer {
      */
     public List<ProductDTO> findAll() {
         return this.transferPojoListToDtoList(this.service.findAll());
+    }
+
+    /**
+     * findAll - find and returns all product.
+     * @return - returns all product.
+     */
+    public List<ProductDTO> findAllByType(TypeDTO typeDTO) {
+        return this.transferPojoListToDtoList(this.service.findAllByType(this.transferDtoToPojo(typeDTO)));
     }
 
 }

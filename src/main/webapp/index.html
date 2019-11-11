@@ -348,39 +348,45 @@
                                     <form>
                                         <fieldset>
                                             <legend><h5 class="admin_action_legend">get all and delete by id</h5></legend>
+
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-offset-20">
-                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">get all</button>
+                                                        <button class="btn btn-default" ng-click="findAllType()"><b style="color: chocolate">all types</b></button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <span ng-repeat="type in types">
+                                                            <button class="btn btn-default" ng-click="findAllSmartPhone()">{{type.name}}</button>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <table class="table table-striped">
                                                     <thead>
                                                     <tr>
                                                         <th>id</th>
-                                                        <th>type</th>
                                                         <th>company</th>
                                                         <th>model</th>
                                                         <th>description</th>
                                                         <th>quantity</th>
                                                         <th>price</th>
-                                                        <!--<th>add to basket</th> -->
                                                         <th>delete by id</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr ng-repeat="phone in smartPhones">
-                                                        <td>{{phone.id}}</td>
-                                                        <td>{{phone.type}}</td>
-                                                        <td>{{phone.company}}</td>
-                                                        <td>{{phone.model}}</td>
-                                                        <td>{{phone.description}}</td>
-                                                        <td>{{phone.quantity}}</td>
-                                                        <td>{{phone.price}}</td>
+                                                    <tr ng-repeat="product in products">
+                                                        <td>{{product.id}}</td>
+                                                        <td>{{product.company}}</td>
+                                                        <td>{{product.model}}</td>
+                                                        <td>{{product.description}}</td>
+                                                        <td>{{product.quantity}}</td>
+                                                        <td>{{product.price}}</td>
                                                         <!--<td><button class="btn btn-default" ng-click="addToOrder(phone.id, phone.company, phone.model, phone.description, phone.quantity, phone.price)">+</button></td>-->
-                                                        <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(phone)">-</button></td>
+                                                        <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(product)">-</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
