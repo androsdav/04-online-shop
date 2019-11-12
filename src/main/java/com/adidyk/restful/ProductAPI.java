@@ -80,7 +80,7 @@ public class ProductAPI {
      * getAllSmartPhone - gets all smart phone.
      * @return - returns all smart phone.
      */
-    @RequestMapping(value = "/find_all_product_by_type", method = RequestMethod.GET)
+    @RequestMapping(value = "/find_all_product_by_type", method = RequestMethod.POST)
     public List<ProductDTO> findAllProductByType(@RequestBody TypeDTO typeDTO) {
         return this.transfer.findAllByType(typeDTO);
     }

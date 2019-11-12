@@ -220,32 +220,45 @@
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="addPhone.company" placeholder = "company" required/>
+                                                        <input type="text" class="form-control" ng-model="addProduct.company" placeholder = "company" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="addPhone.model" placeholder="model" required/>
+                                                        <input type="text" class="form-control" ng-model="addProduct.model" placeholder="model" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="text" class="form-control" ng-model="addPhone.description" placeholder="description" required/>
+                                                        <input type="text" class="form-control" ng-model="addProduct.description" placeholder="description" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="number" class="form-control" ng-model="addPhone.quantity" placeholder="quantity" required/>
+                                                        <input type="number" class="form-control" ng-model="addProduct.quantity" placeholder="quantity" required/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <input type="number" class="form-control" ng-model="addPhone.price" placeholder="price" required/>
+                                                        <input type="number" class="form-control" ng-model="addProduct.price" placeholder="price" required/>
+                                                    </div>
+                                                </div>
+                                                <!--
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <button class="btn btn-default" ng-click="findAllType()"><b style="color: chocolate">all types</b></button>
+                                                    </div>
+                                                </div> -->
+                                                <div class="form-group">
+                                                    <div class="col-md-8">
+                                                        <label style=" margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px">
+                                                            <select name="type" class="form-control"><option ng-repeat="type123 in types">{{type123.name}}</option>></select>
+                                                        </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-offset-2 col-md-8">
-                                                        <button class="btn btn-default" ng-click="saveSmartPhone(addPhone)">save</button>
+                                                        <button class="btn btn-default" ng-click="saveProduct(addProduct, type1)">save</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -343,7 +356,7 @@
                                         </fieldset>
                                     </form>
                                 </div>
-                                <!-------------------------- delete and find all smart phone -------------------------->
+                                <!-------------------------- delete and find all product by type -------------------------->
                                 <div class="admin_delete_and_find_all_smart_phone">
                                     <form>
                                         <fieldset>
@@ -358,7 +371,7 @@
                                                 <div class="form-group">
                                                     <div class="col-md-offset-20">
                                                         <span ng-repeat="type in types">
-                                                            <button class="btn btn-default" ng-click="findAllSmartPhone()">{{type.name}}</button>
+                                                            <button class="btn btn-default" ng-click="findAllProductByType(type)">{{type.name}}</button>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -385,7 +398,6 @@
                                                         <td>{{product.description}}</td>
                                                         <td>{{product.quantity}}</td>
                                                         <td>{{product.price}}</td>
-                                                        <!--<td><button class="btn btn-default" ng-click="addToOrder(phone.id, phone.company, phone.model, phone.description, phone.quantity, phone.price)">+</button></td>-->
                                                         <td><button class="btn btn-default" ng-click="deleteSmartPhoneById(product)">-</button></td>
                                                     </tr>
                                                     </tbody>

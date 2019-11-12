@@ -12,9 +12,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     /**
      * findAllByType - is.
-     * @param id - type.
+     * @param type - type.
      * @return - list.
      */
-    List<Product> findAllByTypeId(Integer id);
+    List<Product> findAllByType(Type type);
 
 }

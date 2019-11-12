@@ -13,17 +13,19 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.products = [];
 
+
+
     /**
      * @type {{quantity: null, price: null, description: null, company: null, model: null}}
      */
-    $scope.addPhone = {
+    $scope.addProduct = {
         id: null,
-        type: null,
         company: null,
         model: null,
         description: null,
         quantity: null,
-        price: null
+        price: null,
+        type: null
     };
 
     /**
@@ -148,18 +150,9 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     $scope.types = [];
 
-    /**
-     * getAllSmartPhone - get all smart phone.
-     */
-    $scope.findAllType = function () {
-        $http.get("/find_all_type")
-            .then(function success(response) {
-                $scope.types = response.data;
-                $scope.deleteAllFromBasket();
-            }, function error(response) {
-                console.log("error" + response.headers);
-            });
-    };
+    $scope.type123 = {};
+
+
 
 
     /**
@@ -220,13 +213,26 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         };
     };
 
+    /**
+     * getAllSmartPhone - get all smart phone.
+     */
+    $scope.findAllType = function () {
+        $http.get("/find_all_type")
+            .then(function success(response) {
+                $scope.types = response.data;
+                $scope.deleteAllFromBasket();
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
 
     /**
      * addSmartPhone - add smart phone.
-     * @param smartPhone - smart phone.
+     * @param product - smart phone.
      */
-    $scope.saveSmartPhone = function (smartPhone) {
-        $http.post("/save_smart_phone", JSON.stringify(smartPhone))
+    $scope.saveProduct = function (product, type1) {
+        product.type =
+        $http.post("/save_product", JSON.stringify(product))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
@@ -288,6 +294,20 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
                 console.log("error" + response.headers);
             });
     };
+
+    /**
+     * getAllSmartPhone - get all smart phone.
+     */
+    $scope.findAllProductByType = function (type) {
+        $http.post("/find_all_product_by_type", JSON.stringify(type))
+            .then(function success(response) {
+                $scope.products = response.data;
+                $scope.deleteAllFromBasket();
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
+
 
     /**
      * addToBasket - adds smart phone to order.
