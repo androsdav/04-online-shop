@@ -217,6 +217,24 @@
                                     <form>
                                         <fieldset>
                                             <legend><h5 class="admin_action_legend">save</h5></legend>
+
+                                            <!--
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <button class="btn btn-default" ng-click="findAllType()"><b style="color: chocolate">all types</b></button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <span ng-repeat="type in types">
+                                                            <button class="btn btn-default" ng-click="findAllProductByType(type)">{{type.name}}</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            -->
+
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-8">
@@ -243,6 +261,14 @@
                                                         <input type="number" class="form-control" ng-model="addProduct.price" placeholder="price" required/>
                                                     </div>
                                                 </div>
+
+                                                <!--
+                                                <div    >
+                                                    <select id="s1" ng-model="selectedItem" ng-options="type in types"></select>
+                                                    <pre>{{selectedItem | json}}</pre>
+                                                </div>
+                                                -->
+
                                                 <!--
                                                 <div class="form-group">
                                                     <div class="col-md-8">
@@ -251,20 +277,23 @@
                                                 </div> -->
                                                 <div class="form-group">
                                                     <div class="col-md-8">
-                                                        <label style=" margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px">
-                                                            <select name="type" class="form-control"><option ng-repeat="type123 in types">{{type123.name}}</option>></select>
+                                                        <label>
+                                                            <select class="form-control" ng-model="addProduct.type">
+                                                                <option ng-repeat="item in types" ng-value="item">{{type123.name}}</option>>
+                                                            </select>
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-offset-2 col-md-8">
-                                                        <button class="btn btn-default" ng-click="saveProduct(addProduct, type1)">save</button>
+                                                        <button class="btn btn-default" ng-click="saveProduct(addProduct)">save</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </fieldset>
                                     </form>
                                 </div>
+                                <div>{{addProduct}}</div>
                                 <!-------------------------- find by id -------------------------->
                                 <div class="admin_find_by_id">
                                     <form>
@@ -414,12 +443,33 @@
         </md-content>
     </div>
 </div>
+<form action = "">
+    <select name = "Cities" onChange="OnDropDownChange(this);">
+        <option value="----">--Select--</option>
+        <option value="roma">Roma</option>
+        <option value="torino">Torino</option>
+        <option value="milan">Milan</option>
+    </select>
+    <br/>
+    <br/>
+    <!--<input type="button" value="Test">-->
+    <input ng-show="ngHideDirective" type="text" id="txtSelectedCity" name="SelectedCity" value="asdad" />
+</form>
 <!--
 Copyright 2018 Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that can be found
 in the LICENSE file at http://material.angularjs.org/HEAD/license.
 -->
 <!-- partial -->
+
+<script type="text/javascript">
+    function OnDropDownChange(dropDown) {
+        let selectedValue = dropDown.options[dropDown.selectedIndex].value;
+        document.getElementById("txtSelectedCity").value = selectedValue;
+    }
+</script>
+
+
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-animate.min.js'></script>
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.min.js'></script>

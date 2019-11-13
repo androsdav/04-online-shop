@@ -13,6 +13,9 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.products = [];
 
+    $scope.type = {};
+    $scope.selectedItem = {};
+
 
 
     /**
@@ -25,7 +28,10 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         description: null,
         quantity: null,
         price: null,
-        type: null
+        type: {
+            id: null,
+            name: null
+        }
     };
 
     /**
@@ -148,7 +154,12 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     $scope.andros = {};
 
-    $scope.types = [];
+    $scope.types = [
+        {
+
+        },
+
+    ];
 
     $scope.type123 = {};
 
@@ -230,8 +241,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * addSmartPhone - add smart phone.
      * @param product - smart phone.
      */
-    $scope.saveProduct = function (product, type1) {
-        product.type =
+    $scope.saveProduct = function (product) {
         $http.post("/save_product", JSON.stringify(product))
             .then(function (response) {
                 if (response.data)
