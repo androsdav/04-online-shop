@@ -29,6 +29,11 @@ public class ProductService {
         this.repository = repository;
     }
 
+    private boolean check(String field) {
+        return (field != null && !field.isEmpty());
+    }
+
+
     /**
      * save - save new product.
      * @param product - product.
@@ -54,9 +59,9 @@ public class ProductService {
         Product oldProduct = null;
         if (this.findById(newProduct) != null) {
             oldProduct = this.findById(newProduct);
-            if (newProduct.getCompany() != null) oldProduct.setCompany(newProduct.getCompany());
-            if (newProduct.getModel() != null) oldProduct.setModel(newProduct.getModel());
-            if (newProduct.getDescription() != null) oldProduct.setDescription(newProduct.getDescription());
+            if (this.check(newProduct.getCompany())) oldProduct.setCompany(newProduct.getCompany());
+            if (this.check(newProduct.getModel())) oldProduct.setModel(newProduct.getModel());
+            if (this.check(newProduct.getDescription())) oldProduct.setDescription(newProduct.getDescription());
             if (newProduct.getQuantity() != 0) oldProduct.setQuantity(newProduct.getQuantity());
             if (newProduct.getPrice() != 0) oldProduct.setPrice(newProduct.getPrice());
             this.repository.save(oldProduct);

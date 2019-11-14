@@ -19,7 +19,96 @@
                 <md-tab label="shop">
                     <md-content class="md-padding">
                         <div class="admin">
-                            shop
+                            <fieldset>
+                                <legend><h4 style="font-weight: bold; text-align: left">Hello: {{getUser.login}}</h4></legend>
+                                <!------------------------------------ BASKET------------------------------------------>
+                                <div class="admin_delete_and_find_all_smart_phone">
+                                    <form>
+                                        <fieldset>
+                                            <legend><h5 class="admin_action_legend">basket</h5></legend>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">clean basket</button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-2">
+                                                        <button class="btn btn-default" ng-click="saveOrder()">save order</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>company</th>
+                                                        <th>model</th>
+                                                        <th>description</th>
+                                                        <th>quantity</th>
+                                                        <th>price</th>
+                                                        <th>delete from basket</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="product in basket">
+                                                        <td>{{product.id}}</td>
+                                                        <td>{{product.company}}</td>
+                                                        <td>{{product.model}}</td>
+                                                        <td>{{product.description}}</td>
+                                                        <td>{{product.quantity}}</td>
+                                                        <td>{{product.price}}</td>
+                                                        <td><button class="btn btn-default" ng-click="deleteFromBasket(product)">-</button></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <!------------------------------------ SMART PHONE--------------------------------------->
+                                <div class="admin_delete_and_find_all_smart_phone">
+                                    <form>
+                                        <fieldset>
+                                            <legend><h5 class="admin_action_legend">products</h5></legend>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">smart phone</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>company</th>
+                                                        <th>model</th>
+                                                        <th>description</th>
+                                                        <th>quantity</th>
+                                                        <th>price</th>
+                                                        <th>add to basket</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="phone in smartPhones">
+                                                        <td>{{phone.id}}</td>
+                                                        <td>{{phone.company}}</td>
+                                                        <td>{{phone.model}}</td>
+                                                        <td>{{phone.description}}</td>
+                                                        <td>{{phone.quantity}}</td>
+                                                        <td>{{phone.price}}</td>
+                                                        <td><button class="btn btn-default" ng-click="addToBasket(phone)">+</button></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </fieldset>
                         </div>
                     </md-content>
                 </md-tab>
@@ -119,139 +208,145 @@
 <!------------------------------------------------ADMIN---------------------------------------------------------------->
                 <md-tab label="admin">
                     <md-content class="md-padding">
-
                         <div ng-cloak="" class="tabsDynamicHeight">
-                            <md-content>
-                                <md-tabs md-dynamic-height="" md-border-bottom="">
-                                    <!------------------------------------------------------TYPE------------------------------------------------------------>
-                                    <md-tab label="types">
-                                        <md-content class="md-padding">
-                                            <div class="admin">
-                                         <!--       <fieldset>
-                                                    <legend><h4 style="font-weight: bold; text-align: center">TYPES</h4></legend> -->
-                                                    <!----------------------------------- save type -------------------------------------->
-                                                    <div class="admin_save">
-                                                        <form>
-                                                            <fieldset>
-                                                                <legend><h5 class="admin_action_legend">save type</h5></legend>
-                                                                <div class="form-inline">
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-8">
-                                                                            <input type="text" class="form-control" ng-model="addType.name" placeholder = "name" required/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-offset-2 col-md-8">
-                                                                            <button class="btn btn-default" ng-click="saveType(addType)">save</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </fieldset>
-                                                        </form>
-                                                    </div>
-                                                    <!------------------------------------- find type by id ------------------------------->
-                                                    <div class="admin_find_by_id">
-                                                        <form>
-                                                            <fieldset>
-                                                                <legend><h5 class="admin_action_legend">find type by id</h5></legend>
-                                                                <div class="form-inline">
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-8">
-                                                                            <input type="number" class="form-control" ng-model="findType.id" placeholder="id" required/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-offset-2 col-md-8">
-                                                                            <button class="btn btn-default" ng-click="findTypeById(findType)">read</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </fieldset>
-                                                        </form>
-                                                        <div>
-                                                            <table class="table table-striped">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th>id</th>
-                                                                    <th>name</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td>{{getType.id}}</td>
-                                                                    <td>{{getType.name}}</td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <!--------------------------------- update type by id --------------------------------->
-                                                    <div class="admin_update">
-                                                        <form>
-                                                            <fieldset>
-                                                                <legend><h5 class="admin_action_legend">update product by id</h5></legend>
-                                                                <div class="form-inline">
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-8">
-                                                                            <input type="text" class="form-control" ng-model="updateType.id" placeholder = "id" required/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-8">
-                                                                            <input type="text" class="form-control" ng-model="updateType.name" placeholder = "name"/>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-offset-2 col-md-8">
-                                                                            <button class="btn btn-default" ng-click="updateTypeById(updateType)">update</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </fieldset>
-                                                        </form>
-                                                    </div>
-                                                    <!---------------------------- delete and find all type ------------------------------->
-                                                    <div class="admin_delete_and_find_all_smart_phone">
-                                                        <form>
-                                                            <fieldset>
-                                                                <legend><h5 class="admin_action_legend">get all type by id</h5></legend>
-                                                                <div class="form-inline">
-                                                                    <div class="form-group">
-                                                                        <div class="col-md-offset-20">
-                                                                            <button class="btn btn-default" ng-click="findAllType()">types</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-                                                                    <table class="table table-striped">
-                                                                        <thead>
-                                                                        <tr>
-                                                                            <th>id</th>
-                                                                            <th>name</th>
-                                                                            <th>delete by id</th>
-                                                                        </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                        <tr ng-repeat="type in types">
-                                                                            <td>{{type.id}}</td>
-                                                                            <td>{{type.name}}</td>
-                                                                            <td><button class="btn btn-default" ng-click="deleteTypeById(type)">-</button></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </fieldset>
-                                                        </form>
-                                                    </div>
-                                               <!-- </fieldset> -->
-                                            </div>
-                                        </md-content>
-                                    </md-tab>
-                                    <!-------------------------------------------------PRODUCTS------------------------------------------------------->
-                                    <md-tab label="products">
-                                        <md-content class="md-padding">
 
-                                            <div class="admin">
+                        <md-content>
+                            <md-tabs md-dynamic-height="" md-border-bottom="">
+                                <md-tab label="types">
+                                    <md-content class="md-padding">
+                                        <div class="admin">
+                                            <fieldset>
+                                                <legend><h4 style="font-weight: bold; text-align: center">TYPES</h4></legend>
+                                                <!----------------------------------- save type -------------------------------------->
+                                                <div class="admin_save">
+                                                    <form>
+                                                        <fieldset>
+                                                            <legend><h5 class="admin_action_legend">save type</h5></legend>
+                                                            <div class="form-inline">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control" ng-model="addType.name" placeholder = "name" required/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-2 col-md-8">
+                                                                        <button class="btn btn-default" ng-click="saveType(addType)">save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                                <!------------------------------------- find type by id ------------------------------->
+                                                <div class="admin_find_by_id">
+                                                    <form>
+                                                        <fieldset>
+                                                            <legend><h5 class="admin_action_legend">find type by id</h5></legend>
+                                                            <div class="form-inline">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-8">
+                                                                        <input type="number" class="form-control" ng-model="findType.id" placeholder="id" required/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-2 col-md-8">
+                                                                        <button class="btn btn-default" ng-click="findTypeById(findType)">read</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                    <div>
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>id</th>
+                                                                <th>name</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>{{getType.id}}</td>
+                                                                <td>{{getType.name}}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!--------------------------------- update type by id --------------------------------->
+                                                <div class="admin_update">
+                                                    <form>
+                                                        <fieldset>
+                                                            <legend><h5 class="admin_action_legend">update product by id</h5></legend>
+                                                            <div class="form-inline">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control" ng-model="updateType.id" placeholder = "id" required/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control" ng-model="updateType.name" placeholder = "name"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-2 col-md-8">
+                                                                        <button class="btn btn-default" ng-click="updateTypeById(updateType)">update</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                                <!---------------------------- delete and find all type ------------------------------->
+                                                <div class="admin_delete_and_find_all_smart_phone">
+                                                    <form>
+                                                        <fieldset>
+                                                            <legend><h5 class="admin_action_legend">get all type by id</h5></legend>
+                                                            <div class="form-inline">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-offset-20">
+                                                                        <button class="btn btn-default" ng-click="findAllType()">types</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>id</th>
+                                                                        <th>name</th>
+                                                                        <th>delete by id</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr ng-repeat="type in types">
+                                                                        <td>{{type.id}}</td>
+                                                                        <td>{{type.name}}</td>
+                                                                        <td><button class="btn btn-default" ng-click="deleteTypeById(type)">-</button></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                    </md-content>
+                                </md-tab>>
+                            </md-tabs>
+                        </md-content>
+
+
+                        <md-content>
+                            <md-tabs md-dynamic-height="" md-border-bottom="">
+                                <md-tab label="products">
+                                    <md-content class="md-padding">
+                                        <div class="admin">
+                                            <fieldset>
+                                                <legend><h4 style="font-weight: bold; text-align: center">PRODUCTS</h4></legend>
                                                 <!--------------------------- select type and save product ---------------------------->
                                                 <div class="admin_save">
                                                     <form>
@@ -408,9 +503,9 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <div class="col-md-offset-20">
-                                                                        <span ng-repeat="type in types">
-                                                                            <button class="btn btn-default" ng-click="findAllProductByType(type)">{{type.name}}</button>
-                                                                        </span>
+                                                        <span ng-repeat="type in types">
+                                                            <button class="btn btn-default" ng-click="findAllProductByType(type)">{{type.name}}</button>
+                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -445,16 +540,24 @@
                                                         </fieldset>
                                                     </form>
                                                 </div>
-                                            </div>
-                                        </md-content>
-                                    </md-tab>
-                                    <!--------------------------------------------------------------------------------------------------------------------->
-                                </md-tabs>
-                            </md-content>
+                                            </fieldset>
+                                        </div>
+
+
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </md-content>
                         </div>
+
+
+
+
+
+
                     </md-content>
+
                 </md-tab>
-<!--------------------------------------------------------------------------------------------------------------------->
             </md-tabs>
         </md-content>
     </div>

@@ -8,15 +8,89 @@ const app = angular.module('app', ['ngMaterial', 'ngMessages', 'material.svgAsse
 app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
+     *
+     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
+     */
+    $scope.addUser = {
+        id: null,
+        login: null,
+        password: null,
+        firstName: null,
+        secondName: null,
+        phoneNumber: null,
+    };
+
+    /**
+     *
+     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
+     */
+    $scope.findUser = {
+        id: null,
+        login: null,
+        password: null,
+        firstName: null,
+        secondName: null,
+        phoneNumber: null,
+    };
+
+    /**
+     *
+     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
+     */
+    $scope.getUser = {
+        id: null,
+        login: "anonymous",
+        password: null,
+        firstName: null,
+        secondName: null,
+        phoneNumber: null,
+    };
+
+    /**
+     *
+     * @type {Array}
+     */
+    $scope.types = [];
+
+    /**
+     *
+     * @type {{name: null}}
+     */
+    $scope.addType = {
+        name: null
+    };
+
+    /**
+     *
+     * @type {{id: null}}
+     */
+    $scope.findType = {
+        id: null
+    };
+
+    /**
+     *
+     * @type {{name: null, id: null}}
+     */
+    $scope.getType = {
+        id: null,
+        name: null
+    };
+
+    /**
+     *
+     * @type {{name: null, id: null}}
+     */
+    $scope.updateType = {
+        id: null,
+        name: null
+    };
+
+    /**
      * @param smartPhone - smart phone.
      * @type {null}
      */
     $scope.products = [];
-
-    $scope.type = {};
-    $scope.selectedItem = {};
-
-
 
     /**
      * @type {{quantity: null, price: null, description: null, company: null, model: null}}
@@ -35,39 +109,36 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
-     * @type {{quantity: null, price: null, description: null, company: null, model: null, id: null}}
+     *
+     * @type {{id: null}}
      */
-    $scope.findPhone = {
-        id: null,
-        type: null,
-        company: null,
-        model: null,
-        description: null,
-        quantity: null,
-        price: null
+    $scope.findProduct = {
+        id: null
     };
 
     /**
      *
      * @type {{quantity: null, price: null, description: null, company: null, model: null, id: null}}
      */
-    $scope.getPhone = {
+    $scope.getProduct = {
         id: null,
-        type: null,
         company: null,
         model: null,
         description: null,
         quantity: null,
-        price: null
+        price: null,
+        type: {
+            id: null,
+            name: null
+        }
     };
 
     /**
      *
      * @type {{quantity: null, price: null, description: null, company: null, model: null, id: null}}
      */
-    $scope.updatePhone = {
+    $scope.updateProduct = {
         id: null,
-        type: null,
         company: null,
         model: null,
         description: null,
@@ -109,62 +180,9 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
      *
-     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
-     */
-    $scope.addUser = {
-        id: null,
-        login: null,
-        password: null,
-        firstName: null,
-        secondName: null,
-        phoneNumber: null,
-    };
-
-    /**
-     *
-     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
-     */
-    $scope.findUser = {
-        id: null,
-        login: null,
-        password: null,
-        firstName: null,
-        secondName: null,
-        phoneNumber: null,
-    };
-
-    /**
-     *
-     * @type {{firstName: null, password: null, phoneNumber: null, id: null, login: null, secondName: null}}
-     */
-    $scope.getUser = {
-        id: null,
-        login: "anonymous",
-        password: null,
-        firstName: null,
-        secondName: null,
-        phoneNumber: null,
-    };
-
-    /**
-     *
      * @type {string}
      */
     $scope.information = "";
-
-    $scope.andros = {};
-
-    $scope.types = [
-        {
-
-        },
-
-    ];
-
-    $scope.type123 = {};
-
-
-
 
     /**
      * isEmptyObject - is empty object.
@@ -225,6 +243,61 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     };
 
     /**
+     * addSmartPhone - add smart phone.
+     * @param type - is.
+     */
+    $scope.saveType = function (type) {
+        $http.post("/save_type", JSON.stringify(type))
+            .then(function (response) {
+                if (response.data)
+                    console.log("post data submitted successfully");
+            }, function error(response) {
+                console.log("service not exists: " + response.status);
+            });
+    };
+
+    /**
+     * addSmartPhone - add smart phone.
+     * @param type - is.
+     */
+    $scope.findTypeById = function (type) {
+        $http.post("/find_type_by_id", JSON.stringify(type))
+            .then(function success(response) {
+                $scope.getType = response.data;
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    };
+
+    /**
+     * addSmartPhone - add smart phone.
+     * @param type - is.
+     */
+    $scope.updateTypeById = function (type) {
+        $http.post("/update_type_by_id", JSON.stringify(type))
+            .then(function (response) {
+                if (response.data)
+                    console.log("post data submitted successfully");
+            }, function error(response) {
+                console.log("service not exists: " + response.status);
+            });
+    };
+
+    /**
+     * deleteSmartPhone - delete smart phone by id.
+     * @param type  - type.
+     */
+    $scope.deleteTypeById = function (type) {
+        $http.post("/delete_type_by_id", JSON.stringify(type))
+            .then(function (response) {
+                if (response.data)
+                    console.log("post data submitted successfully");
+            }, function (response) {
+                console.log("service not exists: " + response.status);
+            });
+    };
+
+    /**
      * getAllSmartPhone - get all smart phone.
      */
     $scope.findAllType = function () {
@@ -253,12 +326,12 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
      * addSmartPhone - add smart phone.
-     * @param smartPhone
+     * @param product - product.
      */
-    $scope.findSmartPhoneById = function (smartPhone) {
-        $http.post("/find_smart_phone_by_id", JSON.stringify(smartPhone))
+    $scope.findProductById = function (product) {
+        $http.post("/find_product_by_id", JSON.stringify(product))
             .then(function success(response) {
-                $scope.getPhone = response.data;
+                $scope.getProduct = response.data;
             }, function error(response) {
                 console.log("error" + response.headers);
             });
@@ -266,10 +339,10 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
      * addSmartPhone - add smart phone.
-     * @param smartPhone - smart phone.
+     * @param product - is.
      */
-    $scope.updateSmartPhoneById = function (smartPhone) {
-        $http.post("/update_smart_phone_by_id", JSON.stringify(smartPhone))
+    $scope.updateProductById = function (product) {
+        $http.post("/update_product_by_id", JSON.stringify(product))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
@@ -280,10 +353,10 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
 
     /**
      * deleteSmartPhone - delete smart phone by id.
-     * @param smartPhone - smart phone.
+     * @param product - is.
      */
-    $scope.deleteSmartPhoneById = function (smartPhone) {
-        $http.post("/delete_smart_phone_by_id", JSON.stringify(smartPhone))
+    $scope.deleteProductById = function (product) {
+        $http.post("/delete_product_by_id", JSON.stringify(product))
             .then(function (response) {
                 if (response.data)
                     console.log("post data submitted successfully");
@@ -295,6 +368,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     /**
      * getAllSmartPhone - get all smart phone.
      */
+    /*
     $scope.findAllSmartPhone = function () {
         $http.get("/find_all_product")
             .then(function success(response) {
@@ -304,6 +378,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
                 console.log("error" + response.headers);
             });
     };
+    */
 
     /**
      * getAllSmartPhone - get all smart phone.
