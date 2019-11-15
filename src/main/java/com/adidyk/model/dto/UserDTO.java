@@ -1,67 +1,43 @@
-package com.adidyk.model.pojo;
+package com.adidyk.model.dto;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-/**
- * Class User.
- */
-@Entity
-@Table(name = "users")
-public class User {
+public class UserDTO {
 
     /**
      * @param id - order id.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
     /**
      * @param login - login.
      */
-    @Column(name = "login")
     private String login;
 
     /**
      * @param password - password.
      */
-    @Column(name = "password")
     private String password;
 
     /**
      * @param firstName - user first name.
      */
-    @Column(name = "first_name")
     private String firstName;
 
     /**
      * @param secondName - user second name.
      */
-    @Column(name = "second_name")
     private String secondName;
 
     /**
      * @param phoneNumber - user phone number.
      */
-    @Column(name = "phone_number")
     private int phoneNumber;
 
     /**
-     * @param orders - list orders.
-     */
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Order> orders = new ArrayList<>();
-
-    /**
      * User - constructor.
      */
-    public User() {
+    public UserDTO() {
     }
 
     /**
@@ -69,7 +45,7 @@ public class User {
      * @param login - login.
      * @param password - password.
      */
-    public User(String login, String password) {
+    public UserDTO(String login, String password) {
         this.login = login;
         this.password = password;
     }
@@ -82,34 +58,19 @@ public class User {
      * @param secondName - user second name.
      * @param phoneNumber - user phone number.
      */
-    public User(int id, String login, String password, String firstName, String secondName, int phoneNumber) {
-        this.id = id;
+    public UserDTO(String login, String password, String firstName, String secondName, int phoneNumber) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * User - constructor.
-     * @param firstName - user first name.
-     * @param secondName - user second name.
-     * @param phoneNumber - user phone number.
-     * @param orders - list orders.
-     */
-    public User(String firstName, String secondName, int phoneNumber, ArrayList<Order> orders) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.phoneNumber = phoneNumber;
-        this.orders = orders;
     }
 
     /**
      * User - constructor.
      * @param id - id.
      */
-    public User(int id) {
+    public UserDTO(int id) {
         this.id = id;
     }
 
@@ -161,31 +122,23 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
+        if (!(o instanceof UserDTO)) return false;
+        UserDTO user = (UserDTO) o;
         return id == user.id &&
                 phoneNumber == user.phoneNumber &&
                 Objects.equals(login, user.login) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(firstName, user.firstName) &&
-                Objects.equals(secondName, user.secondName) &&
-                Objects.equals(orders, user.orders);
+                Objects.equals(secondName, user.secondName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, firstName, secondName, phoneNumber, orders);
+        return Objects.hash(id, login, password, firstName, secondName, phoneNumber);
     }
 
     @Override
@@ -197,7 +150,6 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                //", orders=" + orders +
                 '}';
     }
 }

@@ -1,9 +1,12 @@
 package com.adidyk.service;
 
 import com.adidyk.model.pojo.Order;
+import com.adidyk.model.pojo.User;
 import com.adidyk.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Class OrderService.
@@ -29,8 +32,8 @@ public class OrderService {
      * save - save new order.
      * @param order - order.
      */
-    public Order save(Order order) {
-        return this.repository.save(order);
+    public void save(Order order) {
+        this.repository.save(order);
     }
 
     /**
@@ -40,6 +43,15 @@ public class OrderService {
      */
     public Order findById(Order order) {
         return this.repository.findById(order.getId()).orElse(null);
+    }
+
+    /**
+     *
+     * @param user - user.
+     * @return - list.
+     */
+    public List<Order> findAllByUser(User user) {
+        return this.repository.findAllByUser(user);
     }
 
 }

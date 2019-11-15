@@ -96,7 +96,6 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @type {{quantity: null, price: null, description: null, company: null, model: null}}
      */
     $scope.addProduct = {
-        id: null,
         company: null,
         model: null,
         description: null,

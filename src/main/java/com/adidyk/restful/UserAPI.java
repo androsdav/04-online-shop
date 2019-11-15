@@ -47,7 +47,7 @@ public class UserAPI {
      * @param user - user.
      * @return - return.
      */
-    @RequestMapping(value = "/find_user_by_id", method = RequestMethod.GET)
+    @RequestMapping(value = "/find_user_by_id", method = RequestMethod.POST)
     public User findUserById(@RequestBody User user) {
         return this.service.findById(user);
     }

@@ -1,7 +1,10 @@
 package com.adidyk.restful;
 
+import com.adidyk.model.dto.OrderDTO;
+import com.adidyk.model.dto.UserDTO;
 import com.adidyk.model.pojo.Order;
 import com.adidyk.service.OrderService;
+import com.adidyk.transfer.OrderTransfer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,15 +20,15 @@ public class OrderAPI {
     /**
      * @param orderService
      */
-    private final OrderService service;
+    private final OrderTransfer transfer;
 
     /**
      * OrderAPI - constructor.
-     * @param service - service.
+     * @param transfer - service.
      */
     @Autowired
-    public OrderAPI(OrderService service) {
-        this.service = service;
+    public OrderAPI(OrderTransfer transfer) {
+        this.transfer = transfer;
     }
 
     /**
@@ -34,7 +37,7 @@ public class OrderAPI {
      */
     @RequestMapping(value = "/save_order", method = RequestMethod.POST)
     //public void addOrder(@RequestBody List<SmartPhone> list) {
-    public Order saveOrder(@RequestBody Order order) {
+    public void saveOrder(@RequestBody OrderDTO order) {
         //Order order = new Order();
         //order.setSmartPhones(list);
         //this.orderService.save(order);
@@ -44,7 +47,7 @@ public class OrderAPI {
         System.out.println();
         System.out.println();
         //System.out.println(order.getSmartPhones());
-        return this.service.save(order);
+        this.transfer.save(order);
     }
 
     /**
@@ -52,9 +55,21 @@ public class OrderAPI {
      * @param order - order.
      * @return - return.
      */
-    @RequestMapping(value = "find_order_by_id", method = RequestMethod.GET)
-    public Order findOrderById(@RequestBody Order order) {
-        return this.service.findById(order);
+    /*
+    @RequestMapping(value = "find_order_by_id", method = RequestMethod.POST)
+    public void findOrderById(@RequestBody OrderDTO order) {
+        this.transfer.findById(order);
     }
+    */
+    @RequestMapping(value = "find_order_by_id", method = RequestMethod.POST)
+    public Order findOrderById(@RequestBody Order order) {
+        return this.transfer.findById(order);
+    }
+
+    @RequestMapping(value = "find_all_order_by_user", method = RequestMethod.POST)
+    public void findAllOrderByUser(@RequestBody UserDTO user) {
+        this.transfer.findAllByUser(user);
+    }
+
 
 }

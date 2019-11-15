@@ -1,11 +1,7 @@
 package com.adidyk.model.pojo;
 
-import com.adidyk.model.OrderSmartPhone;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,15 +57,12 @@ public class Product {
     @JoinColumn(name = "type_id")
     private Type type;
 
-    /*
     /**
      * @param orderSmartPhones - order smart phones.
      */
-    /*
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "smartPhone")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
     @Fetch(FetchMode.JOIN)
-    private List<OrderSmartPhone> orderSmartPhones = new ArrayList<>();
-    */
+    private List<OrderProduct> orderProduct = new ArrayList<>();
 
     /**
      * SmartPhone - constructor.
@@ -175,6 +168,14 @@ public class Product {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public List<OrderProduct> getOrderProduct() {
+        return orderProduct;
+    }
+
+    public void setOrderProduct(List<OrderProduct> orderProduct) {
+        this.orderProduct = orderProduct;
     }
 
     @Override
