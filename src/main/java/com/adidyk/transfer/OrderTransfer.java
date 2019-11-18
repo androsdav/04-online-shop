@@ -10,7 +10,6 @@ import com.adidyk.model.pojo.User;
 import com.adidyk.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +91,10 @@ public class OrderTransfer {
         System.out.println("check point");
         System.out.println();
         List<Order> orderList = this.service.findAllByUser(user);
+        System.out.println();
         System.out.println(orderList);
+        System.out.println();
+        System.out.println(orderList.get(0).getOrderProduct());
         //return null;
     }
 }

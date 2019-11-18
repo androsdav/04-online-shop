@@ -132,7 +132,7 @@ public class Order {
                 "id=" + id +
                 ", dateCreate=" + dateCreate +
                 ", user=" + user +
-                ", orderProduct=" + orderProduct +
+                //", orderProduct=" + orderProduct +
                 '}';
     }
 }

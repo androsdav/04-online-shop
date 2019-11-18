@@ -60,8 +60,8 @@ public class Product {
     /**
      * @param orderSmartPhones - order smart phones.
      */
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
-    @Fetch(FetchMode.JOIN)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    //@Fetch(FetchMode.JOIN)
     private List<OrderProduct> orderProduct = new ArrayList<>();
 
     /**

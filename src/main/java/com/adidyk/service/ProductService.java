@@ -96,7 +96,12 @@ public class ProductService {
      * @return - list.
      */
     public List<Product> findAllByType(Type type) {
-        return this.repository.findAllByType(type);
+        List<Product> list = this.repository.findAllByType(type);
+        for (Product product : list) {
+            System.out.println(product);
+        }
+        return list;
+        //return this.repository.findAllByType(type);
     }
 
 }
