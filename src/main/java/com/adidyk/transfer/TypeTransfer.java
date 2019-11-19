@@ -1,69 +1,37 @@
 package com.adidyk.transfer;
 
-import com.adidyk.model.dto.ProductDTO;
 import com.adidyk.model.dto.TypeDTO;
-import com.adidyk.model.pojo.Product;
-import com.adidyk.model.pojo.Type;
 import com.adidyk.service.TypeService;
+import com.adidyk.transfer.mapper.TypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Class TypeTransfer.
  */
 @Service
 public class TypeTransfer {
 
     /**
-     *
+     * @param service - service.
      */
     private TypeService service;
 
     /**
-     *
+     * @param mapper - mapper.
+     */
+    private TypeMapper mapper;
+
+    /**
+     * TypeService - constructor.
      * @param service - service.
+     * @param mapper - mapper.
      */
     @Autowired
-    public TypeTransfer(TypeService service) {
+    public TypeTransfer(TypeService service, TypeMapper mapper) {
         this.service = service;
-    }
-
-    /**
-     *
-     * @param typeDTO - is.
-     * @return - is.
-     */
-    private Type transferDtoToPojo(TypeDTO typeDTO) {
-        return new Type(typeDTO.getId(), typeDTO.getName());
-    }
-
-
-    /**
-     * transferPojoToDto - transfer.
-     * @param type - is.
-     * @return - is.
-     */
-    private TypeDTO transferPojoToDto(Type type) {
-        TypeDTO typeDTO = null;
-        if (type != null) {
-            typeDTO = new TypeDTO(type.getId(), type.getName());
-        }
-        return typeDTO;
-    }
-
-    /**
-     * transferPojoListToDtoList - transfer.
-     * @param types - is.
-     * @return - is.
-     */
-    private List<TypeDTO> transferPojoListToDtoList(List<Type> types) {
-        List<TypeDTO> typeDTOS = new ArrayList<>();
-        for (Type type : types) {
-            typeDTOS.add(this.transferPojoToDto(type));
-        }
-        return typeDTOS;
+        this.mapper = mapper;
     }
 
     /**
@@ -71,7 +39,7 @@ public class TypeTransfer {
      * @param typeDTO - product.
      */
     public TypeDTO save(TypeDTO typeDTO) {
-        return this.transferPojoToDto(this.service.save(this.transferDtoToPojo(typeDTO)));
+        return this.mapper.toTypeDTO(this.service.save(this.mapper.toType(typeDTO)));
     }
 
     /**
@@ -80,7 +48,7 @@ public class TypeTransfer {
      * @return - returns product by id.
      */
     public TypeDTO findById(TypeDTO typeDTO) {
-        return this.transferPojoToDto(this.service.findById(this.transferDtoToPojo(typeDTO)));
+        return this.mapper.toTypeDTO(this.service.findById(this.mapper.toType(typeDTO)));
     }
 
     /**
@@ -88,7 +56,7 @@ public class TypeTransfer {
      * @param typeDTO - new product.
      */
     public  TypeDTO updateById(TypeDTO typeDTO) {
-        return this.transferPojoToDto(this.service.updateById(this.transferDtoToPojo(typeDTO)));
+        return this.mapper.toTypeDTO(this.service.updateById(this.mapper.toType(typeDTO)));
     }
 
     /**
@@ -96,7 +64,7 @@ public class TypeTransfer {
      * @param typeDTO - product.
      */
     public TypeDTO deleteById(TypeDTO typeDTO) {
-        return this.transferPojoToDto(this.service.deleteById(this.transferDtoToPojo(typeDTO)));
+        return this.mapper.toTypeDTO(this.service.deleteById(this.mapper.toType(typeDTO)));
     }
 
     /**
@@ -104,7 +72,7 @@ public class TypeTransfer {
      * @return - return.
      */
     public List<TypeDTO> findAll() {
-        return this.transferPojoListToDtoList(this.service.findAll());
+        return this.mapper.toListTypeDTO(this.service.findAll());
     }
 
 }

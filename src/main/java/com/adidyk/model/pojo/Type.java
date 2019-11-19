@@ -103,7 +103,7 @@ public class Type {
         return "Type{" +
                 "id=" + id +
                 ", name=" + name +
-                ", products=" + products +
+                //", products=" + products +
                 '}';
     }
 

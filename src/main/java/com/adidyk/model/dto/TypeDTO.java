@@ -17,11 +17,6 @@ public class TypeDTO {
         this.name = name;
     }
 
-    public TypeDTO(int id, String name, List<ProductDTO> products) {
-        this.id = id;
-        this.name = name;
-    }
-
     public int getId() {
         return id;
     }
