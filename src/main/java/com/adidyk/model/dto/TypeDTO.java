@@ -1,6 +1,5 @@
 package com.adidyk.model.dto;
 
-import java.util.List;
 import java.util.Objects;
 
 public class TypeDTO {
@@ -10,11 +9,6 @@ public class TypeDTO {
     private String name;
 
     public TypeDTO() {
-    }
-
-    public TypeDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public int getId() {

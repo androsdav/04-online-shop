@@ -40,40 +40,6 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    /**
-     * User - constructor.
-     * @param login - login.
-     * @param password - password.
-     */
-    public UserDTO(String login, String password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    /**
-     * User - constructor.
-     * @param login - login.
-     * @param password - password.
-     * @param firstName - user first name.
-     * @param secondName - user second name.
-     * @param phoneNumber - user phone number.
-     */
-    public UserDTO(String login, String password, String firstName, String secondName, int phoneNumber) {
-        this.login = login;
-        this.password = password;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * User - constructor.
-     * @param id - id.
-     */
-    public UserDTO(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
     }

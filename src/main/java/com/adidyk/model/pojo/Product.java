@@ -53,7 +53,7 @@ public class Product {
     private double price;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    //@Fetch(FetchMode.JOIN)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "type_id")
     private Type type;
 

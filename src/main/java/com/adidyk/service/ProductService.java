@@ -3,7 +3,6 @@ package com.adidyk.service;
 import com.adidyk.model.pojo.Product;
 import com.adidyk.model.pojo.Type;
 import com.adidyk.repository.ProductRepository;
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -96,12 +95,7 @@ public class ProductService {
      * @return - list.
      */
     public List<Product> findAllByType(Type type) {
-        List<Product> list = this.repository.findAllByType(type);
-        for (Product product : list) {
-            System.out.println(product);
-        }
-        return list;
-        //return this.repository.findAllByType(type);
+        return this.repository.findAllByType(type);
     }
 
 }

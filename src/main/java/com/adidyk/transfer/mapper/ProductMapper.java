@@ -5,15 +5,17 @@ import com.adidyk.model.dto.TypeDTO;
 import com.adidyk.model.pojo.Product;
 import com.adidyk.model.pojo.Type;
 import org.mapstruct.Mapper;
-
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ProductMapper {
 
     Product toProduct(ProductDTO productDTO);
 
     ProductDTO toProductDTO(Product product);
 
-    List<Product> toTypeDTOs(List<ProductDTO> productDTOs);
+    List<ProductDTO> toListProductDTO(List<Product> products);
+
+    Type toType(TypeDTO typeDTO);
+
 }

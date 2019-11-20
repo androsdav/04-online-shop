@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 /**
@@ -55,8 +54,6 @@ public class ProductAPI {
      */
     @RequestMapping(value = "/update_product_by_id", method = RequestMethod.POST)
     public ProductDTO updateProductById(@RequestBody ProductDTO productDTO) {
-        System.out.println();
-        System.out.println("product DTO :" + productDTO);
         return this.transfer.updateById(productDTO);
     }
 

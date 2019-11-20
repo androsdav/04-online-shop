@@ -43,44 +43,6 @@ public class ProductDTO {
 
     }
 
-    /**
-     * ProductDTO - constructor.
-     * @param id - id.
-     * @param company - company.
-     * @param model - model.
-     * @param description - description.
-     * @param quantity - quantity.
-     * @param price - price.
-     */
-    public ProductDTO(int id, String company, String model, String description, int quantity, double price) {
-        this.id = id;
-        this.company = company;
-        this.model = model;
-        this.description = description;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
-    /**
-     * ProductDTO - constructor.
-     * @param id - id.
-     * @param company - company.
-     * @param model - model.
-     * @param description - description.
-     * @param quantity - quantity.
-     * @param price - price.
-     * @param type - type.
-     */
-    public ProductDTO(int id, String company, String model, String description, int quantity, double price, TypeDTO type) {
-        this.id = id;
-        this.company = company;
-        this.model = model;
-        this.description = description;
-        this.quantity = quantity;
-        this.price = price;
-        this.type = type;
-    }
-
     public int getId() {
         return id;
     }

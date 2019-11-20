@@ -56,7 +56,7 @@ public class User {
     /**
      * @param orders - list orders.
      */
-    @JsonIgnore
+    //@JsonIgnore
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
