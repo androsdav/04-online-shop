@@ -34,7 +34,7 @@ public class Order {
     /**
      * @param user - user.
      */
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     //@Fetch(FetchMode.JOIN)
     @JoinColumn(name = "user_id")
     private User user;
@@ -44,7 +44,7 @@ public class Order {
      */
     //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
     //@Fetch(FetchMode.JOIN)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
     private List<OrderProduct> orderProduct = new ArrayList<>();
 
     /**

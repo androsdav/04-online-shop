@@ -18,4 +18,6 @@ public interface ProductMapper {
 
     Type toType(TypeDTO typeDTO);
 
+    TypeDTO toTypeDTO(Type type);
+
 }

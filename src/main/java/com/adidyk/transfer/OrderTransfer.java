@@ -1,6 +1,7 @@
 package com.adidyk.transfer;
 
 import com.adidyk.model.dto.OrderDTO;
+import com.adidyk.model.dto.OrderProductDTO;
 import com.adidyk.model.dto.ProductDTO;
 import com.adidyk.model.dto.UserDTO;
 import com.adidyk.model.pojo.Order;
@@ -8,93 +9,95 @@ import com.adidyk.model.pojo.OrderProduct;
 import com.adidyk.model.pojo.Product;
 import com.adidyk.model.pojo.User;
 import com.adidyk.service.OrderService;
+import com.adidyk.transfer.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class OrderTransfer.
+ */
 @Service
 public class OrderTransfer {
 
+    /**
+     * @param service - service.
+     */
     private final OrderService service;
 
+    /**
+     * @param mapper - mapper.
+     */
+    private final OrderMapper mapper;
 
+
+    /**
+     * OrderTransfer - constructor.
+     * @param service - service.
+     * @param mapper - mapper.
+     */
     @Autowired
-    public OrderTransfer(OrderService service) {
+    public OrderTransfer(OrderService service, OrderMapper mapper) {
         this.service = service;
+        this.mapper = mapper;
     }
 
-    private User transferDtoToPojo (UserDTO userDTO) {
-        return new User(userDTO.getId(), userDTO.getLogin(), userDTO.getPassword(), userDTO.getFirstName(), userDTO.getSecondName(), userDTO.getPhoneNumber());
-    }
-
-    private Product transferDtoToPojo(ProductDTO productDTO) {
-        return new Product(productDTO.getId(), productDTO.getCompany(), productDTO.getModel(), productDTO.getDescription(), productDTO.getQuantity(), productDTO.getPrice());
-    }
-
-    private List<Product> transferDtoListToPogoList(List<ProductDTO> productDTOS) {
-        List<Product> products = new ArrayList<>();
-        for (ProductDTO productDTO : productDTOS) {
-            products.add(this.transferDtoToPojo(productDTO));
+    /**
+     * toOrder - to order.
+     * @param order - order.
+     * @param products - products.
+     * @return - return order.
+     */
+    private Order toOrder(Order order, List<Product> products) {
+        List<OrderProduct> orderProducts = new ArrayList<>();
+        for (Product product : products) {
+            orderProducts.add(new OrderProduct(order, product, product.getQuantity()));
         }
-        return products;
-    }
-
-    private Order transferDtoToPojo(OrderDTO orderDTO) {
-        Order order = new Order(orderDTO.getId(), orderDTO.getDateCreate());
+        order.setOrderProduct(orderProducts);
         return order;
     }
 
     /**
-     * save - save new order.
-     *
-     * @param orderDTO - order.
+     * toOrderDTO - to orderDTO.
+     * @param orderDTO - orderDTO.
+     * @param orderProductDTOS - orderProductDTOS.
+     * @return - orderDTO.
      */
-    public void save(OrderDTO orderDTO) {
-         User user = this.transferDtoToPojo(orderDTO.getUser());
-         List<Product> products = this.transferDtoListToPogoList(orderDTO.getProducts());
-         Order order = this.transferDtoToPojo(orderDTO);
-         order.setUser(user);
-
-         List<OrderProduct> orderProducts = new ArrayList<>();
-
-         for (Product product : products) {
-             OrderProduct orderProduct = new OrderProduct(order, product, product.getQuantity());
-             orderProducts.add(orderProduct);
-         }
-         order.setOrderProduct(orderProducts);
-
-         for (Product product : products) {
-             product.setOrderProduct(orderProducts);
-         }
-         this.service.save(order);
-    }
-
-    /*
-    public void findById(OrderDTO orderDTO) {
-        Order order = this.transferDtoToPojo(orderDTO);
-        System.out.println(this.service.findById(order));
-    }
-    */
-
-    public Order findById(Order order) {
-        return this.service.findById(order);
+    private OrderDTO toOrderDTO(OrderDTO orderDTO, List<OrderProductDTO> orderProductDTOS) {
+        List<ProductDTO> productDTOS = new ArrayList<>();
+        for (OrderProductDTO orderProductDTO : orderProductDTOS) {
+            productDTOS.add(orderProductDTO.getProduct());
+        }
+        orderDTO.setProducts(productDTOS);
+        return orderDTO;
     }
 
     /**
-     *
-     * @return
+     * save - save.
+     * @param orderDTO - orderDTO.
      */
-    public void findAllByUser(UserDTO userDTO) {
-        User user = this.transferDtoToPojo(userDTO);
-        System.out.println();
-        System.out.println("check point");
-        System.out.println();
-        List<Order> orderList = this.service.findAllByUser(user);
-        System.out.println();
-        System.out.println(orderList);
-        System.out.println();
-        System.out.println(orderList.get(0).getOrderProduct());
-        //return null;
+    public void save(OrderDTO orderDTO) {
+        this.service.save(this.toOrder(this.mapper.toOrder(orderDTO), this.mapper.toListProduct(orderDTO.getProducts())));
     }
+
+    /**
+     * findById - find by id.
+     * @param orderDTO - orderDTO.
+     * @return - return orderDTO.
+     */
+    public OrderDTO findById(OrderDTO orderDTO) {
+        Order order = this.service.findById(this.mapper.toOrder(orderDTO));
+        return this.toOrderDTO(this.mapper.toOrderDTO(order), this.mapper.toListOrderProductDTO(order.getOrderProduct()));
+    }
+
+    /**
+     * findAllByUser - find all by user.
+     * @param userDTO - userDTO.
+     * @return - return list orderDTO.
+     */
+    public List<OrderDTO> findAllByUser(UserDTO userDTO) {
+        return this.mapper.toListOrderDTO(this.service.findAllByUser(this.mapper.toUser(userDTO)));
+    }
+
 }

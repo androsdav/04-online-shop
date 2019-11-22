@@ -44,9 +44,9 @@ public class UserAPI {
      */
     @RequestMapping(value = "/find_user_by_login_and_password", method = RequestMethod.POST)
     public UserDTO findUserByLoginAndPassword(@RequestBody UserDTO userDTO) {
-        System.out.println();
-        System.out.println(userDTO);
-        System.out.println();
+        //System.out.println();
+        //System.out.println(userDTO);
+        //System.out.println();
         return this.transfer.findByLoginAndPassword(userDTO);
     }
 

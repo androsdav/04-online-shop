@@ -386,17 +386,17 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         $http.post("/find_all_product_by_type", JSON.stringify(type))
             .then(function success(response) {
                 $scope.products = response.data;
-                $scope.deleteAllFromBasket();
+                //$scope.deleteAllFromBasket();
             }, function error(response) {
                 console.log("error" + response.headers);
             });
     };
 
-
     /**
      * addToBasket - adds smart phone to order.
      * @param product1 - product.
      */
+
     $scope.addToBasket = function (product1) {
         let product = {
             id: product1.id,
@@ -404,26 +404,32 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             model: product1.model,
             description: product1.description,
             quantity: product1.quantity,
-            price: product1.price
+            price: product1.price,
+            type: {
+                id: product1.type.id,
+                name: product1.type.name
+            }
         };
         let indexInBasket = $scope.findIndexById($scope.basket, product.id);
-        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, product.id);
+        let indexInProducts = $scope.findIndexById($scope.products, product.id);
         if (indexInBasket < 0) {
             product.quantity = 1;
             $scope.basket.push(product);
-            if ($scope.smartPhones[indexInSmartPhones].quantity > 1) {
-                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity - 1;
+            if ($scope.products[indexInProducts].quantity > -1) {
+                $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity - 1;
             } else {
-                $scope.smartPhones.splice(indexInSmartPhones, 1);
+                $scope.products.splice(indexInProducts, 1);
             }
         } else {
             $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity + 1;
-            if ($scope.smartPhones[indexInSmartPhones].quantity > 1) {
-                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity - 1;
+            if ($scope.products[indexInProducts].quantity > -1) {
+                $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity - 1;
             } else {
-                $scope.smartPhones.splice(indexInSmartPhones, 1);
+                $scope.products.splice(indexInProducts, 1);
             }
         }
+        console.log("test test: " + $scope.products[indexInProducts].quantity);
+        $scope.updateProductById($scope.products[indexInProducts]);
     };
 
     /**
@@ -437,26 +443,31 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             model: product1.model,
             description: product1.description,
             quantity: product1.quantity,
-            price: product1.price
+            price: product1.price,
+            type: {
+                id: product1.type.id,
+                name: product1.type.name
+            }
         };
         let indexInBasket = $scope.findIndexById($scope.basket, product.id);
-        let indexInSmartPhones = $scope.findIndexById($scope.smartPhones, product.id);
+        let indexInProducts = $scope.findIndexById($scope.products, product.id);
         if ($scope.basket[indexInBasket].quantity > 1) {
             $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity - 1;
-            if (indexInSmartPhones < 0) {
+            if (indexInProducts < 0) {
                 product.quantity = 1;
-                $scope.smartPhones.push(product);
+                $scope.products.push(product);
             } else {
-                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity + 1;
+                $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity + 1;
             }
         } else {
             $scope.basket.splice(indexInBasket, 1);
-            if (indexInSmartPhones < 0) {
+            if (indexInProducts < 0) {
                 product.quantity = 1;
-                $scope.smartPhones.push(product);
+                $scope.products.push(product);
             } else {
-                $scope.smartPhones[indexInSmartPhones].quantity = $scope.smartPhones[indexInSmartPhones].quantity + 1;
+                $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity + 1;
             }
+            $scope.updateProductById($scope.products[indexInProducts]);
         }
     };
 

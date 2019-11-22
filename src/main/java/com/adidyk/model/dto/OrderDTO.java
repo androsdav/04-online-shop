@@ -28,6 +28,9 @@ public class OrderDTO {
      */
     private List<ProductDTO> products = new ArrayList<>();
 
+    public OrderDTO() {
+    }
+
     public OrderDTO(int id, UserDTO user,  List<ProductDTO> products) {
         this.id = id;
         this.user = user;

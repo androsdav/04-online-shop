@@ -1,36 +1,25 @@
-package com.adidyk.model.pojo;
+package com.adidyk.model.dto;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-/**
- * Class OrderSmartPhone.
- */
-@Entity
-@Table(name = "orders_products")
-public class OrderProduct {
+public class OrderProductDTO {
+
 
     /**
      * @param id - id.
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
     /**
      * @param order - order.
      */
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    private OrderDTO order;
 
     /**
      * @param smartPhone - smart phone.
      */
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
-    private Product product;
+    private ProductDTO product;
 
     /**
      * @param count - count.
@@ -38,13 +27,7 @@ public class OrderProduct {
     @Column(name = "count")
     private int count;
 
-    public OrderProduct() {
-    }
-
-    public OrderProduct(Order order, Product product, int count) {
-        this.order = order;
-        this.product = product;
-        this.count = count;
+    public OrderProductDTO() {
     }
 
     public int getId() {
@@ -55,19 +38,19 @@ public class OrderProduct {
         this.id = id;
     }
 
-    public Order getOrder() {
+    public OrderDTO getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderDTO order) {
         this.order = order;
     }
 
-    public Product getProduct() {
+    public ProductDTO getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductDTO product) {
         this.product = product;
     }
 
@@ -82,8 +65,8 @@ public class OrderProduct {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof OrderProduct)) return false;
-        OrderProduct that = (OrderProduct) o;
+        if (!(o instanceof OrderProductDTO)) return false;
+        OrderProductDTO that = (OrderProductDTO) o;
         return count == that.count &&
                 Objects.equals(order, that.order) &&
                 Objects.equals(product, that.product);
