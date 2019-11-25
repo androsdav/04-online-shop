@@ -32,6 +32,9 @@ public class ProductService {
         return (field != null && !field.isEmpty());
     }
 
+    private boolean check(Integer field) {
+        return (field != null);
+    }
 
     /**
      * save - save new product.
@@ -61,7 +64,7 @@ public class ProductService {
             if (this.check(newProduct.getCompany())) oldProduct.setCompany(newProduct.getCompany());
             if (this.check(newProduct.getModel())) oldProduct.setModel(newProduct.getModel());
             if (this.check(newProduct.getDescription())) oldProduct.setDescription(newProduct.getDescription());
-            if (newProduct.getQuantity() != 0) oldProduct.setQuantity(newProduct.getQuantity());
+            if (this.check(newProduct.getQuantity())) oldProduct.setQuantity(newProduct.getQuantity());
             if (newProduct.getPrice() != 0) oldProduct.setPrice(newProduct.getPrice());
             this.repository.save(oldProduct);
         }

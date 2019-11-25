@@ -27,7 +27,7 @@ public class ProductDTO {
     /**
      * @param quantity - quantity.
      */
-    private int quantity;
+    private Integer quantity;
 
     /**
      * @param price - price.
@@ -75,11 +75,11 @@ public class ProductDTO {
         this.description = description;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -104,7 +104,7 @@ public class ProductDTO {
         if (this == o) return true;
         if (!(o instanceof ProductDTO)) return false;
         ProductDTO that = (ProductDTO) o;
-        return quantity == that.quantity &&
+        return Objects.equals(quantity, that.quantity) &&
                 Double.compare(that.price, price) == 0 &&
                 Objects.equals(company, that.company) &&
                 Objects.equals(model, that.model) &&

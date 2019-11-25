@@ -44,7 +44,7 @@ public class Product {
      * @param quantity - quantity.
      */
     @Column(name = "quantity")
-    private int quantity;
+    private Integer quantity;
 
     /**
      * @param price - price.
@@ -86,7 +86,7 @@ public class Product {
      * @param quantity - quantity.
      * @param price - price by one.
      */
-    public Product(int id, String company, String model, String description, int quantity, double price, Type type) {
+    public Product(int id, String company, String model, String description, Integer quantity, double price, Type type) {
         this.id = id;
         this.company = company;
         this.model = model;
@@ -104,7 +104,7 @@ public class Product {
      * @param quantity - quantity.
      * @param price - price by one.
      */
-    public Product(int id, String company, String model, String description, int quantity, double price) {
+    public Product(int id, String company, String model, String description, Integer quantity, double price) {
         this.id = id;
         this.company = company;
         this.model = model;
@@ -146,11 +146,11 @@ public class Product {
         this.description = description;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -183,7 +183,7 @@ public class Product {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return quantity == product.quantity &&
+        return Objects.equals(quantity, product.quantity) &&
                 Double.compare(product.price, price) == 0 &&
                 Objects.equals(company, product.company) &&
                 Objects.equals(model, product.model) &&

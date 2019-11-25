@@ -39,6 +39,9 @@ public class ProductTransfer {
      * @param productDTO - product.
      */
     public ProductDTO save(ProductDTO productDTO) {
+        System.out.println();
+        System.out.println("MAGIC  :   " + productDTO);
+        System.out.println();
         return this.mapper.toProductDTO(this.service.save(this.mapper.toProduct(productDTO)));
     }
 
