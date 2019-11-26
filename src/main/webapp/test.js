@@ -169,7 +169,18 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      *
      * @type {{}}
      */
-    $scope.order = {};
+    $scope.order = {
+        user: null,
+        products: []
+    };
+
+    $scope.getOrder = {
+        id: null,
+        dateCreate: null,
+        user: null,
+        products: null
+    };
+
 
     /**
      *
@@ -367,21 +378,6 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
     /**
      * getAllSmartPhone - get all smart phone.
      */
-    /*
-    $scope.findAllSmartPhone = function () {
-        $http.get("/find_all_product")
-            .then(function success(response) {
-                $scope.products = response.data;
-                $scope.deleteAllFromBasket();
-            }, function error(response) {
-                console.log("error" + response.headers);
-            });
-    };
-    */
-
-    /**
-     * getAllSmartPhone - get all smart phone.
-     */
     $scope.findAllProductByType = function (type) {
         $http.post("/find_all_product_by_type", JSON.stringify(type))
             .then(function success(response) {
@@ -397,7 +393,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * @param product1 - product.
      */
 
-    $scope.addToBasket = function (product1) {
+    $scope.addProductToBasket = function (product1) {
         let product = {
             id: product1.id,
             company: product1.company,
@@ -414,21 +410,16 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
         let indexInProducts = $scope.findIndexById($scope.products, product.id);
         if (indexInBasket < 0) {
             product.quantity = 1;
-            $scope.basket.push(product);
-            if ($scope.products[indexInProducts].quantity > -1) {
+            if ($scope.products[indexInProducts].quantity > 0) {
+                $scope.basket.push(product);
                 $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity - 1;
-            } else {
-                $scope.products.splice(indexInProducts, 1);
             }
         } else {
-            $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity + 1;
-            if ($scope.products[indexInProducts].quantity > -1) {
+            if ($scope.products[indexInProducts].quantity > 0) {
+                $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity + 1;
                 $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity - 1;
-            } else {
-                $scope.products.splice(indexInProducts, 1);
             }
         }
-        console.log("test test: " + $scope.products[indexInProducts].quantity);
         $scope.updateProductById($scope.products[indexInProducts]);
     };
 
@@ -436,7 +427,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      * deleteFromBasket - delete from order.
      * @param product1 - product.
      */
-    $scope.deleteFromBasket = function (product1) {
+    $scope.deleteProductFromBasket = function (product1) {
         let product = {
             id: product1.id,
             company: product1.company,
@@ -449,26 +440,19 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
                 name: product1.type.name
             }
         };
+        //console.log("products first: " + $scope.products[0].quantity);
+        //$scope.findAllProductByType(product.type);
+        //console.log("products second: " + $scope.products[0].quantity);
         let indexInBasket = $scope.findIndexById($scope.basket, product.id);
         let indexInProducts = $scope.findIndexById($scope.products, product.id);
         if ($scope.basket[indexInBasket].quantity > 1) {
             $scope.basket[indexInBasket].quantity = $scope.basket[indexInBasket].quantity - 1;
-            if (indexInProducts < 0) {
-                product.quantity = 1;
-                $scope.products.push(product);
-            } else {
-                $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity + 1;
-            }
+            $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity + 1;
         } else {
             $scope.basket.splice(indexInBasket, 1);
-            if (indexInProducts < 0) {
-                product.quantity = 1;
-                $scope.products.push(product);
-            } else {
-                $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity + 1;
-            }
-            $scope.updateProductById($scope.products[indexInProducts]);
+            $scope.products[indexInProducts].quantity = $scope.products[indexInProducts].quantity + 1;
         }
+        $scope.updateProductById($scope.products[indexInProducts]);
     };
 
     /**
@@ -503,7 +487,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
      */
     $scope.saveOrder = function () {
         $scope.order.user = $scope.getUser;
-        $scope.order.smartPhones = $scope.basket;
+        $scope.order.products = $scope.basket;
         $http.post("/save_order", JSON.stringify($scope.order))
             .then(function (response) {
                 if (response.data)
@@ -514,12 +498,30 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             });
     };
 
+    $scope.findAllOrderByUser = function (user) {
+        $http.post("/find_all_order_by_user", JSON.stringify(user))
+            .then(function success(response) {
+                $scope.orders = response.data;
+                //$scope.deleteAllFromBasket();
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    }
+
+    $scope.findOrderById = function (order) {
+        $http.post("/find_order_by_id", JSON.stringify(order))
+            .then(function success(response) {
+                $scope.getOrder = response.data;
+                //$scope.deleteAllFromBasket();
+            }, function error(response) {
+                console.log("error" + response.headers);
+            });
+    }
+
+
 });
 
 
-/**
- * postCtrl - post controller.
- */
 /*
 app.controller('postCtrl', function ($scope, $http) {
     $scope.id = null;

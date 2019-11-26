@@ -3,6 +3,7 @@ package com.adidyk.restful;
 import com.adidyk.model.dto.OrderDTO;
 import com.adidyk.model.dto.UserDTO;
 import com.adidyk.transfer.OrderTransfer;
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,13 @@ public class OrderAPI {
      */
     @RequestMapping(value = "find_order_by_id", method = RequestMethod.POST)
     public OrderDTO findOrderById(@RequestBody OrderDTO order) {
-        return this.transfer.findById(order);
+        OrderDTO orderDTO = this.transfer.findById(order);
+
+        System.out.println();
+        System.out.println(orderDTO);
+        System.out.println();
+        //return this.transfer.findById(order);
+        return orderDTO;
     }
 
     /**
@@ -57,6 +64,7 @@ public class OrderAPI {
      */
     @RequestMapping(value = "find_all_order_by_user", method = RequestMethod.POST)
     public List<OrderDTO> findAllOrderByUser(@RequestBody UserDTO user) {
+        System.out.println("get userDTO: " + user);
         return this.transfer.findAllByUser(user);
     }
 

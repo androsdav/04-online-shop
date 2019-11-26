@@ -28,18 +28,15 @@
                                     <form>
                                         <fieldset>
                                             <legend><h5 class="admin_action_legend">basket</h5></legend>
+
                                             <div class="form-inline">
                                                 <div class="form-group">
                                                     <div class="col-md-offset-20">
-                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">clean basket</button>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-2">
                                                         <button class="btn btn-default" ng-click="saveOrder()">save order</button>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div>
                                                 <table class="table table-striped">
                                                     <thead>
@@ -63,7 +60,7 @@
                                                         <td>{{product.description}}</td>
                                                         <td>{{product.quantity}}</td>
                                                         <td>{{product.price}}</td>
-                                                        <td><button class="btn btn-default" ng-click="deleteFromBasket(product)">-</button></td>
+                                                        <td><button class="btn btn-default" ng-click="deleteProductFromBasket(product)">-</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -71,49 +68,6 @@
                                         </fieldset>
                                     </form>
                                 </div>
-                                <!------------------------------------ SMART PHONE--------------------------------------->
-                                <div class="admin_delete_and_find_all_smart_phone">
-                                    <form>
-                                        <fieldset>
-                                            <legend><h5 class="admin_action_legend">products</h5></legend>
-                                            <div class="form-inline">
-                                                <div class="form-group">
-                                                    <div class="col-md-offset-20">
-                                                        <button class="btn btn-default" ng-click="findAllSmartPhone()">smart phone</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>id</th>
-                                                        <th>type</th>
-                                                        <th>company</th>
-                                                        <th>model</th>
-                                                        <th>description</th>
-                                                        <th>quantity</th>
-                                                        <th>price</th>
-                                                        <th>add to basket</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr ng-repeat="phone in smartPhones">
-                                                        <td>{{phone.id}}</td>
-                                                        <td>{{phone.company}}</td>
-                                                        <td>{{phone.model}}</td>
-                                                        <td>{{phone.description}}</td>
-                                                        <td>{{phone.quantity}}</td>
-                                                        <td>{{phone.price}}</td>
-                                                        <td><button class="btn btn-default" ng-click="addToBasket(phone)">+</button></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
-
                                 <!------------------------ find all product by type and adds to basket ------------------------>
                                 <div class="admin_delete_and_find_all_smart_phone">
                                     <form>
@@ -156,7 +110,7 @@
                                                         <td>{{product.description}}</td>
                                                         <td>{{product.quantity}}</td>
                                                         <td>{{product.price}}</td>
-                                                        <td><button class="btn btn-default" ng-click="addToBasket(product)">+</button></td>
+                                                        <td><button class="btn btn-default" ng-click="addProductToBasket(product)">+</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -164,23 +118,71 @@
                                         </fieldset>
                                     </form>
                                 </div>
-
-
                             </fieldset>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
                     </md-content>
                 </md-tab>
+<!------------------------------------------------------ORDERS---------------------------------------------------------->
+                <md-tab label="orders">
+                    <md-content class="md-padding">
+                        <div class="admin">
+                            <fieldset>
+                                <legend><h4 style="font-weight: bold; text-align: left">Hello: {{getUser.login}}</h4></legend>
+                                <!------------------------ find all orders by user ------------------------>
+                                <div class="admin_delete_and_find_all_smart_phone">
+                                    <form>
+                                        <fieldset>
+                                            <legend><h5 class="admin_action_legend">products</h5></legend>
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                        <button class="btn btn-default" ng-click="findAllOrderByUser(getUser)"><b style="color: chocolate">orders ID</b></button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-offset-20">
+                                                <span ng-repeat="order in orders">
+                                                    <button class="btn btn-default" ng-click="findOrderById(order)">{{order.id}}</button>
+                                                </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>type</th>
+                                                        <th>company</th>
+                                                        <th>model</th>
+                                                        <th>description</th>
+                                                        <th>quantity</th>
+                                                        <th>price</th>
+                                                        <th>add to basket</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="product in getOrder.products">
+                                                        <td>{{product.id}}</td>
+                                                        <td>{{product.type.name}}</td>
+                                                        <td>{{product.company}}</td>
+                                                        <td>{{product.model}}</td>
+                                                        <td>{{product.description}}</td>
+                                                        <td>{{product.quantity}}</td>
+                                                        <td>{{product.price}}</td>
+                                                        <td><button class="btn btn-default" ng-click="addProductToBasket(product)">+</button></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </md-content>
+                </md-tab>
+
 <!-------------------------------------------------AUTHORIZATION------------------------------------------------------->
                 <md-tab label="authorization">
                     <md-content class="md-padding">
