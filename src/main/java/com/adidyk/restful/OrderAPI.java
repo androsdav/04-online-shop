@@ -19,7 +19,7 @@ import java.util.List;
 public class OrderAPI {
 
     /**
-     * @param orderService
+     * @param orderService - order transfer.
      */
     private final OrderTransfer transfer;
 
