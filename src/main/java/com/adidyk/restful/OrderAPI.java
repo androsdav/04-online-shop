@@ -50,9 +50,9 @@ public class OrderAPI {
     public OrderDTO findOrderById(@RequestBody OrderDTO order) {
         OrderDTO orderDTO = this.transfer.findById(order);
 
-        System.out.println();
+        //System.out.println();
         System.out.println(orderDTO);
-        System.out.println();
+        //System.out.println();
         //return this.transfer.findById(order);
         return orderDTO;
     }
