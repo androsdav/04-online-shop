@@ -162,6 +162,9 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <div>
+                                                        {{getOrder.dateCreate}}
+                                                    </div>
                                                     <tr ng-repeat="product in getOrder.products">
                                                         <td>{{product.id}}</td>
                                                         <td>{{product.type.name}}</td>

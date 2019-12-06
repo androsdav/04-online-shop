@@ -7,7 +7,6 @@ import com.adidyk.model.dto.UserDTO;
 import com.adidyk.model.pojo.Order;
 import com.adidyk.model.pojo.OrderProduct;
 import com.adidyk.model.pojo.Product;
-import com.adidyk.model.pojo.User;
 import com.adidyk.service.OrderService;
 import com.adidyk.transfer.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +66,9 @@ public class OrderTransfer {
     private OrderDTO toOrderDTO(OrderDTO orderDTO, List<OrderProductDTO> orderProductDTOS) {
         List<ProductDTO> productDTOS = new ArrayList<>();
         for (OrderProductDTO orderProductDTO : orderProductDTOS) {
-            productDTOS.add(orderProductDTO.getProduct());
+            ProductDTO productDTO = orderProductDTO.getProduct();
+            productDTO.setQuantity(orderProductDTO.getCount());
+            productDTOS.add(productDTO);
         }
         orderDTO.setProducts(productDTOS);
         return orderDTO;

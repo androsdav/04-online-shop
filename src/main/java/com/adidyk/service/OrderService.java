@@ -50,10 +50,10 @@ public class OrderService {
      * @return - list.
      */
     public List<Order> findAllByUser(User user) {
-        List<Order> list = this.repository.findAllByUser(user);
-        System.out.println("               --> " + list);
+        //List<Order> list = this.repository.findAllByUser(user);
+        //System.out.println("               --> " + list);
         //return this.repository.findAllByUser(user);
-        return list;
+        return this.repository.findAllByUser(user);
     }
 
 }

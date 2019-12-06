@@ -506,7 +506,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             }, function error(response) {
                 console.log("error" + response.headers);
             });
-    }
+    };
 
     $scope.findOrderById = function (order) {
         $http.post("/find_order_by_id", JSON.stringify(order))
@@ -516,8 +516,7 @@ app.controller('smartPhoneCtrl', function ($scope, $http) {
             }, function error(response) {
                 console.log("error" + response.headers);
             });
-    }
-
+    };
 
 });
 

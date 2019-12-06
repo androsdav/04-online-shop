@@ -54,9 +54,9 @@ public class ProductAPI {
      */
     @RequestMapping(value = "/update_product_by_id", method = RequestMethod.POST)
     public ProductDTO updateProductById(@RequestBody ProductDTO productDTO) {
-        System.out.println();
-        System.out.println("productDTO: " + productDTO);
-        System.out.println();
+        //System.out.println();
+        //System.out.println("productDTO: " + productDTO);
+        //System.out.println();
         return this.transfer.updateById(productDTO);
     }
 
