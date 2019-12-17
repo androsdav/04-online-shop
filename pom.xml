@@ -57,6 +57,7 @@
             <version>2.1.7.RELEASE</version>
         </dependency>
 
+        <!-- mapstruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
