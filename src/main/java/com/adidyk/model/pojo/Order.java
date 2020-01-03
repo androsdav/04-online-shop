@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Class order.
+ * Class Order.
  */
 @Entity
 @Table(name = "orders")
