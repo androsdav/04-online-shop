@@ -46,16 +46,12 @@ public class UserTest {
         Order order1 = new Order();
         Date date = new Date();
         order1.setDateCreate(date);
-        order1.setId(1);
         Order order2 = new Order();
         order2.setDateCreate(date);
-        order2.setId(2);
         Order order3 = new Order();
         order3.setDateCreate(date);
-        order3.setId(1);
         Order order4 = new Order();
         order4.setDateCreate(date);
-        order4.setId(2);
         this.listExpected.add(order1);
         this.listExpected.add(order2);
         this.listActual.add(order3);
@@ -168,6 +164,8 @@ public class UserTest {
 
     @Test
     public void getOrders() {
+        System.out.println(this.userActual.getOrders());
+        System.out.println(this.userExpected.getOrders());
         assertThat(this.userActual.getOrders(), is(this.userExpected.getOrders()));
     }
 

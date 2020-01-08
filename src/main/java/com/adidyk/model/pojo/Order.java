@@ -1,8 +1,5 @@
 package com.adidyk.model.pojo;
 
-import com.adidyk.model.dto.UserDTO;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +7,10 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Class Order.
+ * Class Order used for creates new object order with params: id, date create, user.
+ * @author Didyk Andrey (androsdav@gmail.com).
+ * @since 03.01.2020.
+ * @version 1.0.
  */
 @Entity
 @Table(name = "orders")
@@ -25,25 +25,22 @@ public class Order {
     private int id;
 
     /**
-     * @param dateCreate - date create of order.
+     * @param dateCreate - order date create.
      */
     @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "date_create")
     private Date dateCreate = new Date();
 
     /**
-     * @param user - user.
+     * @param user - object user.
      */
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    //@Fetch(FetchMode.JOIN)
     @JoinColumn(name = "user_id")
     private User user;
 
     /**
-     * @param orderSmartPhones - order smart phones.
+     * @param orderProduct - list object of class OrderProduct.
      */
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
-    //@Fetch(FetchMode.JOIN)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
     private List<OrderProduct> orderProduct = new ArrayList<>();
 
@@ -51,14 +48,6 @@ public class Order {
      * Order - constructor.
      */
     public Order() {
-    }
-
-    /**
-     * Order - constructor.
-     * @param dateCreate - date create order.
-     */
-    public Order(Date dateCreate) {
-        this.dateCreate = dateCreate;
     }
 
     /**

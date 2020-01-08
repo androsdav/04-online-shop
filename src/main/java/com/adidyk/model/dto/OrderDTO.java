@@ -31,12 +31,6 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(int id, UserDTO user,  List<ProductDTO> products) {
-        this.id = id;
-        this.user = user;
-        this.products = products;
-    }
-
     public int getId() {
         return id;
     }

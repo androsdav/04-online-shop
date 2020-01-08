@@ -7,9 +7,9 @@ import java.util.Objects;
 
 /**
  * Class User used for creates new object user with params: id, login, password, first name, second name.
- *  @author Didyk Andrey (androsdav@gmail.com).
- *  @since 03.01.2020.
- *  @version 1.0.
+ * @author Didyk Andrey (androsdav@gmail.com).
+ * @since 03.01.2020.
+ * @version 1.0.
  */
 @Entity
 @Table(name = "users")
