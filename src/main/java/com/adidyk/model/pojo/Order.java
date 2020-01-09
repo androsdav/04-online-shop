@@ -68,6 +68,10 @@ public class Order {
         this.dateCreate = dateCreate;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return id;
     }
